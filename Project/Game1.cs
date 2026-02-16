@@ -38,13 +38,14 @@ namespace Project
             _assetManagement = new AssetManagement();
             _gameManagement.SceneManagement.MainScene.AddGameObject(new GameObject(), Layers.FOREGROUND);
             _gameManagement.SceneManagement.MainScene.LevelReady = true;
+            _gameManagement.SceneManagement.MainScene.CellSize = 22;
+            _gameManagement.SceneManagement.MainScene.SetSizes(512, 288);
+            _gameManagement.SceneManagement.MainScene.BackgroundColor = new Color(125,56, 51);
+            _gameManagement.SceneManagement.MainScene.SetLevelLdtk(0);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
             _gameManagement.Update(gameTime);
 
             base.Update(gameTime);
