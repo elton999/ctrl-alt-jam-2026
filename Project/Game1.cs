@@ -1,9 +1,11 @@
-﻿using UmbrellaToolsKit;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Project.Components;
 using Project.Entities;
+using UmbrellaToolsKit;
+using UmbrellaToolsKit.EditorEngine;
+using UmbrellaToolsKit.EditorEngine.Windows.GameSettings;
 
 namespace Project
 {
@@ -47,6 +49,9 @@ namespace Project
             _gameManagement.SceneManagement.MainScene.SetSizes(512, 288);
             _gameManagement.SceneManagement.MainScene.BackgroundColor = new Color(125, 56, 51);
             _gameManagement.SceneManagement.MainScene.SetLevelLdtk(0);
+
+            var inputSettings = GameSettingsProperty.GetProperty<InputGameSettings>(@"Content/InputGameSettings");
+            inputSettings.BindAllInputs();
         }
 
         protected override void Update(GameTime gameTime)
