@@ -4,6 +4,7 @@ using UmbrellaToolsKit;
 using UmbrellaToolsKit.Input;
 using UmbrellaToolsKit.Components.Sprite;
 using UmbrellaToolsKit.EditorEngine.Attributes;
+using UmbrellaToolsKit.EditorEngine;
 
 namespace Project.Entities
 {
@@ -13,9 +14,11 @@ namespace Project.Entities
         
         private SpriteComponent _spriteComponent;
         private Vector2 _initialPosition;
-        private Vector2 _currentTile;
-        private Vector2 _oldTile;
+        [ShowEditor] private Vector2 _currentTile;
+        [ShowEditor] private Vector2 _oldTile;
         private bool _isMoving = false;
+        private Point _nextTileOnLevel => (Position / Scene.CellSize + (_currentTile - _oldTile)).ToPoint();
+
         private const float MOVE_SPEED = 0.08f;
         
         public override void Start()
@@ -34,7 +37,22 @@ namespace Project.Entities
 
             if (_isMoving)
             {
-                var currentPosition =_initialPosition + _oldTile * Scene.CellSize;
+                if (_nextTileOnLevel.X < Scene.Grid.GridCollides.Count && _nextTileOnLevel.Y < Scene.Grid.GridCollides[_nextTileOnLevel.X].Count)
+                {
+                    if (Scene.Grid.GridCollides[_nextTileOnLevel.X][_nextTileOnLevel.Y] != "2")
+                    {
+                        OnNotAvoidMovement();
+                        return;
+                    }
+                }
+                else
+                {
+                    OnNotAvoidMovement();
+                    return;
+                }
+
+
+                var currentPosition = _initialPosition + _oldTile * Scene.CellSize;
                 var currentTilePosition = (_currentTile - _oldTile) * Scene.CellSize;
                 var nextTilePosition = _currentTile * Scene.CellSize;
 
@@ -42,9 +60,7 @@ namespace Project.Entities
 
                 if (_totalTime >= MOVE_SPEED)
                 {
-                    _totalTime = 0f;
-                    _isMoving = false;
-                    _oldTile =  _currentTile;
+                    ResetMoveAnimation();
                     Position = _initialPosition + nextTilePosition;
                     return;
                 }
@@ -55,6 +71,19 @@ namespace Project.Entities
                     Tweening.LinearTween(currentPosition.Y, currentTilePosition.Y, _totalTime, MOVE_SPEED)
                 );
             }
+        }
+
+        private void OnNotAvoidMovement()
+        {
+            _currentTile = _oldTile;
+            ResetMoveAnimation();
+        }
+
+        private void ResetMoveAnimation()
+        {
+            _totalTime = 0f;
+            _isMoving = false;
+            _oldTile = _currentTile;
         }
 
         private void UpdateKeyboard()
