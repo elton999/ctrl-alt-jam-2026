@@ -8,10 +8,15 @@ namespace UmbrellaToolsKit.Components.Sprite
 {
     public class SpriteComponent : Component
     {
-        [ShowEditor] private string _tempSprite = string.Empty;
+        private string _tempSprite = string.Empty;
         [ShowEditor] private Sprite _sprite;
         [ShowEditor] private float _transparent = 1.0f;
+        [ShowEditor] private Vector2 _origin;
         [ShowEditor] private SpriteEffects _spriteEffect = SpriteEffects.None;
+
+        public float Transparent { get => _transparent; set => _transparent = value; }
+        public Vector2 Origin { get => _origin; set => _origin = value; }
+        public SpriteEffects SpriteEffect { get => _spriteEffect; set => _spriteEffect = value; }
 
         public override void AfterUpdate(float deltaTime)
         {
@@ -51,8 +56,9 @@ namespace UmbrellaToolsKit.Components.Sprite
             if (_sprite == null) return;
 
             GameObject.Sprite = _sprite.Texture;
-            GameObject.Transparent = _transparent;
-            GameObject.SpriteEffect = _spriteEffect;
+            GameObject.Transparent = Transparent;
+            GameObject.SpriteEffect = SpriteEffect;
+            GameObject.Origin = Origin;
             GameObject.Body = _sprite.Body;
         }
     }
