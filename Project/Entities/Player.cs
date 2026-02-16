@@ -4,7 +4,6 @@ using UmbrellaToolsKit;
 using UmbrellaToolsKit.Input;
 using UmbrellaToolsKit.Components.Sprite;
 using UmbrellaToolsKit.EditorEngine.Attributes;
-using UmbrellaToolsKit.EditorEngine;
 
 namespace Project.Entities
 {
@@ -17,9 +16,9 @@ namespace Project.Entities
         [ShowEditor] private Vector2 _currentTile;
         [ShowEditor] private Vector2 _oldTile;
         private bool _isMoving = false;
-        private Point _nextTileOnLevel => (Position / Scene.CellSize + (_currentTile - _oldTile)).ToPoint();
+        private Point _nextTileOnLevel => (_initialPosition / Scene.CellSize + _oldTile + (_currentTile - _oldTile)).ToPoint();
 
-        private const float MOVE_SPEED = 0.08f;
+        private const float MOVE_SPEED = 0.13f;
         
         public override void Start()
         {
@@ -37,9 +36,9 @@ namespace Project.Entities
 
             if (_isMoving)
             {
-                if (_nextTileOnLevel.X < Scene.Grid.GridCollides.Count && _nextTileOnLevel.Y < Scene.Grid.GridCollides[_nextTileOnLevel.X].Count)
+                if (_nextTileOnLevel.Y < Scene.Grid.GridCollides.Count && _nextTileOnLevel.X < Scene.Grid.GridCollides[_nextTileOnLevel.Y].Count)
                 {
-                    if (Scene.Grid.GridCollides[_nextTileOnLevel.X][_nextTileOnLevel.Y] != "2")
+                    if (Scene.Grid.GridCollides[_nextTileOnLevel.Y][_nextTileOnLevel.X] != "2")
                     {
                         OnNotAvoidMovement();
                         return;
@@ -50,7 +49,6 @@ namespace Project.Entities
                     OnNotAvoidMovement();
                     return;
                 }
-
 
                 var currentPosition = _initialPosition + _oldTile * Scene.CellSize;
                 var currentTilePosition = (_currentTile - _oldTile) * Scene.CellSize;
@@ -67,8 +65,8 @@ namespace Project.Entities
 
                 Position = new Vector2
                 (
-                    Tweening.LinearTween(currentPosition.X, currentTilePosition.X, _totalTime, MOVE_SPEED),
-                    Tweening.LinearTween(currentPosition.Y, currentTilePosition.Y, _totalTime, MOVE_SPEED)
+                    Tweening.EaseInQuad(currentPosition.X, currentTilePosition.X, _totalTime, MOVE_SPEED),
+                    Tweening.EaseInQuad(currentPosition.Y, currentTilePosition.Y, _totalTime, MOVE_SPEED)
                 );
             }
         }
