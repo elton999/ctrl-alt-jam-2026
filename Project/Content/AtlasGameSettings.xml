@@ -19,6 +19,27 @@
             <Path>Sprites\tilemap</Path>
             <Id>ff02680b-b61e-43f3-88e5-b3bee59af7b7</Id>
           </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>Sprites\tilemap : 2</Name>
+            <Position>22 0</Position>
+            <Size>22 22</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>c3ee15aa-5eb8-45c6-8091-d2c679498297</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>Sprites\tilemap : 3</Name>
+            <Position>0 22</Position>
+            <Size>22 22</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>43070572-8a95-4f86-9f8f-bb05fd4a361d</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>Sprites\tilemap : 4</Name>
+            <Position>22 22</Position>
+            <Size>22 22</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>65d5d71a-4cdf-45ae-9b28-8a90c0ca2a65</Id>
+          </Item>
         </Sprites>
       </Item>
     </Atlas>

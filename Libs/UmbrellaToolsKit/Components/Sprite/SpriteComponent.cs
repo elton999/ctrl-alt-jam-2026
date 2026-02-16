@@ -10,7 +10,6 @@ namespace UmbrellaToolsKit.Components.Sprite
     {
         [ShowEditor] private string _tempSprite = string.Empty;
         [ShowEditor] private Sprite _sprite;
-        [ShowEditor] private Vector2 _origin;
         [ShowEditor] private float _transparent = 1.0f;
         [ShowEditor] private SpriteEffects _spriteEffect = SpriteEffects.None;
 
@@ -52,7 +51,6 @@ namespace UmbrellaToolsKit.Components.Sprite
             if (_sprite == null) return;
 
             GameObject.Sprite = _sprite.Texture;
-            GameObject.Origin = _origin;
             GameObject.Transparent = _transparent;
             GameObject.SpriteEffect = _spriteEffect;
             GameObject.Body = _sprite.Body;

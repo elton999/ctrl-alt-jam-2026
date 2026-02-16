@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Project.Components;
+using Project.Entities;
 
 namespace Project
 {
@@ -28,7 +29,6 @@ namespace Project
             _gameManagement.Game = this;
             _gameManagement.Start();
 
-            // TODO: Add your initialization logic here
             base.Initialize();
         }
 
@@ -37,16 +37,16 @@ namespace Project
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _assetManagement = new AssetManagement();
+
+            _assetManagement.Set<Player>("Player", Layers.PLAYER);
+            _assetManagement.Set<CameraGameObject>("Player", Layers.MIDDLEGROUND);
+
             _gameManagement.SceneManagement.MainScene.AddGameObject(new GameObject(), Layers.FOREGROUND);
             _gameManagement.SceneManagement.MainScene.LevelReady = true;
             _gameManagement.SceneManagement.MainScene.CellSize = 22;
             _gameManagement.SceneManagement.MainScene.SetSizes(512, 288);
-            _gameManagement.SceneManagement.MainScene.BackgroundColor = new Color(125,56, 51);
+            _gameManagement.SceneManagement.MainScene.BackgroundColor = new Color(125, 56, 51);
             _gameManagement.SceneManagement.MainScene.SetLevelLdtk(0);
-
-            var camera = new GameObject();
-            _gameManagement.SceneManagement.MainScene.AddGameObject(camera, Layers.MIDDLEGROUND);
-            camera.AddComponent<CameraComponent>();
         }
 
         protected override void Update(GameTime gameTime)
