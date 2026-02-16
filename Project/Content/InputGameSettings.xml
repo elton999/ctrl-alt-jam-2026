@@ -1,7 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:GameSettings="UmbrellaToolsKit.EditorEngine.Windows.GameSettings">
   <Asset Type="GameSettings:InputGameSettings">
-    <Name Null="true" />
-    <InputDataList />
+    <Name>basic inputs</Name>
+    <InputDataList>
+      <Item>
+        <InputName>up</InputName>
+        <Keys>
+          <Item>Up</Item>
+          <Item>W</Item>
+        </Keys>
+      </Item>
+      <Item>
+        <InputName>down</InputName>
+        <Keys>
+          <Item>Down</Item>
+          <Item>S</Item>
+        </Keys>
+      </Item>
+      <Item>
+        <InputName>left</InputName>
+        <Keys>
+          <Item>Left</Item>
+          <Item>A</Item>
+        </Keys>
+      </Item>
+      <Item>
+        <InputName>right</InputName>
+        <Keys>
+          <Item>Right</Item>
+          <Item>D</Item>
+        </Keys>
+      </Item>
+      <Item>
+        <InputName>exit</InputName>
+        <Keys>
+          <Item>Escape</Item>
+        </Keys>
+      </Item>
+      <Item>
+        <InputName>confirm</InputName>
+        <Keys>
+          <Item>Enter</Item>
+          <Item>Space</Item>
+        </Keys>
+      </Item>
+      <Item>
+        <InputName>select 1</InputName>
+        <Keys>
+          <Item>Z</Item>
+        </Keys>
+      </Item>
+      <Item>
+        <InputName>select 2</InputName>
+        <Keys>
+          <Item>X</Item>
+        </Keys>
+      </Item>
+      <Item>
+        <InputName>select 3</InputName>
+        <Keys>
+          <Item>C</Item>
+        </Keys>
+      </Item>
+      <Item>
+        <InputName>select 4</InputName>
+        <Keys>
+          <Item>V</Item>
+        </Keys>
+      </Item>
+    </InputDataList>
   </Asset>
 </XnaContent>

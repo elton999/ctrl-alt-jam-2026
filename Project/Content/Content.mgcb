@@ -15,6 +15,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin AtlasGameSettings.xml
+/copy:AtlasGameSettings.xml
+
+#begin InputGameSettings.xml
+/copy:InputGameSettings.xml
+
 #begin Maps/TileMap.ldtk
 /importer:LdtkImporter
 /processor:LdtkProcessor
