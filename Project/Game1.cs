@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Project.Components;
 
 namespace Project
 {
@@ -42,6 +43,10 @@ namespace Project
             _gameManagement.SceneManagement.MainScene.SetSizes(512, 288);
             _gameManagement.SceneManagement.MainScene.BackgroundColor = new Color(125,56, 51);
             _gameManagement.SceneManagement.MainScene.SetLevelLdtk(0);
+
+            var camera = new GameObject();
+            _gameManagement.SceneManagement.MainScene.AddGameObject(camera, Layers.MIDDLEGROUND);
+            camera.AddComponent<CameraComponent>();
         }
 
         protected override void Update(GameTime gameTime)
