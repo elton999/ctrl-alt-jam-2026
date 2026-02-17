@@ -47,6 +47,13 @@
             <Path>Sprites\tilemap</Path>
             <Id>100eacb7-a796-4fe5-820a-fec299d1812c</Id>
           </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>end sprite</Name>
+            <Position>23 44</Position>
+            <Size>23 23</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>f41e3df9-6235-4b38-a330-3eddb41848f6</Id>
+          </Item>
         </Sprites>
       </Item>
     </Atlas>
