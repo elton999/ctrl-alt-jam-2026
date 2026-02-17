@@ -5,10 +5,12 @@ using Microsoft.Xna.Framework;
 
 namespace Project.Entities.Obstacles
 {
-    public class ObstacleGameObject : GameObject
+    public abstract class ObstacleGameObject : GameObject
     {
         private SpriteComponent _spriteComponent;
         private ActorComponent _actorComponent;
+
+        public abstract ObstaclesTypes ObstacleType { get; }
 
         public override void Start()
         {
