@@ -40,6 +40,13 @@
             <Path>Sprites\tilemap</Path>
             <Id>65d5d71a-4cdf-45ae-9b28-8a90c0ca2a65</Id>
           </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>debug sprite</Name>
+            <Position>0 44</Position>
+            <Size>23 23</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>100eacb7-a796-4fe5-820a-fec299d1812c</Id>
+          </Item>
         </Sprites>
       </Item>
     </Atlas>
