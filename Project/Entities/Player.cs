@@ -9,13 +9,14 @@ namespace Project.Entities
 {
     public class Player : GameObject
     {
-        private float _totalTime = 0f;
-        
         private SpriteComponent _spriteComponent;
+        
+        private float _totalTime = 0f;
+        private bool _isMoving = false;
         private Vector2 _initialPosition;
+
         [ShowEditor] private Vector2 _currentTile;
         [ShowEditor] private Vector2 _oldTile;
-        private bool _isMoving = false;
         private Point _nextTileOnLevel => (_initialPosition / Scene.CellSize + _oldTile + (_currentTile - _oldTile)).ToPoint();
 
         private const float MOVE_SPEED = 0.13f;

@@ -11,6 +11,11 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Components\CameraComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CameraGameObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\Barrel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\Enemy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\ObstacleGameObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\Stone.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\Tree.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game1.cs" />
   </ItemGroup>
