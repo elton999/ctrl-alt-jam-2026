@@ -948,7 +948,7 @@
 			"fieldDefs": []
 		},
 		{
-			"identifier": "Spider",
+			"identifier": "Barrel",
 			"uid": 9,
 			"tags": [],
 			"exportToToc": false,
@@ -972,7 +972,7 @@
 			"showName": true,
 			"tilesetId": 6,
 			"tileRenderMode": "FitInside",
-			"tileRect": { "tilesetUid": 6, "x": 32, "y": 896, "w": 16, "h": 16 },
+			"tileRect": { "tilesetUid": 6, "x": 128, "y": 560, "w": 16, "h": 16 },
 			"uiTileRect": null,
 			"nineSliceBorders": [],
 			"maxCount": 0,
@@ -1241,11 +1241,11 @@
 							"__worldY": 44
 						},
 						{
-							"__identifier": "Spider",
+							"__identifier": "Barrel",
 							"__grid": [4,5],
 							"__pivot": [0,0],
 							"__tags": [],
-							"__tile": { "tilesetUid": 6, "x": 32, "y": 896, "w": 16, "h": 16 },
+							"__tile": { "tilesetUid": 6, "x": 128, "y": 560, "w": 16, "h": 16 },
 							"__smartColor": "#E4A672",
 							"iid": "06301b10-fa90-11f0-84aa-13681c0a3def",
 							"width": 22,
@@ -1257,11 +1257,11 @@
 							"__worldY": 110
 						},
 						{
-							"__identifier": "Spider",
+							"__identifier": "Barrel",
 							"__grid": [15,1],
 							"__pivot": [0,0],
 							"__tags": [],
-							"__tile": { "tilesetUid": 6, "x": 32, "y": 896, "w": 16, "h": 16 },
+							"__tile": { "tilesetUid": 6, "x": 128, "y": 560, "w": 16, "h": 16 },
 							"__smartColor": "#E4A672",
 							"iid": "1c492630-fa90-11f0-84aa-bb127366b221",
 							"width": 22,
@@ -1289,11 +1289,11 @@
 							"__worldY": 44
 						},
 						{
-							"__identifier": "Spider",
+							"__identifier": "Barrel",
 							"__grid": [5,3],
 							"__pivot": [0,0],
 							"__tags": [],
-							"__tile": { "tilesetUid": 6, "x": 32, "y": 896, "w": 16, "h": 16 },
+							"__tile": { "tilesetUid": 6, "x": 128, "y": 560, "w": 16, "h": 16 },
 							"__smartColor": "#E4A672",
 							"iid": "746e26d0-fa90-11f0-84aa-35163679dc0e",
 							"width": 22,
@@ -1354,7 +1354,7 @@
 						},
 						{
 							"__identifier": "Enemy",
-							"__grid": [16,4],
+							"__grid": [16,3],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": { "tilesetUid": 6, "x": 128, "y": 432, "w": 16, "h": 16 },
@@ -1363,10 +1363,10 @@
 							"width": 22,
 							"height": 22,
 							"defUid": 8,
-							"px": [352,88],
+							"px": [352,66],
 							"fieldInstances": [],
 							"__worldX": 352,
-							"__worldY": 88
+							"__worldY": 66
 						},
 						{
 							"__identifier": "Enemy",
@@ -1433,11 +1433,11 @@
 							"__worldY": 88
 						},
 						{
-							"__identifier": "Spider",
+							"__identifier": "Barrel",
 							"__grid": [13,6],
 							"__pivot": [0,0],
 							"__tags": [],
-							"__tile": { "tilesetUid": 6, "x": 32, "y": 896, "w": 16, "h": 16 },
+							"__tile": { "tilesetUid": 6, "x": 128, "y": 560, "w": 16, "h": 16 },
 							"__smartColor": "#E4A672",
 							"iid": "2d3a63d0-fa90-11f0-84aa-3518980f6cd0",
 							"width": 22,
