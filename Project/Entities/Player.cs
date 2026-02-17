@@ -90,24 +90,21 @@ namespace Project.Entities
 
             if (KeyBoardHandler.KeyPressed("up"))
             {
-                _isMoving = true;
-                _oldTile = _currentTile;
+                SetMoviment();
                 _currentTile -= Vector2.UnitY;
                 return;
             }
 
             if (KeyBoardHandler.KeyPressed("down"))
             {
-                _isMoving = true;
-                _oldTile = _currentTile;
+                SetMoviment();
                 _currentTile += Vector2.UnitY;
                 return;
             }
 
             if (KeyBoardHandler.KeyPressed("left"))
             {
-                _isMoving = true;
-                _oldTile = _currentTile;
+                SetMoviment();
                 _currentTile -= Vector2.UnitX;
                 _spriteComponent.SpriteEffect = SpriteEffects.None;
                 _spriteComponent.Origin = new Vector2(15, 22);
@@ -116,13 +113,18 @@ namespace Project.Entities
 
             if (KeyBoardHandler.KeyPressed("right"))
             {
-                _isMoving = true;
-                _oldTile = _currentTile;
+                SetMoviment();
                 _currentTile += Vector2.UnitX;
                 _spriteComponent.SpriteEffect = SpriteEffects.FlipHorizontally;
                 _spriteComponent.Origin = new Vector2(6, 22);
                 return;
             }
+        }
+
+        private void SetMoviment()
+        {
+            _isMoving = true;
+            _oldTile = _currentTile;
         }
     }
 }
