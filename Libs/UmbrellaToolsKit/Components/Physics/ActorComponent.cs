@@ -46,6 +46,8 @@ namespace UmbrellaToolsKit.Components.Physics
         public override void UpdateData(float deltaTime)
         {
             if (GameObject == null) return;
+            Position = GameObject.Position;
+
             base.UpdateData(deltaTime);
             if (HasGravity)
             {
@@ -53,10 +55,10 @@ namespace UmbrellaToolsKit.Components.Physics
                 GameObject.Position = _position;
                 return;
             }
-            GameObject.Position = _position;
 
             MoveX(Velocity.X * deltaTime);
             MoveY(Velocity.Y * deltaTime);
+            GameObject.Position = _position;
         }
 
 
