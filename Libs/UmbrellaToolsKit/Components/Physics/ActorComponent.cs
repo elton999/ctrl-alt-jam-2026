@@ -10,14 +10,15 @@ namespace UmbrellaToolsKit.Components.Physics
     {
         private float _xRemainder = 0;
         private float _yRemainder = 0;
+        private Vector2 _position;
         
-        public Vector2 Position { get => GameObject.Position; set => GameObject.Position = value; }
+        public Vector2 Position { get => _position; set => _position = value; }
         public Scene Scene => GameObject.Scene;
 
         public int Right => (int)(Position.X + Size.X);
         public int Left => (int)Position.X;
         public int Top => (int)Position.Y;
-        public int Bottom => (int)(GameObject.Position.Y + Size.Y);
+        public int Bottom => (int)(Position.Y + Size.Y);
 
         public enum EDGES { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT };
         public Dictionary<EDGES, bool> EdgesIsCollision = new Dictionary<EDGES, bool> {
@@ -37,18 +38,22 @@ namespace UmbrellaToolsKit.Components.Physics
 
         public override void Start()
         {
+            _position = GameObject.Position;
             Scene.AllActors.Add(this);
             base.Start();
         }
 
         public override void UpdateData(float deltaTime)
         {
+            if (GameObject == null) return;
             base.UpdateData(deltaTime);
             if (HasGravity)
             {
                 Gravity(deltaTime);
+                GameObject.Position = _position;
                 return;
             }
+            GameObject.Position = _position;
 
             MoveX(Velocity.X * deltaTime);
             MoveY(Velocity.Y * deltaTime);
@@ -104,6 +109,7 @@ namespace UmbrellaToolsKit.Components.Physics
 
         public void MoveX(float amount, Action<string> onCollideFunction = null)
         {
+            if (GameObject == null) return;
             _xRemainder += amount;
             int move = (int)Math.Round(_xRemainder);
 
@@ -131,6 +137,7 @@ namespace UmbrellaToolsKit.Components.Physics
 
         public void MoveY(float amount, Action<string> onCollideFunction = null)
         {
+            if (GameObject == null) return;
             _yRemainder += amount;
             int move = (int)Math.Round(_yRemainder);
 
@@ -161,6 +168,7 @@ namespace UmbrellaToolsKit.Components.Physics
         private bool CollideAt(List<SolidComponent> solids, Vector2 position)
         {
             bool rt = false;
+            if (GameObject == null) return rt;
             foreach (SolidComponent solid in solids)
             {
                 if (solid.Check(Size, position, this))
