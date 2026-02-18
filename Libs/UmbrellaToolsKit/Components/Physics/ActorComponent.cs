@@ -190,5 +190,7 @@ namespace UmbrellaToolsKit.Components.Physics
         public virtual bool IsRidingGrid(Grid grid) => grid.checkOverlap(Size, Position + Vector2.UnitY, this);
 
         public virtual void Squish(string tag = null) { }
+
+        public override void OnDestroy() => Scene.AllActors.Remove(this);
     }
 }

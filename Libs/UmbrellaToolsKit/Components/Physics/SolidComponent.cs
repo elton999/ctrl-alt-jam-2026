@@ -128,5 +128,10 @@ namespace UmbrellaToolsKit.Components.Physics
             }
             return rt;
         }
+
+        public override void OnDestroy()
+        {
+            Scene.AllSolids.Remove(this);
+        }
     }
 }
