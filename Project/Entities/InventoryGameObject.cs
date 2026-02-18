@@ -8,11 +8,11 @@ namespace Project.Entities
         public static InventoryGameObject Instance;
 
         public Dictionary<ToolsTypes, int> Tools = new Dictionary<ToolsTypes, int>()
-        { 
-            { ToolsTypes.AXE, 0 },
-            { ToolsTypes.BOMB, 0 },
-            { ToolsTypes.SWORD, 0 }, 
-            { ToolsTypes.BOOT, 0 } 
+        {
+            { ToolsTypes.AXE, 100 },
+            { ToolsTypes.BOMB, 100 },
+            { ToolsTypes.SWORD, 100 },
+            { ToolsTypes.BOOT, 0 }
         };
 
         public override void Start()

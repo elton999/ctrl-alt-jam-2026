@@ -5,6 +5,7 @@ namespace Project.Entities.Obstacles
     public class Enemy : ObstacleGameObject
     {
         public override ObstaclesTypes ObstacleType => ObstaclesTypes.ENEMY;
+        public override ToolsTypes ToolType => ToolsTypes.SWORD;
 
         public override void Start()
         {

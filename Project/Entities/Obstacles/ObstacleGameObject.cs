@@ -11,6 +11,7 @@ namespace Project.Entities.Obstacles
         private ActorComponent _actorComponent;
 
         public abstract ObstaclesTypes ObstacleType { get; }
+        public abstract ToolsTypes ToolType { get; }
 
         public override void Start()
         {
@@ -19,6 +20,17 @@ namespace Project.Entities.Obstacles
             _actorComponent = AddComponent<ActorComponent>();
             _actorComponent.Size = new Point(23, 23);
             _actorComponent.HasGravity = false;
+        }
+
+        public bool PassObstacle()
+        {
+            if (InventoryGameObject.UseItem(ToolType))
+            {
+                Destroy();
+                return true;
+            }
+
+            return false;
         }
     }
 }
