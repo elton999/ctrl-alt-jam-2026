@@ -5,6 +5,8 @@ using UmbrellaToolsKit.Input;
 using UmbrellaToolsKit.Components.Sprite;
 using UmbrellaToolsKit.EditorEngine.Attributes;
 using UmbrellaToolsKit.Components.Physics;
+using System.Collections.Generic;
+using Project.Entities.Obstacles;
 
 namespace Project.Entities
 {
@@ -43,6 +45,11 @@ namespace Project.Entities
 
             if (_isMoving)
             {
+
+                var currentPosition = _initialPosition + _oldTile * Scene.CellSize;
+                var currentTilePosition = (_currentTile - _oldTile) * Scene.CellSize;
+                var nextTilePosition = _currentTile * Scene.CellSize;
+
                 if (_nextTileOnLevel.Y < Scene.Grid.GridCollides.Count && _nextTileOnLevel.X < Scene.Grid.GridCollides[_nextTileOnLevel.Y].Count)
                 {
                     if (Scene.Grid.GridCollides[_nextTileOnLevel.Y][_nextTileOnLevel.X] != "2")
@@ -50,16 +57,32 @@ namespace Project.Entities
                         OnNotAvoidMovement();
                         return;
                     }
+
+                    var sceneActors = new List<ActorComponent>(Scene.AllActors.ToArray());
+                    sceneActors.Remove(_actorComponent);
+
+                    foreach (var actor in sceneActors)
+                    {
+                        var collisionCheckPosition = _initialPosition + nextTilePosition + MathUtils.Divide(_actorComponent.Size.ToVector2());
+                        if (UmbrellaToolsKit.Utils.Collision.OverlapCheck(Vector2.One.ToPoint(), collisionCheckPosition, actor.Size, actor.Position))
+                        {
+                            if (actor.GameObject is ObstacleGameObject)
+                            {
+                                var obstacle = (ObstacleGameObject)actor.GameObject;
+                                if (!obstacle.PassObstacle())
+                                {
+                                    OnNotAvoidMovement();
+                                    return;
+                                }
+                            }
+                        }
+                    }
                 }
                 else
                 {
                     OnNotAvoidMovement();
                     return;
                 }
-
-                var currentPosition = _initialPosition + _oldTile * Scene.CellSize;
-                var currentTilePosition = (_currentTile - _oldTile) * Scene.CellSize;
-                var nextTilePosition = _currentTile * Scene.CellSize;
 
                 _totalTime += deltaTime;
 
