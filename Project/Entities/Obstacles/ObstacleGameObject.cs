@@ -22,7 +22,7 @@ namespace Project.Entities.Obstacles
             _actorComponent.HasGravity = false;
         }
 
-        public bool PassObstacle()
+        public virtual bool PassObstacle()
         {
             if (InventoryGameObject.UseItem(ToolType))
             {
