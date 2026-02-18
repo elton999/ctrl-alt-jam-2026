@@ -4,12 +4,14 @@ using UmbrellaToolsKit;
 using UmbrellaToolsKit.Input;
 using UmbrellaToolsKit.Components.Sprite;
 using UmbrellaToolsKit.EditorEngine.Attributes;
+using UmbrellaToolsKit.Components.Physics;
 
 namespace Project.Entities
 {
     public class Player : GameObject
     {
         private SpriteComponent _spriteComponent;
+        private ActorComponent _actorComponent;
         
         private float _totalTime = 0f;
         private bool _isMoving = false;
@@ -27,6 +29,10 @@ namespace Project.Entities
             _spriteComponent.SetAtlas("player sprite");
             _spriteComponent.Origin = new Vector2(6, 22);
             _spriteComponent.SpriteEffect = SpriteEffects.FlipHorizontally;
+
+            _actorComponent = AddComponent<ActorComponent>();
+            _actorComponent.HasGravity = false;
+            _actorComponent.Size = new Point(23);
 
             _initialPosition = Position;
         }
