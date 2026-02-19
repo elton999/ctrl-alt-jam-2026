@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<XnaContent xmlns:GameSettings="UmbrellaToolsKit.EditorEngine.Windows.GameSettings">
+<XnaContent xmlns:GameSettings="UmbrellaToolsKit.EditorEngine.GameSettings">
   <Asset Type="GameSettings:InputGameSettings">
     <Name>basic inputs</Name>
     <InputDataList>

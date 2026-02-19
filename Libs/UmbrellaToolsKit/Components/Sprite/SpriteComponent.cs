@@ -2,22 +2,21 @@
 using Microsoft.Xna.Framework.Graphics;
 using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.EditorEngine.Attributes;
-using UmbrellaToolsKit.EditorEngine.Windows.GameSettings;
+using UmbrellaToolsKit.EditorEngine.GameSettings;
 
 namespace UmbrellaToolsKit.Components.Sprite
 {
     public class SpriteComponent : Component
     {
-        private string _tempSprite = string.Empty;
+        private string _tempSprite;
         [ShowEditor] private Sprite _sprite;
-        [ShowEditor] private float _transparent = 1.0f;
         [ShowEditor] private Vector2 _origin;
+        [ShowEditor] private float _transparent = 1.0f;
         [ShowEditor] private SpriteEffects _spriteEffect = SpriteEffects.None;
 
         public float Transparent { get => _transparent; set => _transparent = value; }
         public Vector2 Origin { get => _origin; set => _origin = value; }
         public SpriteEffects SpriteEffect { get => _spriteEffect; set => _spriteEffect = value; }
-
         public override void AfterUpdate(float deltaTime)
         {
             if (_sprite != null && _tempSprite != _sprite.Name)
@@ -56,9 +55,9 @@ namespace UmbrellaToolsKit.Components.Sprite
             if (_sprite == null) return;
 
             GameObject.Sprite = _sprite.Texture;
-            GameObject.Transparent = Transparent;
-            GameObject.SpriteEffect = SpriteEffect;
-            GameObject.Origin = Origin;
+            GameObject.Origin = _origin;
+            GameObject.Transparent = _transparent;
+            GameObject.SpriteEffect = _spriteEffect;
             GameObject.Body = _sprite.Body;
         }
     }
