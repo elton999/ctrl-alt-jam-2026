@@ -10,7 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Components\CameraComponent.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Components\MovimentGridComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Components\MovementGridComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CameraGameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\InventoryGameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\Barrel.cs" />
