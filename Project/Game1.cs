@@ -1,12 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Project.Components;
 using Project.Entities;
 using Project.Entities.Obstacles;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.EditorEngine;
-using UmbrellaToolsKit.EditorEngine.Windows.GameSettings;
+using UmbrellaToolsKit.EditorEngine.GameSettings;
 
 namespace Project
 {
