@@ -42,6 +42,7 @@ namespace Project
             _assetManagement.Set<Player>("Player", Layers.PLAYER);
             _assetManagement.Set<CameraGameObject>("Player", Layers.MIDDLEGROUND);
             _assetManagement.Set<InventoryGameObject>("Player", Layers.MIDDLEGROUND);
+            _assetManagement.Set<LevelManagerEntity>("Player", Layers.MIDDLEGROUND);
 
             _assetManagement.Set<Tree>("Tree", Layers.MIDDLEGROUND);
             _assetManagement.Set<Stone>("Stone", Layers.MIDDLEGROUND);
