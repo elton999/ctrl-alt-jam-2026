@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Components\MovementGridComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CameraGameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\InventoryGameObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\LevelManagerEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\Barrel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\Enemy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\ObstacleGameObject.cs" />
@@ -20,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\Tree.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LevelGameSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ObstaclesTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolsTypes.cs" />
   </ItemGroup>
