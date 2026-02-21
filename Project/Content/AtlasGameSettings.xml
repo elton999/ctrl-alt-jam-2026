@@ -54,6 +54,27 @@
             <Path>Sprites\tilemap</Path>
             <Id>f41e3df9-6235-4b38-a330-3eddb41848f6</Id>
           </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>hud board</Name>
+            <Position>0 66</Position>
+            <Size>512 67</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>94542ab0-accc-446f-b805-a1756f62fa81</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>buoy ui</Name>
+            <Position>0 154</Position>
+            <Size>132 132</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>a40871df-d51e-43b8-971d-cbde540f8cc9</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>portrait hud</Name>
+            <Position>132 154</Position>
+            <Size>128 95</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>007faea6-7f99-4af9-97ce-c1cb5a3b4324</Id>
+          </Item>
         </Sprites>
       </Item>
     </Atlas>
