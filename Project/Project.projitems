@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\Stone.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\Tree.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\UI\UILevelManagerEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LevelGameSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ObstaclesTypes.cs" />

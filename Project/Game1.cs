@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Project.Entities;
 using Project.Entities.Obstacles;
+using Project.Entities.UI;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.EditorEngine.GameSettings;
@@ -43,6 +44,7 @@ namespace Project
             _assetManagement.Set<CameraGameObject>("Player", Layers.MIDDLEGROUND);
             _assetManagement.Set<InventoryGameObject>("Player", Layers.MIDDLEGROUND);
             _assetManagement.Set<LevelManagerEntity>("Player", Layers.MIDDLEGROUND);
+            _assetManagement.Set<UILevelManagerEntity>("Player", Layers.UI);
 
             _assetManagement.Set<Tree>("Tree", Layers.MIDDLEGROUND);
             _assetManagement.Set<Stone>("Stone", Layers.MIDDLEGROUND);
