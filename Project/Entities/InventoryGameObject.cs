@@ -17,7 +17,12 @@ namespace Project.Entities
 
         public override void Start()
         {
-            Instance = this;
+            if (Instance == null)
+            {
+               Instance = this;
+            }
+
+            tag = "Inventory";
         }
 
         public override void OnDestroy()

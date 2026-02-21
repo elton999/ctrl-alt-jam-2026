@@ -37,6 +37,7 @@ namespace Project.Entities
             _actorComponent.Size = new Point(23);
 
             _initialPosition = Position;
+            tag = "player";
         }
 
         public override void Update(float deltaTime)
