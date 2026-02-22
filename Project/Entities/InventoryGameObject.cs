@@ -12,7 +12,7 @@ namespace Project.Entities
             { ToolsTypes.AXE, 100 },
             { ToolsTypes.BOMB, 100 },
             { ToolsTypes.SWORD, 100 },
-            { ToolsTypes.BOOT, 0 }
+            { ToolsTypes.BOOT, 100 }
         };
 
         public override void Start()
