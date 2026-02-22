@@ -29,10 +29,7 @@ namespace Project.Components
         private void DrawText(SpriteBatch spriteBatch)
         {
             if (_font == null) return;
-
-            GameObject.BeginDraw(spriteBatch, false);
             spriteBatch.DrawString(_font, _text, GameObject.Position - _offset, _color);
-            GameObject.EndDraw(spriteBatch);
         }
     }
 }
