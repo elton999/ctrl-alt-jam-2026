@@ -46,11 +46,12 @@ namespace UmbrellaToolsKit
         {
             SortLayers = new List<List<GameObject>>
             {
+                UI,
                 Foreground,
                 Players,
                 Enemies,
                 Middleground,
-                Backgrounds
+                Backgrounds,
             };
         }
 
@@ -333,18 +334,18 @@ namespace UmbrellaToolsKit
 
         private void DrawGameObjects(SpriteBatch spriteBatch, List<List<GameObject>> layers)
         {
-            for (int i = layers.Count - 1; i >= 0; i--)
-                for (int e = layers[i].Count - 1; e >= 0; e--)
-                    if (!layers[i][e].RemoveFromScene)
-                        layers[i][e].Draw(spriteBatch);
+            for (int layerIndex = layers.Count - 1; layerIndex >= 0; layerIndex--)
+                for (int goIndex = layers[layerIndex].Count - 1; goIndex >= 0; goIndex--)
+                    if (!layers[layerIndex][goIndex].RemoveFromScene)
+                        layers[layerIndex][goIndex].Draw(spriteBatch);
         }
 
         private void DrawGameObjectsBeforeScene(SpriteBatch spriteBatch, List<List<GameObject>> layers)
         {
-            for (int i = layers.Count - 1; i >= 0; i--)
-                for (int e = layers[i].Count - 1; e >= 0; e--)
-                    if (!layers[i][e].RemoveFromScene)
-                        layers[i][e].DrawBeforeScene(spriteBatch);
+            for (int layerIndex = layers.Count - 1; layerIndex >= 0; layerIndex--)
+                for (int goIndex = layers[layerIndex].Count - 1; goIndex >= 0; goIndex--)
+                    if (!layers[layerIndex][goIndex].RemoveFromScene)
+                        layers[layerIndex][goIndex].DrawBeforeScene(spriteBatch);
         }
 
         public Color ClearColorScene = Color.Black;
@@ -355,12 +356,6 @@ namespace UmbrellaToolsKit
             {
                 DrawGameObjectsBeforeScene(spriteBatch, SortLayers);
 
-                //UI Draw before scene
-                for (int i = 0; i < UI.Count; i++)
-                    if (!UI[i].RemoveFromScene)
-                        UI[i].DrawBeforeScene(spriteBatch);
-
-
                 RestartRenderTarget();
                 if (backgroundColor != Color.Transparent) graphicsDevice.Clear(backgroundColor);
 
@@ -370,10 +365,6 @@ namespace UmbrellaToolsKit
                 if (this.Grid != null)
                     this.Grid.Draw(spriteBatch);
 #endif
-                //UI Draw
-                for (int i = 0; i < UI.Count; i++)
-                    if (!UI[i].RemoveFromScene)
-                        UI[i].Draw(spriteBatch);
 
                 // remove gameObjects
                 RemoveGameObject(SortLayers);
@@ -397,7 +388,7 @@ namespace UmbrellaToolsKit
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, Effect != null ? Effect : null, null);
             spriteBatch.Draw(
                 _BackBuffer,
-                new Vector2(_BackBuffer_Position_x, _BackBuffer_Position_y),
+                new Vector2((int)_BackBuffer_Position_x, (int)_BackBuffer_Position_y),
                 null,
                 Color.White,
                 0,
