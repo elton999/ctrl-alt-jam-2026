@@ -15,9 +15,9 @@ namespace Project.Components
 
         [ShowEditor] private RenderPosition _renderPosition;
         private SpriteComponent _spriteComponent;
-        private bool _isAnimating = true;
-        private float _animationTimer;
-        private const float ANIMATION_DURATION = 0.7f;
+        [ShowEditor] private bool _isAnimating = true;
+        [ShowEditor] private float _animationTimer;
+        [ShowEditor] private float _animationDuration = 0.7f;
 
         public override void Start()
         {
@@ -31,13 +31,18 @@ namespace Project.Components
 
             _animationTimer += deltaTime;
 
-            GameObject.Position = new Vector2(GameObject.Position.X, Tweening.EaseOutQuad(GetHidePosition().Y, -_spriteComponent.Sprite.Size.Y, _animationTimer, ANIMATION_DURATION));
+            GameObject.Position = new Vector2(GameObject.Position.X, Tweening.EaseOutQuad(GetHidePosition().Y, -_spriteComponent.Sprite.Size.Y, _animationTimer, _animationDuration));
 
-            if (_animationTimer >= ANIMATION_DURATION)
+            if (_animationTimer >= _animationDuration)
             {
                 _isAnimating = false;
                 GameObject.Position = GetInitialPosition();
             }
+        }
+
+        public void SetAnimationDuration(float animationDuration)
+        {
+            _animationDuration = animationDuration;
         }
 
         public void SetRenderPosition(RenderPosition renderPosition)
