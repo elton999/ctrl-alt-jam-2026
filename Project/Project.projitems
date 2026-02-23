@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Components\CameraComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Components\HudLevelAnimation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\MovementGridComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\UITextComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CameraGameObject.cs" />
