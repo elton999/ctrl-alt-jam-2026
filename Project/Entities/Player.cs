@@ -7,11 +7,14 @@ using UmbrellaToolsKit.EditorEngine.Attributes;
 using UmbrellaToolsKit.Components.Physics;
 using System.Collections.Generic;
 using Project.Entities.Obstacles;
+using System;
 
 namespace Project.Entities
 {
     public class Player : GameObject
     {
+        public static Action OnPlayerMove;
+
         private SpriteComponent _spriteComponent;
         private ActorComponent _actorComponent;
         
@@ -154,6 +157,7 @@ namespace Project.Entities
         {
             _isMoving = true;
             _oldTile = _currentTile;
+            OnPlayerMove?.Invoke();
         }
     }
 }

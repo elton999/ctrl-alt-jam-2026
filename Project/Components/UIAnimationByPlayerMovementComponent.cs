@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Project.Entities;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.Components.Sprite;
 using UmbrellaToolsKit.EditorEngine.Attributes;
@@ -28,11 +29,12 @@ namespace Project.Components
         public override void Start()
         {
             _spriteComponent = GameObject.GetComponent<SpriteComponent>();
+            Player.OnPlayerMove += StartAnimation;
         }
 
         public override void OnDestroy()
         {
-            
+            Player.OnPlayerMove -= StartAnimation;
         }
 
         public override void Update(float deltaTime)
