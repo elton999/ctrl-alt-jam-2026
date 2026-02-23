@@ -335,7 +335,7 @@ namespace UmbrellaToolsKit
         private void DrawGameObjects(SpriteBatch spriteBatch, List<List<GameObject>> layers)
         {
             for (int layerIndex = layers.Count - 1; layerIndex >= 0; layerIndex--)
-                for (int goIndex = layers[layerIndex].Count - 1; goIndex >= 0; goIndex--)
+                for (int goIndex = 0; goIndex < layers[layerIndex].Count; goIndex++)
                     if (!layers[layerIndex][goIndex].RemoveFromScene)
                         layers[layerIndex][goIndex].Draw(spriteBatch);
         }
@@ -343,7 +343,7 @@ namespace UmbrellaToolsKit
         private void DrawGameObjectsBeforeScene(SpriteBatch spriteBatch, List<List<GameObject>> layers)
         {
             for (int layerIndex = layers.Count - 1; layerIndex >= 0; layerIndex--)
-                for (int goIndex = layers[layerIndex].Count - 1; goIndex >= 0; goIndex--)
+                for (int goIndex = 0; goIndex < layers[layerIndex].Count; goIndex++)
                     if (!layers[layerIndex][goIndex].RemoveFromScene)
                         layers[layerIndex][goIndex].DrawBeforeScene(spriteBatch);
         }
