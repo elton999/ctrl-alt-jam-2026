@@ -17,6 +17,8 @@ namespace UmbrellaToolsKit.Components.Sprite
         public float Transparent { get => _transparent; set => _transparent = value; }
         public Vector2 Origin { get => _origin; set => _origin = value; }
         public SpriteEffects SpriteEffect { get => _spriteEffect; set => _spriteEffect = value; }
+        public Sprite Sprite => _sprite;
+
         public override void AfterUpdate(float deltaTime)
         {
             if (_sprite != null && _tempSprite != _sprite.Name)
@@ -37,6 +39,7 @@ namespace UmbrellaToolsKit.Components.Sprite
                 Log.Write($"[{nameof(SpriteComponent)}] creating sprite: path : {sprite.Path} rectangle: {sprite.GetRectangle()}" + spriteName);
                 var spriteData = new Sprite(sprite.Name, sprite.Path, sprite.GetRectangle());
                 SetSprite(spriteData);
+                AfterUpdate(0);
                 return;
             }
 
