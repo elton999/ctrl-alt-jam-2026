@@ -120,6 +120,8 @@ namespace Project.Entities
         {
             if (_isMoving) return;
 
+            if (!LevelManagerEntity.CanRegisterAMove()) return;
+
             if (KeyBoardHandler.KeyPressed("up"))
             {
                 SetMovement();

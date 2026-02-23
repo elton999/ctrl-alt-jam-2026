@@ -1,4 +1,5 @@
-﻿using Project.Components;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Project.Components;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.Components.Sprite;
 
@@ -28,6 +29,10 @@ namespace Project.Entities.UI
             hudAnimation.SetRenderPosition(HudLevelAnimation.RenderPosition.RIGHT);
             hudAnimation.SetAnimationDuration(1.5f);
             _countMovement.AddComponent<UIAnimationByPlayerMovementComponent>();
+            var textCountMovement = _countMovement.AddComponent<UITextComponent>();
+            textCountMovement.SetFont(Content.Load<SpriteFont>("FontMovementCount"));
+            textCountMovement.SetTextFormt(UITextComponent.TextFormat.CENTER, UITextComponent.TextAlignment.MIDDLE);
+            _countMovement.AddComponent<ShowMovementsRemainingComponent>();
 
             _hudPortrait = new GameObject();
             _hudPortrait.tag = "portrait hud";
