@@ -49,20 +49,10 @@ namespace UmbrellaToolsKit
 
         public static float BounceEaseOut(float b, float c, float time, float duration)
         {
-            if ((time /= duration) < 4.0f / 11.0f)
-                return c * (121.0f / 16.0f * time * time) + b;
-            if (time < 8.0f / 11.0f)
-                return c * (121.0f / 16.0f * (time -= 6.0f / 11.0f) * time + 0.75f) + b;
-            return time < 10.0f / 11.0f ? c * (121.0f / 16.0f * (time -= 9.0f / 11.0f) * time + 15.0f / 16.0f) + b : c * (121.0f / 16.0f * (time -= 21.0f / 22.0f) * time + 63.0f / 64.0f) + b;
-        }
-
-        public static float BounceEaseOutSoft(float b, float c, float time, float duration)
-        {
-            if ((time /= duration) < 4.0f / 11.0f)
-                return c * (121.0f / 16.0f * time * time) + b;
-            if (time < 8.0f / 11.0f)
-                return (float)MathHelper.Lerp((float)c, (float)(c * (121.0f / 16.0f * (time -= 6.0f / 11.0f) * time + 0.75f)), 0.5f) + b;
-            return time < 10.0f / 11.0f ? c * (121.0f / 16.0f * (time -= 9.0f / 11.0f) * time + 15.0f / 16.0f) + b : c * (121.0f / 16.0f * (time -= 21.0f / 22.0f) * time + 63.0f / 64.0f) + b;
+            if ((time /= duration) < (1 / 2.75f)) return c * (7.5625f * time * time) + b;
+            else if (time < (2 / 2.75f)) return c * (7.5625f * (time -= (1.5f / 2.75f)) * time + .75f) + b;
+            else if (time < (2.5 / 2.75f)) return c * (7.5625f * (time -= (2.25f / 2.75f)) * time + .9375f) + b;
+            else return c * (7.5625f * (time -= (2.625f / 2.75f)) * time + .984375f) + b;
         }
 
         public static float BounceEaseIn(float b, float c, float time, float duration)

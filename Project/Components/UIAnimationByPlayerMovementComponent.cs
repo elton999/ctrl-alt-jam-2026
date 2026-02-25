@@ -43,11 +43,11 @@ namespace Project.Components
 
             animationTimer += deltaTime;
 
-            GameObject.Scale = Tweening.EaseOutQuad(MAX_SCALE, -(MAX_SCALE - DEFAULT_SCALE), animationTimer, ANIMATION_DURATION);
+            GameObject.Scale = Tweening.BounceEaseOut(MAX_SCALE, -(MAX_SCALE - DEFAULT_SCALE), animationTimer, ANIMATION_DURATION);
             _spriteComponent.Origin = new Vector2
             (
-                Tweening.EaseOutQuad(_spriteOrigin.X, -_spriteOrigin.X, animationTimer, ANIMATION_DURATION),
-                Tweening.EaseOutQuad(_spriteOrigin.Y, -_spriteOrigin.Y, animationTimer, ANIMATION_DURATION)
+                Tweening.BounceEaseOut(_spriteOrigin.X, -_spriteOrigin.X, animationTimer, ANIMATION_DURATION),
+                Tweening.BounceEaseOut(_spriteOrigin.Y, -_spriteOrigin.Y, animationTimer, ANIMATION_DURATION)
             );
 
             if (animationTimer >= ANIMATION_DURATION)

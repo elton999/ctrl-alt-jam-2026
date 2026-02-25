@@ -31,7 +31,7 @@ namespace Project.Components
 
             _animationTimer += deltaTime;
 
-            GameObject.Position = new Vector2(GameObject.Position.X, Tweening.EaseOutQuad(GetHidePosition().Y, -_spriteComponent.Sprite.Size.Y, _animationTimer, _animationDuration));
+            GameObject.Position = new Vector2(GameObject.Position.X, Tweening.ElasticEaseOut(GetHidePosition().Y, -_spriteComponent.Sprite.Size.Y, _animationTimer, _animationDuration));
 
             if (_animationTimer >= _animationDuration)
             {
