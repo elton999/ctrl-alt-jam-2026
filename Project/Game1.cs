@@ -27,6 +27,7 @@ namespace Project
 
         protected override void Initialize()
         {
+            _assetManagement = new AssetManagement();
             _gameManagement = new GameManagement(this);
             _gameManagement.Game = this;
             _gameManagement.Start();
@@ -37,8 +38,6 @@ namespace Project
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            _assetManagement = new AssetManagement();
 
             _assetManagement.Set<Player>("Player", Layers.PLAYER);
             _assetManagement.Set<CameraGameObject>("Player", Layers.MIDDLEGROUND);
@@ -51,14 +50,11 @@ namespace Project
             _assetManagement.Set<Barrel>("Barrel", Layers.MIDDLEGROUND);
             _assetManagement.Set<Enemy>("Enemy", Layers.MIDDLEGROUND);
 
-            _gameManagement.SceneManagement.MainScene.AddGameObject(new GameObject(), Layers.FOREGROUND);
+            _gameManagement.SceneManagement.SetScene(0);
             _gameManagement.SceneManagement.MainScene.LevelReady = true;
-            _gameManagement.SceneManagement.MainScene.CellSize = 22;
-            _gameManagement.SceneManagement.MainScene.SetSizes(512, 288);
             _gameManagement.SceneManagement.MainScene.BackgroundColor = new Color(125, 56, 51);
-            _gameManagement.SceneManagement.MainScene.SetLevelLdtk(0);
 
-            var inputSettings = GameSettingsProperty.GetProperty<InputGameSettings>(@"Content/InputGameSettings");
+            var inputSettings = GameSettingsProperty.GetProperty<InputGameSettings>(@"Content/" + nameof(InputGameSettings));
             inputSettings.BindAllInputs();
         }
 

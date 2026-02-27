@@ -1,7 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using UmbrellaToolsKit.Interfaces;
+using UmbrellaToolsKit.EditorEngine;
+using UmbrellaToolsKit.GameSettings;
 
 namespace UmbrellaToolsKit
 {
@@ -9,19 +10,50 @@ namespace UmbrellaToolsKit
     {
         public GameManagement GameManagement;
         public Scene MainScene;
-        public int CurrentScene = 1;
-        public int MaxScenes = 1;
+        public int CurrentScene = 0;
+        private BuildGameSettings _buildGameSettings;
 
         public Action<SpriteBatch> ExtraDraw { get; set; }
 
-        public virtual void Start() => SetScene(CurrentScene);
-
-        public virtual void SetScene(int Scene)
+        public virtual void Start()
         {
+            if (_buildGameSettings is null)
+            {
+                _buildGameSettings = GameSettingsProperty.GetProperty<BuildGameSettings>(@"Content/" + nameof(BuildGameSettings));
+            }
+
+            SetScene(CurrentScene);
+        }
+
+        public virtual void SetScene(int sceneIndex)
+        {
+            if (MainScene is not null)
+            {
+                MainScene.Dispose();
+            }
+
             MainScene = new Scene(
                 GameManagement.Game.GraphicsDevice,
                 GameManagement.Game.Content
             );
+
+            if (_buildGameSettings is not null)
+            {
+                MainScene.SetSizes(_buildGameSettings.CanvasScreen.Width, _buildGameSettings.CanvasScreen.Height);
+                MainScene.CellSize = _buildGameSettings.CellSize;
+
+                if (_buildGameSettings.SceneList.Count > 0)
+                {
+                    var scene = _buildGameSettings.SceneList[sceneIndex];
+                    if (scene.UseTileMapSystem)
+                    {
+                        int tileMapIndex = scene.LevelNumber;
+                        if (_buildGameSettings.TileMapIntegration is TileMapIntegration.LDTK)
+                            MainScene.SetLevelLdtk(tileMapIndex);
+                    }
+                }
+            }
+            
             MainScene.GameManagement = GameManagement;
         }
 

@@ -17,7 +17,7 @@ namespace UmbrellaToolsKit
             Content = content;
             addLayers();
 #if DEBUG
-            AddGameObject(new CheatListener(), Layers.BACKGROUND);
+            AddGameObject(new CheatListener() { tag = nameof(CheatListener) }, Layers.BACKGROUND);
 #endif
         }
 

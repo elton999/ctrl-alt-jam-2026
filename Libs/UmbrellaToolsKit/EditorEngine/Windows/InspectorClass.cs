@@ -36,7 +36,6 @@ namespace UmbrellaToolsKit.EditorEngine.Windows
         public static void DrawAllFields(object obj)
         {
 #if !RELEASE
-
             if (obj is null) return;
             var type = obj.GetType();
             var fieldsCategories = new Dictionary<string, List<FieldInfo>>();
@@ -56,7 +55,7 @@ namespace UmbrellaToolsKit.EditorEngine.Windows
 
                     }
                     if (attr.AttributeType == typeof(ShowEditorAttribute))
-                    {
+                    { 
                         fieldsWithoutCategories.Add(fInfo);
                     }
                 }
@@ -118,32 +117,32 @@ namespace UmbrellaToolsKit.EditorEngine.Windows
                         var vector2 = ((Vector2)obj.Value).ToNumericVector2();
                         Fields.Field.DrawVector(obj.Name, ref vector2);
                         obj.Value = vector2.ToXnaVector2();
-                        break;
+                        return;
                     case 1:
                         var vector3 = ((Vector3)obj.Value).ToNumericVector3();
                         Fields.Field.DrawVector(obj.Name, ref vector3);
                         obj.Value = vector3.ToXnaVector3();
-                        break;
+                        return;
                     case 2:
                         var floatValue = (float)obj.Value;
                         Fields.Field.DrawFloat(obj.Name, ref floatValue);
                         obj.Value = floatValue;
-                        break;
+                        return;
                     case 3:
                         var stringValue = (string)obj.Value;
                         Fields.Field.DrawString(obj.Name, ref stringValue);
                         obj.Value = stringValue;
-                        break;
+                        return;
                     case 4:
                         var boolValue = (bool)obj.Value;
                         Fields.Field.DrawBoolean(obj.Name, ref boolValue);
                         obj.Value = boolValue;
-                        break;
+                        return;
                     case 5:
                         var intValue = (int)obj.Value;
                         Fields.Field.DrawInt(obj.Name, ref intValue);
                         obj.Value = intValue;
-                        break;
+                        return;
                 }
             }
 
@@ -174,8 +173,16 @@ namespace UmbrellaToolsKit.EditorEngine.Windows
 
             if (obj.Type.HasPropertyAttribute(typeof(SerializableAttribute)))
             {
-                DrawAllFields(obj.Value);
+                bool treeNode = DrawSeparator(obj.Type.Name);
+                if (treeNode)
+                {
+                    ImGui.Indent();
+                    DrawAllFields(obj.Value);
+                    ImGui.Unindent();
+                }
+                if (treeNode) ImGui.Unindent();
                 return;
+
             }
         }
 #endif

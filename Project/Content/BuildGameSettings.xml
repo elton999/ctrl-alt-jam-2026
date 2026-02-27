@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:GameSettings="UmbrellaToolsKit.GameSettings">
+  <Asset Type="GameSettings:BuildGameSettings">
+    <SceneList>
+      <Item>
+        <UseTileMapSystem>true</UseTileMapSystem>
+        <LevelNumber>0</LevelNumber>
+      </Item>
+    </SceneList>
+    <Resolutions>
+      <Item>
+        <Width>640</Width>
+        <Height>480</Height>
+      </Item>
+      <Item>
+        <Width>720</Width>
+        <Height>576</Height>
+      </Item>
+      <Item>
+        <Width>1920</Width>
+        <Height>1080</Height>
+      </Item>
+    </Resolutions>
+    <CanvasScreen>
+      <Width>512</Width>
+      <Height>288</Height>
+    </CanvasScreen>
+    <FullScreen>false</FullScreen>
+    <TileMapIntegration>LDTK</TileMapIntegration>
+    <CellSize>22</CellSize>
+  </Asset>
+</XnaContent>

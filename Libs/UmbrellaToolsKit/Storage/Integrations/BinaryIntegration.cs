@@ -23,7 +23,6 @@ namespace UmbrellaToolsKit.Storage.Integrations
                     string jsonString = Encoding.UTF8.GetString(bytes);
                     type ??= typeof(T);
                     values = (T)JsonConvert.DeserializeObject(jsonString, type);
-                    Console.WriteLine(JsonConvert.SerializeObject(values));
                     binaryReader.Close();
                 }
 
