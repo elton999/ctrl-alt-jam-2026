@@ -169,7 +169,7 @@ namespace UmbrellaToolsKit.EditorEngine.Fields
 				ImGui.Spacing();
 
 				ImGui.SetCursorPosX(ImGui.GetCursorPosX() + 6);
-				if (ImGui.Button("+ Add Item"))
+				if (ImGui.Button(EditorTheme.AddIcon+" Add Item"))
 					value.AddNewItem();
 
 				ImGui.TreePop();
@@ -200,7 +200,7 @@ namespace UmbrellaToolsKit.EditorEngine.Fields
 
 					ImGui.TableNextColumn();
 					ImGui.SetCursorPosY(ImGui.GetCursorPosY() + 2);
-					if (Buttons.RedButton("X"))
+					if (Buttons.RedButton(EditorTheme.TrashIcon))
 						removeIndex = i;
 
 					ImGui.EndTable();

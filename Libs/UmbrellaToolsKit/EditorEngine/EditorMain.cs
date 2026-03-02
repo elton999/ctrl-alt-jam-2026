@@ -30,6 +30,7 @@ namespace UmbrellaToolsKit.EditorEngine
         public GameManagement GameManagement => _gameManagement;
 #if !RELEASE
         public ImGuiRenderer ImGuiRenderer => _imGUIRenderer;
+        public ImFontPtr Font;
 #endif
         public static event Action OnDrawOverLayer;
 
@@ -39,6 +40,8 @@ namespace UmbrellaToolsKit.EditorEngine
             _gameManagement = gameManagement;
 #if !RELEASE
             _imGUIRenderer = new ImGuiRenderer(game).Initialize().RebuildFontAtlas();
+            Font = EditorTheme.ApplyIconFont();
+            _imGUIRenderer.RebuildFontAtlas();
 #endif
             _mainBarEditor = new BarEditor();
             _editorArea = new EditorArea();
@@ -65,6 +68,8 @@ namespace UmbrellaToolsKit.EditorEngine
 
             var ImGuiIO = ImGui.GetIO();
             ImGuiIO.ConfigFlags |= ImGuiConfigFlags.DockingEnable;
+            ImGuiIO.Fonts.Flags |= ImFontAtlasFlags.NoPowerOfTwoHeight;
+            ImGui.PushFont(Font);
 
             _mainBarEditor.Draw(gameTime);
             OnDrawOverLayer?.Invoke();

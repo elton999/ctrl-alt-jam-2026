@@ -101,7 +101,7 @@ namespace UmbrellaToolsKit.EditorEngine.Windows
         private void ShowSettingProperty()
         {
             if (!_canShowPropertyEditor) return;
-            if (ImGui.Button("Save"))
+            if (ImGui.Button(EditorTheme.SaveIcon + " Save"))
             {
                 SaveFile(_projectPath + _currentPathFile, _currentObject);
                 SaveFile(_buildPath + _currentPathFile, _currentObject);

@@ -1,9 +1,19 @@
 #if !RELEASE
 using ImGuiNET;
+using System;
 using System.Numerics;
 
 public static class EditorTheme
 {
+    public const string TrashIcon = "\uea81";
+    public const string AddIcon = "\uf067";
+    public const string PlayIcon = "\uf04b";
+    public const string PauseIcon = "\uf04c";
+    public const string StopIcon = "\uf04d";
+    public const string StartTrackIcon = "\uf048";
+    public const string EndTrackIcon = "\uf051";
+    public const string SaveIcon = "\uf0c7";
+
     public static void ApplyBlueprintTheme()
     {
         var style = ImGui.GetStyle();
@@ -153,6 +163,32 @@ public static class EditorTheme
         colors[(int)ImGuiCol.Separator] = frameHover;
         colors[(int)ImGuiCol.SeparatorHovered] = accentHover;
         colors[(int)ImGuiCol.SeparatorActive] = accentActive;
+    }
+
+    public static unsafe ImFontPtr ApplyIconFont()
+    {
+        var io = ImGui.GetIO();
+
+        ImFontConfigPtr config = ImGuiNative.ImFontConfig_ImFontConfig();
+        config.MergeMode = false;
+
+        // Range correto para Nerd Font
+        ushort[] ranges = new ushort[]
+        {
+        0x20, 0x7E,      // ASCII básico
+        0xE000, 0xF8FF,  // Private Use Area (ícones)
+        0
+        };
+
+        fixed (ushort* rangePtr = ranges)
+        {
+            return io.Fonts.AddFontFromFileTTF(
+                "Content/0xProtoNerdFontPropo-Regular.ttf",
+                14.0f,
+                config,
+                (IntPtr)rangePtr
+            );
+        }
     }
 }
 #endif

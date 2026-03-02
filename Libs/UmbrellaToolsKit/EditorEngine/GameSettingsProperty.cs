@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UmbrellaToolsKit.EditorEngine.Windows;
 using UmbrellaToolsKit.Storage;
 using UmbrellaToolsKit.Storage.Integrations;
+using UmbrellaToolsKit.Utils;
 
 namespace UmbrellaToolsKit.EditorEngine
 {
@@ -16,12 +17,21 @@ namespace UmbrellaToolsKit.EditorEngine
         {
             var timer = new Utils.Timer();
 
+
             timer.Begin();
-            object property = SaveIntegration.Get(pathFile, type);
+            object property;
+            if (LoadedFiles.ContainsKey(pathFile))
+                property = LoadedFiles[pathFile];
+            else
+                property = SaveIntegration.Get(pathFile, type);
             timer.End();
 
             Log.Write($"[{nameof(GameSettingsProperty)}] reading: {pathFile}, timer: {timer.GetTotalSeconds()}");
-            if (property.GetType() == type) return property;
+            if (property.GetType() == type)
+            {
+                LoadedFiles.AddForce(pathFile, property);
+                return property;
+            }
             return Activator.CreateInstance(type);
         }
 
@@ -29,11 +39,6 @@ namespace UmbrellaToolsKit.EditorEngine
 
         public static T GetProperty<T>(string pathFile) where T : GameSettingsProperty
         {
-            if (LoadedFiles.ContainsKey(pathFile))
-            {
-                return (T)LoadedFiles[pathFile];
-            }
-
             var property = GetProperty(pathFile, typeof(T));
 
             if (property is T) return (T)property;

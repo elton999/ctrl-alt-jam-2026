@@ -85,11 +85,11 @@ namespace UmbrellaToolsKit.EditorEngine.Windows.Feature
 
         public virtual void DrawProperties()
         {
-            if (Fields.Buttons.BlueButton("|<", new Vector2(50f, 0f)))
+            if (Fields.Buttons.BlueButton(EditorTheme.StartTrackIcon, new Vector2(50f, 0f)))
                 _currentTime = 0f;
 
             ImGui.SameLine();
-            if (Fields.Buttons.BlueButton(_currentState is State.STOPPED ? ">" : "||", new Vector2(50f, 0f)))
+            if (Fields.Buttons.BlueButton(_currentState is State.STOPPED ? EditorTheme.PlayIcon : EditorTheme.PauseIcon, new Vector2(50f, 0f)))
             {
                 switch (_currentState)
                 {
@@ -118,7 +118,7 @@ namespace UmbrellaToolsKit.EditorEngine.Windows.Feature
             {
                 foreach (var timeLineItem in _timeLineItemTypes)
                 {
-                    if (Fields.Buttons.BlueButton($"Add {AttributesHelper.FormatName(timeLineItem.Name)}") && _trackSelected != -1)
+                    if (Fields.Buttons.BlueButton($"{EditorTheme.AddIcon} Add {AttributesHelper.FormatName(timeLineItem.Name)}") && _trackSelected != -1)
                     {
                         var item = Activator.CreateInstance(timeLineItem);
                         AddANewItem(timeLineItem, item);
@@ -133,7 +133,7 @@ namespace UmbrellaToolsKit.EditorEngine.Windows.Feature
             if (_selectedSequenceItem != null)
             {
                 _selectedSequenceItem.DrawProperties();
-                if (Fields.Buttons.RedButton("Delete Item"))
+                if (Fields.Buttons.RedButton(EditorTheme.TrashIcon))
                 {
                     Tracks[_trackSelected].Items.Remove(_selectedSequenceItem);
                     _selectedSequenceItem = null;
