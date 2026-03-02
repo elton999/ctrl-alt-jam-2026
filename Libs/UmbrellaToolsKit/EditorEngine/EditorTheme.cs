@@ -172,22 +172,16 @@ public static class EditorTheme
         ImFontConfigPtr config = ImGuiNative.ImFontConfig_ImFontConfig();
         config.MergeMode = false;
 
-        // Range correto para Nerd Font
         ushort[] ranges = new ushort[]
         {
-        0x20, 0x7E,      // ASCII básico
-        0xE000, 0xF8FF,  // Private Use Area (ícones)
-        0
+            0x20, 0x7E,
+            0xE000, 0xF8FF, 
+            0
         };
 
         fixed (ushort* rangePtr = ranges)
         {
-            return io.Fonts.AddFontFromFileTTF(
-                "Content/0xProtoNerdFontPropo-Regular.ttf",
-                14.0f,
-                config,
-                (IntPtr)rangePtr
-            );
+            return io.Fonts.AddFontFromFileTTF("Content/0xProtoNerdFontPropo-Regular.ttf", 14.0f, config, (IntPtr)rangePtr);
         }
     }
 }
