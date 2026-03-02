@@ -5,6 +5,25 @@ namespace UmbrellaToolsKit
 {
     public class Tweening
     {
+        public enum TweenType
+        {
+            Linear,
+            EaseInQuad,
+            EaseOutQuad,
+            ElasticEaseOut,
+            ElasticEaseIn,
+            ElasticEaseInOut,
+            ElasticEaseOutIn,
+            BounceEaseOut,
+            BounceEaseIn,
+            BounceEaseInOut,
+            BounceEaseOutIn,
+            BackEaseOut,
+            BackEaseIn,
+            BackEaseInOut,
+            BackEaseOutIn
+        }
+
         public static float Lerp(float min, float max, float value) => min + (max - min) * value;
 
         public static Vector2 Lerp(Vector2 min, Vector2 max, float value) => min + (max - min) * value;
@@ -91,6 +110,29 @@ namespace UmbrellaToolsKit
         public static float BackEaseOutIn(float b, float c, float time, float duration)
         {
             return time < duration / 2.0 ? Tweening.BackEaseOut(time * 2.0f, b, c / 2.0f, duration) : Tweening.BackEaseIn(time * 2.0f - duration, b + c / 2.0f, c / 2.0f, duration);
+        }
+
+        public static float GetTweeningValue(TweenType tweenType, float b, float c, float time, float duration)
+        {
+            return tweenType switch
+            {
+                TweenType.Linear => LinearTween(b, c, time, duration),
+                TweenType.EaseInQuad => EaseInQuad(b, c, time, duration),
+                TweenType.EaseOutQuad => EaseOutQuad(b, c, time, duration),
+                TweenType.ElasticEaseOut => ElasticEaseOut(b, c, time, duration),
+                TweenType.ElasticEaseIn => ElasticEaseIn(b, c, time, duration),
+                TweenType.ElasticEaseInOut => ElasticEaseInOut(b, c, time, duration),
+                TweenType.ElasticEaseOutIn => ElasticEaseOutIn(b, c, time, duration),
+                TweenType.BounceEaseOut => BounceEaseOut(b, c, time, duration),
+                TweenType.BounceEaseIn => BounceEaseIn(b, c, time, duration),
+                TweenType.BounceEaseInOut => BounceEaseInOut(b, c, time, duration),
+                TweenType.BounceEaseOutIn => BounceEaseOutIn(b, c, time, duration),
+                TweenType.BackEaseOut => BackEaseOut(b, c, time, duration),
+                TweenType.BackEaseIn => BackEaseIn(b, c, time, duration),
+                TweenType.BackEaseInOut => BackEaseInOut(b, c, time, duration),
+                TweenType.BackEaseOutIn => BackEaseOutIn(b, c, time, duration),
+                _ => throw new ArgumentException("Invalid tween type")
+            };
         }
     }
 }
