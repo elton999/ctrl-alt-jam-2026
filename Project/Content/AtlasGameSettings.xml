@@ -75,6 +75,13 @@
             <Path>Sprites\tilemap</Path>
             <Id>007faea6-7f99-4af9-97ce-c1cb5a3b4324</Id>
           </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>board item select</Name>
+            <Position>528 5</Position>
+            <Size>337 205</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>966371c1-f86c-43a8-9263-63a4c813bc90</Id>
+          </Item>
         </Sprites>
       </Item>
     </Atlas>
