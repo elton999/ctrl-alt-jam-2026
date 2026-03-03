@@ -30,7 +30,6 @@ namespace Project.Entities.UI
             hudAnimation.SetRenderPosition(HudLevelAnimation.RenderPosition.RIGHT);
             hudAnimation.SetAnimationDuration(1.5f);
             UIAnimationByPlayerMovement = _countMovement.AddComponent<UIAnimationByPlayerMovementComponent>();
-            Player.OnPlayerMove += UIAnimationByPlayerMovement.StartAnimation;
             var textCountMovement = _countMovement.AddComponent<UITextComponent>();
             textCountMovement.SetFont(Content.Load<SpriteFont>("FontMovementCount"));
             textCountMovement.SetTextFormt(UITextComponent.TextFormat.CENTER, UITextComponent.TextAlignment.MIDDLE);
@@ -41,6 +40,9 @@ namespace Project.Entities.UI
             Scene.AddGameObject(_hudPortrait, Layers.UI);
             _hudPortrait.AddComponent<SpriteComponent>().SetAtlas("portrait hud");
             _hudPortrait.AddComponent<HudLevelAnimation>().SetAnimationDuration(1.2f);
+
+
+            Player.OnPlayerMove += UIAnimationByPlayerMovement.StartAnimation;
         }
 
         public override void OnDestroy()
