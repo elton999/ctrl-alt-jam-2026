@@ -16,7 +16,7 @@ namespace UmbrellaToolsKit.Components.ParticlesSystem
         {
             if (Sprite == null) return;
             var spriteSize = new Vector2(Sprite.Width, Sprite.Height);
-            Origin = -MathUtils.Divide(spriteSize);
+            Origin = -MathUtils.Half(spriteSize);
         }
 
         public override void Start()
@@ -32,7 +32,7 @@ namespace UmbrellaToolsKit.Components.ParticlesSystem
             Position += Velocity * deltaTime;
             if (DecreaseScale) Scale = Math.Max(Scale - deltaTime * DecreaseScaleSpeed, 0.0f);
 
-            Origin = MathUtils.Divide(Vector2.One);
+            Origin = MathUtils.Half(Vector2.One);
         }
     }
 }

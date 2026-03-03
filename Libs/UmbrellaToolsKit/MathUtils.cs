@@ -20,9 +20,9 @@ namespace UmbrellaToolsKit
         public static float MillisecondsToSeconds(float milliSeconds) => milliSeconds / 1000.0f;
         public static float SecondsToMilliseconds(float seconds) => seconds * 1000.0f;
 
-        public static float Divide(float value) => value / 2.0f;
-        public static Vector2 Divide(Vector2 value) => value / 2.0f;
-        public static Vector3 Divide(Vector3 value) => value / 2.0f;
+        public static float Half(this float value) => value / 2.0f;
+        public static Vector2 Half(this Vector2 value) => value / 2.0f;
+        public static Vector3 Half(this Vector3 value) => value / 2.0f;
 
         public static Vector2 TruncateVector(Vector2 value) => value.ToPoint().ToVector2();
 
