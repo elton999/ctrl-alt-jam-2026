@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.Input;
@@ -7,7 +8,6 @@ using UmbrellaToolsKit.EditorEngine.Attributes;
 using UmbrellaToolsKit.Components.Physics;
 using System.Collections.Generic;
 using Project.Entities.Obstacles;
-using System;
 
 namespace Project.Entities
 {
@@ -32,7 +32,7 @@ namespace Project.Entities
         {
             _spriteComponent = AddComponent<SpriteComponent>();
             _spriteComponent.SetAtlas("player sprite");
-            _spriteComponent.Origin = new Vector2(6, 22);
+            _spriteComponent.Origin = new Vector2(6, Scene.CellSize);
             _spriteComponent.SpriteEffect = SpriteEffects.FlipHorizontally;
 
             _actorComponent = AddComponent<ActorComponent>();
@@ -67,7 +67,7 @@ namespace Project.Entities
 
                     foreach (var actor in sceneActors)
                     {
-                        var collisionCheckPosition = _initialPosition + nextTilePosition + MathUtils.Divide(_actorComponent.Size.ToVector2());
+                        var collisionCheckPosition = _initialPosition + nextTilePosition + _actorComponent.Size.ToVector2().Half();
                         if (UmbrellaToolsKit.Utils.Collision.OverlapCheck(Vector2.One.ToPoint(), collisionCheckPosition, actor.Size, actor.Position))
                         {
                             if (actor.GameObject is ObstacleGameObject)
@@ -141,7 +141,7 @@ namespace Project.Entities
                 SetMovement();
                 _currentTile -= Vector2.UnitX;
                 _spriteComponent.SpriteEffect = SpriteEffects.None;
-                _spriteComponent.Origin = new Vector2(15, 22);
+                _spriteComponent.Origin = new Vector2(15, Scene.CellSize);
                 return;
             }
 
@@ -150,7 +150,7 @@ namespace Project.Entities
                 SetMovement();
                 _currentTile += Vector2.UnitX;
                 _spriteComponent.SpriteEffect = SpriteEffects.FlipHorizontally;
-                _spriteComponent.Origin = new Vector2(6, 22);
+                _spriteComponent.Origin = new Vector2(6, Scene.CellSize);
                 return;
             }
         }
