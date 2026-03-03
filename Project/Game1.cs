@@ -44,7 +44,8 @@ namespace Project
             _assetManagement.Set<InventoryGameObject>("Player", Layers.MIDDLEGROUND);
             _assetManagement.Set<LevelManagerEntity>("Player", Layers.MIDDLEGROUND);
             _assetManagement.Set<UILevelManagerEntity>("Player", Layers.UI);
-
+            _assetManagement.Set<UIBoardItemSelect>("Player", Layers.UI);
+            
             _assetManagement.Set<Tree>("Tree", Layers.MIDDLEGROUND);
             _assetManagement.Set<Stone>("Stone", Layers.MIDDLEGROUND);
             _assetManagement.Set<Barrel>("Barrel", Layers.MIDDLEGROUND);
