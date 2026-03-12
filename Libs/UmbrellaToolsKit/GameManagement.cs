@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.GameSettings;
+using UmbrellaToolsKit.Sprite;
+
 
 #if !RELEASE
 using Eto;
@@ -35,6 +37,7 @@ namespace UmbrellaToolsKit
         {
             Game = game;
             _editor = new EditorMain(Game, this);
+            SquareSprite.Initialize(game.GraphicsDevice);
 #if !RELEASE
             new Application(new Eto.WinForms.Platform());
             EditorTheme.ApplyDarkPro();
