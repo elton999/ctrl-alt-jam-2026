@@ -48,24 +48,28 @@
         <InputName>select 1</InputName>
         <Keys>
           <Item>Z</Item>
+          <Item>NumPad1</Item>
         </Keys>
       </Item>
       <Item>
         <InputName>select 2</InputName>
         <Keys>
           <Item>X</Item>
+          <Item>NumPad2</Item>
         </Keys>
       </Item>
       <Item>
         <InputName>select 3</InputName>
         <Keys>
           <Item>C</Item>
+          <Item>NumPad3</Item>
         </Keys>
       </Item>
       <Item>
         <InputName>select 4</InputName>
         <Keys>
           <Item>V</Item>
+          <Item>NumPad4</Item>
         </Keys>
       </Item>
     </InputDataList>
