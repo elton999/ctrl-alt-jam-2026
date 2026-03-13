@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UmbrellaToolsKit;
+using UmbrellaToolsKit.EditorEngine;
 
 namespace Project.Entities
 {
@@ -29,6 +30,17 @@ namespace Project.Entities
         {
             Instance = null;
             base.OnDestroy();
+        }
+
+        public void ResetInventory()
+        {
+            var levelSettings = GameSettingsProperty.GetProperty<LevelGameSettings>(@"Content/" + nameof(LevelGameSettings));
+            var toolsLimitations = levelSettings.Levels[0].ToolsLimitations;
+
+            Tools[ToolsTypes.AXE] = toolsLimitations.Find(x => x.Tool == ToolsTypes.AXE).Max;
+            Tools[ToolsTypes.BOMB] = toolsLimitations.Find(x => x.Tool == ToolsTypes.BOMB).Max;
+            Tools[ToolsTypes.SWORD] = toolsLimitations.Find(x => x.Tool == ToolsTypes.SWORD).Max;
+            Tools[ToolsTypes.BOOT] = toolsLimitations.Find(x => x.Tool == ToolsTypes.BOOT).Max;
         }
 
         public static bool HasItem(ToolsTypes tool)

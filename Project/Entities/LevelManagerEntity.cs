@@ -1,5 +1,7 @@
 ﻿using UmbrellaToolsKit;
+using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.EditorEngine.Attributes;
+using UmbrellaToolsKit.EditorEngine.GameSettings;
 
 namespace Project.Entities
 {
@@ -26,8 +28,14 @@ namespace Project.Entities
             {
                 Instance = this;
             }
-            tag = "LevelManager";
 
+            var levelSettings = GameSettingsProperty.GetProperty<LevelGameSettings>(@"Content/" + nameof(LevelGameSettings));
+            if (levelSettings != null)
+            {
+                _maxMovements = levelSettings.Levels[0].MaxMovements;
+            }
+
+            tag = "LevelManager";
             Player.OnPlayerMove += RegisterAMove;
         }
 
