@@ -24,6 +24,18 @@ namespace Project.Entities.UI
 
             Scale = initialAnimation.MaxScale;
             initialAnimation.StartAnimation();
+
+            var buttonSelect1 = new GameObject();
+            Scene.AddGameObject(buttonSelect1, Layers.UI);
+            buttonSelect1.AddComponent<UIItemToolButtonComponent>();
+
+            var buttonSelect2 = new GameObject();
+            Scene.AddGameObject(buttonSelect2, Layers.UI);
+            buttonSelect2.AddComponent<UIItemToolButtonComponent>();
+
+            var buttonSelect3 = new GameObject();
+            Scene.AddGameObject(buttonSelect3, Layers.UI);
+            buttonSelect3.AddComponent<UIItemToolButtonComponent>();
         }
     }
 }
