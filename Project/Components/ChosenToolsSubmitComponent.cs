@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.EditorEngine;
+using UmbrellaToolsKit.Input;
 
 namespace Project.Components
 {
@@ -17,6 +18,14 @@ namespace Project.Components
             _toolButtons = GameObject.Scene.UI
                 .FindAll(go => go.GetComponent<UIItemToolButtonComponent>() != null)
                 .ConvertAll(go => go.GetComponent<UIItemToolButtonComponent>()).ToArray();
+        }
+
+        public override void Update(float deltaTime)
+        {
+            if (KeyBoardHandler.KeyPressed("confirm"))
+            {
+                SubmitChosenTools();
+            }
         }
 
         public void SubmitChosenTools()
