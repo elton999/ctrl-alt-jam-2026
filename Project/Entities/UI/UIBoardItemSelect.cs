@@ -3,9 +3,14 @@ using UmbrellaToolsKit;
 using UmbrellaToolsKit.Components.Sprite;
 
 namespace Project.Entities.UI
-{ 
+{
     public class UIBoardItemSelect : GameObject
     {
+        private GameObject _buttonSelect1;
+        private GameObject _buttonSelect2;
+        private GameObject _buttonSelect3;
+        private GameObject _buttonConfirm;
+
         public override void Start()
         {
             tag = "board item select";
@@ -25,17 +30,38 @@ namespace Project.Entities.UI
             Scale = initialAnimation.MaxScale;
             initialAnimation.StartAnimation();
 
-            var buttonSelect1 = new GameObject();
-            Scene.AddGameObject(buttonSelect1, Layers.UI);
-            buttonSelect1.AddComponent<UIItemToolButtonComponent>();
+            _buttonSelect1 = new GameObject();
+            Scene.AddGameObject(_buttonSelect1, Layers.UI);
+            _buttonSelect1.AddComponent<UIItemToolButtonComponent>().SetTool(ToolsTypes.AXE);
 
-            var buttonSelect2 = new GameObject();
-            Scene.AddGameObject(buttonSelect2, Layers.UI);
-            buttonSelect2.AddComponent<UIItemToolButtonComponent>();
+            _buttonSelect2 = new GameObject();
+            Scene.AddGameObject(_buttonSelect2, Layers.UI);
+            _buttonSelect2.AddComponent<UIItemToolButtonComponent>().SetTool(ToolsTypes.BOMB);
 
-            var buttonSelect3 = new GameObject();
-            Scene.AddGameObject(buttonSelect3, Layers.UI);
-            buttonSelect3.AddComponent<UIItemToolButtonComponent>();
+            _buttonSelect3 = new GameObject();
+            Scene.AddGameObject(_buttonSelect3, Layers.UI);
+            _buttonSelect3.AddComponent<UIItemToolButtonComponent>().SetTool(ToolsTypes.BOOT);
+
+            _buttonConfirm = new GameObject();
+            Scene.AddGameObject(_buttonConfirm, Layers.UI);
+            _buttonConfirm.AddComponent<ChosenToolsSubmitComponent>();
+
+            ChosenToolsSubmitComponent.OnSubmitChosenTools += OnSubmit;
+        }
+
+        public override void OnDestroy()
+        {
+            ChosenToolsSubmitComponent.OnSubmitChosenTools -= OnSubmit;
+
+            _buttonSelect1.Destroy();
+            _buttonSelect2.Destroy();
+            _buttonSelect3.Destroy();
+            _buttonConfirm.Destroy();
+        }
+
+        public void OnSubmit(ToolsTypes[] chosenTools)
+        {
+            Destroy();
         }
     }
 }
