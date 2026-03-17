@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Project.Components;
+using System.Collections.Generic;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.EditorEngine;
 
@@ -10,10 +11,10 @@ namespace Project.Entities
 
         public Dictionary<ToolsTypes, int> Tools = new Dictionary<ToolsTypes, int>()
         {
-            { ToolsTypes.AXE, 100 },
-            { ToolsTypes.BOMB, 100 },
-            { ToolsTypes.SWORD, 100 },
-            { ToolsTypes.BOOT, 100 }
+            { ToolsTypes.AXE, 0 },
+            { ToolsTypes.BOMB, 0 },
+            { ToolsTypes.SWORD, int.MaxValue },
+            { ToolsTypes.BOOT, 0 }
         };
 
         public override void Start()
@@ -23,13 +24,24 @@ namespace Project.Entities
                Instance = this;
             }
 
-            tag = "Inventory";
+            tag = nameof(InventoryGameObject);
+
+            ChosenToolsSubmitComponent.OnSubmitChosenTools += OnSubmit;
         }
 
         public override void OnDestroy()
         {
+            ChosenToolsSubmitComponent.OnSubmitChosenTools -= OnSubmit;
             Instance = null;
             base.OnDestroy();
+        }
+
+        public void OnSubmit(ToolsTypes[] chosenTools)
+        {
+            foreach (var tool in chosenTools)
+            {
+                UseItem(tool);
+            }
         }
 
         public void ResetInventory()
