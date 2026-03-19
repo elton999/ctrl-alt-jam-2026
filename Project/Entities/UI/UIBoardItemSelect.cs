@@ -32,14 +32,17 @@ namespace Project.Entities.UI
 
             _buttonSelect1 = new GameObject();
             Scene.AddGameObject(_buttonSelect1, Layers.UI);
+            _buttonSelect1.AddComponent<SpriteComponent>().SetAtlas("ui axe");
             _buttonSelect1.AddComponent<UIItemToolButtonComponent>().SetTool(ToolsTypes.AXE);
 
             _buttonSelect2 = new GameObject();
             Scene.AddGameObject(_buttonSelect2, Layers.UI);
+            _buttonSelect2.AddComponent<SpriteComponent>().SetAtlas("ui bomb");
             _buttonSelect2.AddComponent<UIItemToolButtonComponent>().SetTool(ToolsTypes.BOMB);
 
             _buttonSelect3 = new GameObject();
             Scene.AddGameObject(_buttonSelect3, Layers.UI);
+            _buttonSelect3.AddComponent<SpriteComponent>().SetAtlas("ui boots");
             _buttonSelect3.AddComponent<UIItemToolButtonComponent>().SetTool(ToolsTypes.BOOT);
 
             _buttonConfirm = new GameObject();
