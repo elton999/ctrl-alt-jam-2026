@@ -1,5 +1,4 @@
 ﻿using UmbrellaToolsKit;
-using UmbrellaToolsKit.Components.Sprite;
 using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.EditorEngine.Attributes;
 using UmbrellaToolsKit.Input;
@@ -10,22 +9,9 @@ namespace Project.Components
     {
         [ShowEditor] private ToolsTypes _tool;
         [ShowEditor] private bool _isSelected;
-        private SpriteComponent _spriteComponent;
 
         public bool IsSelected => _isSelected;
         public ToolsTypes Tool => _tool;
-
-        public override void Start()
-        {
-            SpriteComponent spriteComponent = GameObject.GetComponent<SpriteComponent>();
-            if (spriteComponent != null)
-            {
-                _spriteComponent = spriteComponent;
-                _spriteComponent.SetAtlas("debug sprite");
-                return;
-            }
-            Log.Write($"[{nameof(UIItemToolButtonComponent)}] requires a SpriteComponent.");
-        }
 
         public override void Update(float deltaTime)
         {
