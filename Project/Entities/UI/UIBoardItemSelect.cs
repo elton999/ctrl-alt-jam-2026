@@ -49,6 +49,12 @@ namespace Project.Entities.UI
             Scene.AddGameObject(_buttonConfirm, Layers.UI);
             _buttonConfirm.AddComponent<ChosenToolsSubmitComponent>();
 
+            var spriteGrid = AddComponent<UISpriteGrid>();
+            spriteGrid.SetSize(sprite.Sprite.Size);
+            spriteGrid.AddSprite(_buttonSelect1.GetComponent<SpriteComponent>());
+            spriteGrid.AddSprite(_buttonSelect2.GetComponent<SpriteComponent>());
+            spriteGrid.AddSprite(_buttonSelect3.GetComponent<SpriteComponent>());
+
             ChosenToolsSubmitComponent.OnSubmitChosenTools += OnSubmit;
         }
 
