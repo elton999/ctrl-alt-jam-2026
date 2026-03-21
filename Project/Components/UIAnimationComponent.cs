@@ -6,9 +6,9 @@ using UmbrellaToolsKit.EditorEngine;
 
 namespace Project.Components
 {
-    public class UIAnimationByPlayerMovementComponent : Component
+    public class UIAnimationComponent : Component
     {
-        [ShowEditor] private float animationTimer;
+        [ShowEditor] private float animationTimer = float.MaxValue;
         private Vector2 _spriteOrigin
         {
             get
@@ -20,20 +20,21 @@ namespace Project.Components
                 );
             }
         }
+        private SpriteComponent _spriteComponent;
+
         [ShowEditor] public float AnimationDuration = 0.3f;
         [ShowEditor] public float MaxScale = 1.1f;
         [ShowEditor] public float DefaulfScale = 1.0f;
         [ShowEditor] public Tweening.TweenType TweenType = Tweening.TweenType.BounceEaseOut;
         [ShowEditor] public bool CalculateOrigin = true;
-
-        private SpriteComponent _spriteComponent;
+        public SpriteComponent SpriteComponent => _spriteComponent;
 
         public override void Start()
         {
             _spriteComponent = GameObject.GetComponent<SpriteComponent>();
             if (_spriteComponent == null)
             {
-                    Log.Write($"[{nameof(UIAnimationByPlayerMovementComponent)}] SpriteComponent not found on GameObject: " + GameObject.tag);
+                    Log.Write($"[{nameof(UIAnimationComponent)}] SpriteComponent not found on GameObject: " + GameObject.tag);
                     return;
             }
         }

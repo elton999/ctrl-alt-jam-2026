@@ -12,10 +12,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Components\CameraComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\HudLevelAnimation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\ChosenToolsSubmitComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Components\UIButtonToolSelectAnimationComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\UIItemToolButtonComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\MovementGridComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\ShowMovementsRemainingComponent.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Components\UIAnimationByPlayerMovementComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Components\UIAnimationComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\UISpriteGridComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\UITextComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\CameraGameObject.cs" />

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.ImGui.Extensions;
 using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.EditorEngine.Attributes;
 using UmbrellaToolsKit.EditorEngine.GameSettings;
@@ -63,5 +64,22 @@ namespace UmbrellaToolsKit.Components.Sprite
             GameObject.SpriteEffect = _spriteEffect;
             GameObject.Body = _sprite.Body;
         }
+
+        public void OrigenToCenter()
+        {
+            if (_sprite == null) return;
+            _origin = _sprite.Size.Half();
+            UpdateSprite();
+        }
+
+        public void OrigenToCenterKeepPosition()
+        {
+            if (_sprite == null) return;
+            _origin = _sprite.Size.Half();
+            Vector2 originDiff = _origin;
+            GameObject.Position += originDiff;
+            UpdateSprite();
+        }
+
     }
 }

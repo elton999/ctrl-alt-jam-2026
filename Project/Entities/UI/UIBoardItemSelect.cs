@@ -22,7 +22,7 @@ namespace Project.Entities.UI
 
             Position = Scene.Sizes.ToVector2().Half();
 
-            var initialAnimation = AddComponent<UIAnimationByPlayerMovementComponent>();
+            var initialAnimation = AddComponent<UIAnimationComponent>();
             initialAnimation.TweenType = Tweening.TweenType.BackEaseOut;
             initialAnimation.MaxScale = 0.0001f;
             initialAnimation.DefaulfScale = 1.0f;
@@ -34,17 +34,20 @@ namespace Project.Entities.UI
 
             _buttonSelect1 = new GameObject();
             Scene.AddGameObject(_buttonSelect1, Layers.UI);
-            _buttonSelect1.AddComponent<SpriteComponent>().SetAtlas("ui axe");
+            var buttonSprite1 = _buttonSelect1.AddComponent<SpriteComponent>();
+            buttonSprite1.SetAtlas("ui axe");
             _buttonSelect1.AddComponent<UIItemToolButtonComponent>().SetTool(ToolsTypes.AXE);
 
             _buttonSelect2 = new GameObject();
             Scene.AddGameObject(_buttonSelect2, Layers.UI);
-            _buttonSelect2.AddComponent<SpriteComponent>().SetAtlas("ui bomb");
+            var buttonSprite2 = _buttonSelect2.AddComponent<SpriteComponent>();
+            buttonSprite2.SetAtlas("ui bomb");
             _buttonSelect2.AddComponent<UIItemToolButtonComponent>().SetTool(ToolsTypes.BOMB);
 
             _buttonSelect3 = new GameObject();
             Scene.AddGameObject(_buttonSelect3, Layers.UI);
-            _buttonSelect3.AddComponent<SpriteComponent>().SetAtlas("ui boots");
+            var buttonSprite3 = _buttonSelect3.AddComponent<SpriteComponent>();
+            buttonSprite3.SetAtlas("ui boots");
             _buttonSelect3.AddComponent<UIItemToolButtonComponent>().SetTool(ToolsTypes.BOOT);
 
             _buttonConfirm = new GameObject();
@@ -54,9 +57,18 @@ namespace Project.Entities.UI
             var spriteGrid = AddComponent<UISpriteGridComponent>();
             spriteGrid.SetSize(sprite.Sprite.Size);
             spriteGrid.SetSpacing(new Vector2(5f, Origin.Y));
-            spriteGrid.AddSprite(_buttonSelect1.GetComponent<SpriteComponent>());
-            spriteGrid.AddSprite(_buttonSelect2.GetComponent<SpriteComponent>());
-            spriteGrid.AddSprite(_buttonSelect3.GetComponent<SpriteComponent>());
+            spriteGrid.AddSprite(buttonSprite1);
+            spriteGrid.AddSprite(buttonSprite2);
+            spriteGrid.AddSprite(buttonSprite3);
+
+            buttonSprite1.OrigenToCenterKeepPosition();
+            buttonSprite2.OrigenToCenterKeepPosition();
+            buttonSprite3.OrigenToCenterKeepPosition();
+
+            _buttonSelect1.AddComponent<UIButtonToolSelectAnimationComponent>().DelayToStartAnimation = 0.3f;
+            _buttonSelect2.AddComponent<UIButtonToolSelectAnimationComponent>().DelayToStartAnimation = 0.6f;
+            _buttonSelect3.AddComponent<UIButtonToolSelectAnimationComponent>().DelayToStartAnimation = 0.9f;
+
 
             ChosenToolsSubmitComponent.OnSubmitChosenTools += OnSubmit;
         }
