@@ -27,7 +27,7 @@ namespace UmbrellaToolsKit
             float timer = time;
             while (timer >= 0)
             {
-                timer -= (float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                timer -= (float)GameTime.ElapsedGameTime.TotalSeconds;
                 yield return null;
             }
             yield break;
