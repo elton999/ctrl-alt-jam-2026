@@ -6,7 +6,7 @@ using UmbrellaToolsKit.EditorEngine.Attributes;
 
 namespace Project.Components
 {
-    public class UISpriteGrid : Component
+    public class UISpriteGridComponent : Component
     {
         private List<SpriteComponent> _sprites = new List<SpriteComponent>();
         [ShowEditor] private Vector2 _size = new Vector2(100);
@@ -15,6 +15,12 @@ namespace Project.Components
         public void SetSize(Vector2 newSize)
         {
             _size = newSize;
+            UpdatePosition();
+        }
+
+        public void SetSpacing(Vector2 newSpacing)
+        {
+            _spacing = newSpacing;
             UpdatePosition();
         }
 
@@ -47,6 +53,7 @@ namespace Project.Components
             {
                 Vector2 position = GameObject.Position - GameObject.Origin;
                 position.X += offset + spriteOffset;
+                position.Y += _spacing.Y;
                 sprite.GameObject.Position = position;
 
                 spriteOffset += (int)sprite.Sprite.Size.X + (int)_spacing.X;

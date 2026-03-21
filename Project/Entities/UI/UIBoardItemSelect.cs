@@ -1,6 +1,7 @@
 ﻿using Project.Components;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.Components.Sprite;
+using Microsoft.Xna.Framework;
 
 namespace Project.Entities.UI
 {
@@ -17,6 +18,7 @@ namespace Project.Entities.UI
             var sprite = AddComponent<SpriteComponent>();
             sprite.SetAtlas("board item select");
             sprite.Origin = sprite.Sprite.Size.Half();
+            sprite.UpdateSprite();
 
             Position = Scene.Sizes.ToVector2().Half();
 
@@ -49,8 +51,9 @@ namespace Project.Entities.UI
             Scene.AddGameObject(_buttonConfirm, Layers.UI);
             _buttonConfirm.AddComponent<ChosenToolsSubmitComponent>();
 
-            var spriteGrid = AddComponent<UISpriteGrid>();
+            var spriteGrid = AddComponent<UISpriteGridComponent>();
             spriteGrid.SetSize(sprite.Sprite.Size);
+            spriteGrid.SetSpacing(new Vector2(5f, Origin.Y));
             spriteGrid.AddSprite(_buttonSelect1.GetComponent<SpriteComponent>());
             spriteGrid.AddSprite(_buttonSelect2.GetComponent<SpriteComponent>());
             spriteGrid.AddSprite(_buttonSelect3.GetComponent<SpriteComponent>());
