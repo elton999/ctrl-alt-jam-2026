@@ -53,7 +53,7 @@ namespace UmbrellaToolsKit.Components.Sprite
             _sprite.SetContentManager(GameObject.Content);
         }
 
-        private void UpdateSprite()
+        public void UpdateSprite()
         {
             if (_sprite == null) return;
 
