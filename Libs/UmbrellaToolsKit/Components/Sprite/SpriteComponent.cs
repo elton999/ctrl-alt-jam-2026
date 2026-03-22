@@ -40,7 +40,7 @@ namespace UmbrellaToolsKit.Components.Sprite
                 Log.Write($"[{nameof(SpriteComponent)}] creating sprite: path : {sprite.Path} rectangle: {sprite.GetRectangle()}" + spriteName);
                 var spriteData = new Sprite(sprite.Name, sprite.Path, sprite.GetRectangle());
                 SetSprite(spriteData);
-                AfterUpdate(0);
+                UpdateSprite();
                 return;
             }
 
@@ -68,14 +68,14 @@ namespace UmbrellaToolsKit.Components.Sprite
         public void OrigenToCenter()
         {
             if (_sprite == null) return;
-            _origin = _sprite.Size.Half();
+            _origin = _sprite.Size.Half().Truncate();
             UpdateSprite();
         }
 
         public void OrigenToCenterKeepPosition()
         {
             if (_sprite == null) return;
-            _origin = _sprite.Size.Half();
+            _origin = _sprite.Size.Half().Truncate();
             Vector2 originDiff = _origin;
             GameObject.Position += originDiff;
             UpdateSprite();
