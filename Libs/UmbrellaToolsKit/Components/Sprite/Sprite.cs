@@ -44,6 +44,13 @@ namespace UmbrellaToolsKit.Components.Sprite
             LoadSprite();
         }
 
+        public Sprite(ISprite sprite)
+        {
+            _name = sprite.Name;
+            _path = sprite.Path;
+            _body = sprite.GetRectangle();
+        }
+
         public Sprite(string name, string path, Rectangle body)
         {
             _name = name;
