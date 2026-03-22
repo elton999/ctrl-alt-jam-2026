@@ -51,7 +51,7 @@ namespace Project.Components
 
             foreach (var sprite in _sprites)
             {
-                Vector2 position = GameObject.Position - GameObject.Origin;
+                Vector2 position = GameObject.Position.Truncate() - GameObject.Origin.Truncate();
                 position.X += offset + spriteOffset;
                 position.Y += _spacing.Y;
                 sprite.GameObject.Position = position;

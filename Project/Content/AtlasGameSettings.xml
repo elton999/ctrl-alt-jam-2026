@@ -103,6 +103,27 @@
             <Path>Sprites\tilemap</Path>
             <Id>1e6a4720-7dcd-4037-bab3-0233cc86c4db</Id>
           </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>ui axe selected</Name>
+            <Position>286 198</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>99a1e68e-2cfa-451c-bcc4-416f316468ae</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>ui bomb selected</Name>
+            <Position>330 198</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>0d4c0d84-c5c9-4d36-bd12-5d7183d87534</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>ui boots selected</Name>
+            <Position>374 198</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>3bef4bd9-f813-49e2-8faf-53fc89caea66</Id>
+          </Item>
         </Sprites>
       </Item>
     </Atlas>
