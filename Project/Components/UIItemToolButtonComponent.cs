@@ -15,6 +15,8 @@ namespace Project.Components
         [ShowEditor] private Sprite _availableSprite;
         [ShowEditor] private Sprite _selectedSprite;
 
+        private ChosenToolsSubmitComponent _chosenToolsSubmitComponent;
+
         public bool IsSelected => _isSelected;
         public ToolsTypes Tool => _tool;
 
@@ -33,8 +35,8 @@ namespace Project.Components
         {
             if (_tool is ToolsTypes.AXE && KeyBoardHandler.KeyPressed("select 1"))
             {
-                Log.Write($"[{nameof(UIItemToolButtonComponent)}] selected AXE");
                 ToggleSelected();
+                Log.Write($"[{nameof(UIItemToolButtonComponent)}] selected AXE");
                 return;
             }
             if (_tool is ToolsTypes.BOMB && KeyBoardHandler.KeyPressed("select 2"))
@@ -53,10 +55,16 @@ namespace Project.Components
 
         public void SetTool(ToolsTypes tool) => _tool = tool;
 
+        public void SetChosenToolsSubmitComponent(ChosenToolsSubmitComponent chosenToolsSubmitComponent) => _chosenToolsSubmitComponent = chosenToolsSubmitComponent;
+
         public ToolsTypes GetTool() => _tool;
 
         public void ToggleSelected()
         {
+            if(!IsSelected && _chosenToolsSubmitComponent.HasChosenTools())
+            {
+                return;
+            }
             _isSelected = !_isSelected;
             GameObject.GetComponent<SpriteComponent>().SetSprite(IsSelected ? _selectedSprite : _availableSprite);
         }

@@ -18,6 +18,11 @@ namespace Project.Components
             _toolButtons = GameObject.Scene.UI
                 .FindAll(go => go.GetComponent<UIItemToolButtonComponent>() != null)
                 .ConvertAll(go => go.GetComponent<UIItemToolButtonComponent>()).ToArray();
+
+            foreach (var button in _toolButtons)
+            {
+                button.SetChosenToolsSubmitComponent(this);
+            }
         }
 
         public override void Update(float deltaTime)
