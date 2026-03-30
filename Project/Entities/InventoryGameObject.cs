@@ -38,9 +38,12 @@ namespace Project.Entities
 
         public void OnSubmit(ToolsTypes[] chosenTools)
         {
+            var levelSettings = GameSettingsProperty.GetProperty<LevelGameSettings>(@"Content/" + nameof(LevelGameSettings));
+            var toolsLimitations = levelSettings.Levels[0].ToolsLimitations;
             foreach (var tool in chosenTools)
             {
-                UseItem(tool);
+                Tools[tool] = 0;
+                Tools[tool] = toolsLimitations.Find(x => x.Tool == tool).Max;
             }
         }
 
