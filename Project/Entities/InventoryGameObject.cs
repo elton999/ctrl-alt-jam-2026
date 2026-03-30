@@ -42,7 +42,6 @@ namespace Project.Entities
             var toolsLimitations = levelSettings.Levels[0].ToolsLimitations;
             foreach (var tool in chosenTools)
             {
-                Tools[tool] = 0;
                 Tools[tool] = toolsLimitations.Find(x => x.Tool == tool).Max;
             }
         }
