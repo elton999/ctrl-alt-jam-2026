@@ -103,7 +103,7 @@ namespace UmbrellaToolsKit
         public virtual void DrawSprite(SpriteBatch spriteBatch)
         {
             if (Sprite != null)
-                spriteBatch.Draw(Sprite, Position, Body.IsEmpty ? null : Body, SpriteColor * Transparent, Rotation, Origin, Scale, SpriteEffect, 0);
+                spriteBatch.Draw(Sprite, Vector2.Round(Position), Body.IsEmpty ? null : Body, SpriteColor * Transparent, Rotation, Origin, Scale, SpriteEffect, 0);
             ExtraDraw?.Invoke(spriteBatch);
         }
 
