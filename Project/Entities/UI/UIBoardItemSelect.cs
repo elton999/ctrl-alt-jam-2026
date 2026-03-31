@@ -1,7 +1,8 @@
-﻿using Project.Components;
+﻿using Microsoft.Xna.Framework;
+using Project.Components;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.Components.Sprite;
-using Microsoft.Xna.Framework;
+using UmbrellaToolsKit.Sprite;
 
 namespace Project.Entities.UI
 {
@@ -12,24 +13,36 @@ namespace Project.Entities.UI
         private GameObject _buttonSelect3;
         private GameObject _buttonConfirm;
 
+        private GameObject _screen;
+        private GameObject _background;
+        private Color _backgroundColor = (new Vector3(20f, 24f, 46f)).ToColor();
+
         public override void Start()
         {
             tag = "board item select";
-            var sprite = AddComponent<SpriteComponent>();
+
+            _background = new GameObject();
+            Scene.AddGameObject(_background, Layers.UI);
+            _background.AddComponent<UIBackgroundSpriteComponent>().SetSprite(SquareSprite.SquareTexture, _backgroundColor);
+
+            _screen = new GameObject();
+            Scene.AddGameObject(_screen, Layers.UI);
+
+            var sprite = _screen.AddComponent<SpriteComponent>();
             sprite.SetAtlas("board item select");
             sprite.Origin = sprite.Sprite.Size.Half();
             sprite.UpdateSprite();
 
-            Position = Scene.Sizes.ToVector2().Half();
+            _screen.Position = Scene.Sizes.ToVector2().Half();
 
-            var initialAnimation = AddComponent<UIAnimationComponent>();
+            var initialAnimation = _screen.AddComponent<UIAnimationComponent>();
             initialAnimation.TweenType = Tweening.TweenType.BackEaseOut;
             initialAnimation.MaxScale = 0.0001f;
             initialAnimation.DefaulfScale = 1.0f;
             initialAnimation.AnimationDuration = 0.3f;
             initialAnimation.CalculateOrigin = false;
 
-            Scale = initialAnimation.MaxScale;
+            _screen.Scale = initialAnimation.MaxScale;
             initialAnimation.StartAnimation();
 
             _buttonSelect1 = new GameObject();
@@ -54,9 +67,9 @@ namespace Project.Entities.UI
             Scene.AddGameObject(_buttonConfirm, Layers.UI);
             _buttonConfirm.AddComponent<ChosenToolsSubmitComponent>();
 
-            var spriteGrid = AddComponent<UISpriteGridComponent>();
+            var spriteGrid = _screen.AddComponent<UISpriteGridComponent>();
             spriteGrid.SetSize(sprite.Sprite.Size);
-            spriteGrid.SetSpacing(new Vector2(5f, Origin.Y));
+            spriteGrid.SetSpacing(new Vector2(5f, _screen.Origin.Y));
             spriteGrid.AddSprite(buttonSprite1);
             spriteGrid.AddSprite(buttonSprite2);
             spriteGrid.AddSprite(buttonSprite3);
@@ -81,6 +94,8 @@ namespace Project.Entities.UI
             _buttonSelect2.Destroy();
             _buttonSelect3.Destroy();
             _buttonConfirm.Destroy();
+            _screen.Destroy();
+            _background.Destroy();
         }
 
         public void OnSubmit(ToolsTypes[] chosenTools)

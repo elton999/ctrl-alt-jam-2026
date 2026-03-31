@@ -1,7 +1,6 @@
 ﻿using UmbrellaToolsKit;
 using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.EditorEngine.Attributes;
-using UmbrellaToolsKit.EditorEngine.GameSettings;
 
 namespace Project.Entities
 {
