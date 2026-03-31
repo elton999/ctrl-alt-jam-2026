@@ -92,7 +92,10 @@ namespace UmbrellaToolsKit
         public virtual void Destroy()
         {
             _removeFromScene = true;
-            Components.Destroy();
+            if(Components != null)
+            {
+                Components.Destroy();
+            }
             OnDestroy();
         }
         public virtual void OnDestroy() { }
