@@ -15,7 +15,7 @@ namespace Project.Entities.UI
 
         private GameObject _screen;
         private GameObject _background;
-        private Color _backgroundColor = (new Vector3(20f, 24f, 46f)).ToColor();
+        private Color _backgroundColor = (new Vector3(64f, 73f, 115f)).ToColor();
 
         public override void Start()
         {
