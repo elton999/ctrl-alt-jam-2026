@@ -34,5 +34,7 @@ namespace UmbrellaToolsKit
             float y = (float)rng.NextDouble() * (max.Y - min.Y) + min.Y;
             return new Vector2(x, y);
         }
+
+        public static Color ToColor(this Vector3 value) => new Color(value / 255f);
     }
 }
