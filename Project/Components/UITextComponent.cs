@@ -71,6 +71,7 @@ namespace Project.Components
         private void DrawText(SpriteBatch spriteBatch)
         {
             if (_font == null) return;
+            if (_text == null) return;
             spriteBatch.DrawString(_font, _text, GameObject.Position + _offset, _color);
         }
     }
