@@ -17,6 +17,9 @@ namespace Project.Entities
             { ToolsTypes.BOOT, 0 }
         };
 
+        public LevelGameSettings LevelSettings => GameSettingsProperty.GetProperty<LevelGameSettings>(@"Content/" + nameof(LevelGameSettings));
+        public List<LevelGameSettings.ToolsLimitations> ToolsLimitations => LevelSettings.Levels[0].ToolsLimitations;
+
         public override void Start()
         {
             if (Instance == null)
@@ -39,23 +42,18 @@ namespace Project.Entities
         public void OnSubmit(ToolsTypes[] chosenTools)
         {
             ResetInventory();
-            var levelSettings = GameSettingsProperty.GetProperty<LevelGameSettings>(@"Content/" + nameof(LevelGameSettings));
-            var toolsLimitations = levelSettings.Levels[0].ToolsLimitations;
             foreach (var tool in chosenTools)
             {
-                Tools[tool] = toolsLimitations.Find(x => x.Tool == tool).Max;
+                Tools[tool] = ToolsLimitations.Find(x => x.Tool == tool).Max;
             }
         }
 
         public void ResetInventory()
         {
-            var levelSettings = GameSettingsProperty.GetProperty<LevelGameSettings>(@"Content/" + nameof(LevelGameSettings));
-            var toolsLimitations = levelSettings.Levels[0].ToolsLimitations;
-
             Tools[ToolsTypes.AXE] = 0;
             Tools[ToolsTypes.BOMB] = 0;
             Tools[ToolsTypes.BOOT] = 0;
-            Tools[ToolsTypes.SWORD] = toolsLimitations.Find(x => x.Tool == ToolsTypes.SWORD).Max;
+            Tools[ToolsTypes.SWORD] = ToolsLimitations.Find(x => x.Tool == ToolsTypes.SWORD).Max;
         }
 
         public static bool HasItem(ToolsTypes tool)
