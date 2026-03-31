@@ -37,14 +37,7 @@ namespace Project.Components
         {
             if (!HasChosenTools()) return;
 
-            foreach (var toolButton in _toolButtons)
-            {
-                if (toolButton.IsSelected)
-                {
-                    Log.Write($"Chosen tool: {toolButton.Tool}");
-                    OnSubmitChosenTools?.Invoke(GetChosenTools());
-                }
-            }
+            OnSubmitChosenTools?.Invoke(GetChosenTools());
         }
 
         public ToolsTypes[] GetChosenTools()

@@ -12,10 +12,8 @@ namespace Project.Entities.UI
         private GameObject _hudPortrait;
         private UIAnimationComponent UIAnimationByPlayerMovement;
 
-        public override void Start()
+        public void OnStartLevel()
         {
-            tag = nameof(UILevelManagerEntity);
-
             _hudBoard = new GameObject();
             _hudBoard.tag = "hud board";
             Scene.AddGameObject(_hudBoard, Layers.UI);
@@ -24,7 +22,7 @@ namespace Project.Entities.UI
 
             _countMovement = new GameObject();
             _countMovement.tag = "buoy ui";
-            Scene.AddGameObject(_countMovement  , Layers.UI);
+            Scene.AddGameObject(_countMovement, Layers.UI);
             _countMovement.AddComponent<SpriteComponent>().SetAtlas("buoy ui");
             var hudAnimation = _countMovement.AddComponent<HudLevelAnimation>();
             hudAnimation.SetRenderPosition(HudLevelAnimation.RenderPosition.RIGHT);
@@ -41,13 +39,25 @@ namespace Project.Entities.UI
             _hudPortrait.AddComponent<SpriteComponent>().SetAtlas("portrait hud");
             _hudPortrait.AddComponent<HudLevelAnimation>().SetAnimationDuration(1.2f);
 
-
             Player.OnPlayerMove += UIAnimationByPlayerMovement.StartAnimation;
+        }
+
+        public override void Start()
+        {
+            tag = nameof(UILevelManagerEntity);
+
+            ChosenToolsSubmitComponent.OnSubmitChosenTools += OnStartLevelFirstTime;
         }
 
         public override void OnDestroy()
         {
             Player.OnPlayerMove -= UIAnimationByPlayerMovement.StartAnimation;
+            ChosenToolsSubmitComponent.OnSubmitChosenTools -= OnStartLevelFirstTime;
+        }
+
+        private void OnStartLevelFirstTime(ToolsTypes[] tools)
+        {
+            OnStartLevel();
         }
     }
 }
