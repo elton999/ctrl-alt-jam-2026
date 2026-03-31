@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using UmbrellaToolsKit.EditorEngine;
-using UmbrellaToolsKit.GameSettings;
 using UmbrellaToolsKit.Sprite;
 
 
