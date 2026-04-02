@@ -25,7 +25,8 @@ namespace Project.Entities
 
         [ShowEditor] private Vector2 _currentTile;
         [ShowEditor] private Vector2 _oldTile;
-        private Point _nextTileOnLevel => (_initialPosition / Scene.CellSize + _oldTile + (_currentTile - _oldTile)).ToPoint();
+        private Point _initialTile => (_initialPosition / Scene.CellSize + Vector2.One).ToPoint();
+        private Point _nextTileOnLevel => (_initialTile.ToVector2() + _oldTile + (_currentTile - _oldTile)).ToPoint();
 
         private const float MOVE_SPEED = 0.13f;
         
@@ -54,10 +55,11 @@ namespace Project.Entities
                 var currentPosition = _initialPosition + _oldTile * Scene.CellSize;
                 var currentTilePosition = (_currentTile - _oldTile) * Scene.CellSize;
                 var nextTilePosition = _currentTile * Scene.CellSize;
+                string validPath = "2";
 
                 if (_nextTileOnLevel.Y < Scene.Grid.GridCollides.Count && _nextTileOnLevel.X < Scene.Grid.GridCollides[_nextTileOnLevel.Y].Count)
                 {
-                    if (Scene.Grid.GridCollides[_nextTileOnLevel.Y][_nextTileOnLevel.X] != "2")
+                    if (Scene.Grid.GridCollides[_nextTileOnLevel.Y][_nextTileOnLevel.X] != validPath)
                     {
                         Log.Write($"[{nameof(Player)}] not avoid movement on current tile: {_nextTileOnLevel} with value: {Scene.Grid.GridCollides[_nextTileOnLevel.Y][_nextTileOnLevel.X]}");
                         OnNotAvoidMovement();
