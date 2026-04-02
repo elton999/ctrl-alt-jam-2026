@@ -8,7 +8,9 @@ namespace UmbrellaToolsKit.EditorEngine
 
         public static void Write(string value)
         {
+#if DEBUG
             OnLog?.Invoke(value + "\n");
+#endif
         }
     }
 }
