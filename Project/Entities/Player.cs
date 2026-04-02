@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using UmbrellaToolsKit;
+using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.Input;
 using UmbrellaToolsKit.Components.Sprite;
 using UmbrellaToolsKit.EditorEngine.Attributes;
@@ -20,7 +21,7 @@ namespace Project.Entities
         
         private float _totalTime = 0f;
         private bool _isMoving = false;
-        private Vector2 _initialPosition;
+        [ShowEditor] private Vector2 _initialPosition;
 
         [ShowEditor] private Vector2 _currentTile;
         [ShowEditor] private Vector2 _oldTile;
@@ -58,6 +59,7 @@ namespace Project.Entities
                 {
                     if (Scene.Grid.GridCollides[_nextTileOnLevel.Y][_nextTileOnLevel.X] != "2")
                     {
+                        Log.Write($"[{nameof(Player)}] not avoid movement on current tile: {_nextTileOnLevel} with value: {Scene.Grid.GridCollides[_nextTileOnLevel.Y][_nextTileOnLevel.X]}");
                         OnNotAvoidMovement();
                         return;
                     }

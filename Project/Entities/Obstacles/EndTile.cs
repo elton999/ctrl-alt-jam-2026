@@ -10,5 +10,10 @@
             base.Start();
             _spriteComponent.SetAtlas("end sprite");
         }
+
+        public override bool PassObstacle()
+        {
+            return true;
+        }
     }
 }
