@@ -24,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\InventoryGameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\LevelManagerEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\Barrel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\EndTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\Enemy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\ObstacleGameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Obstacles\Stone.cs" />
