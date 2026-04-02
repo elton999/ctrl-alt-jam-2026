@@ -6,5 +6,6 @@
         STONE,
         ENEMY,
         BARREL,
+        END,
     }
 }

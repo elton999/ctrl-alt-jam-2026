@@ -2,6 +2,7 @@
 {
     public enum ToolsTypes
     {
+        NONE,
         AXE,
         SWORD,
         BOMB,
