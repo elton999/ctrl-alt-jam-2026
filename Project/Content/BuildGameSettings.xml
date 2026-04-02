@@ -6,6 +6,10 @@
         <UseTileMapSystem>true</UseTileMapSystem>
         <LevelNumber>0</LevelNumber>
       </Item>
+      <Item>
+        <UseTileMapSystem>true</UseTileMapSystem>
+        <LevelNumber>0</LevelNumber>
+      </Item>
     </SceneList>
     <Resolutions>
       <Item>
