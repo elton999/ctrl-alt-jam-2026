@@ -7,8 +7,8 @@ namespace Project.Entities.Obstacles
 {
     public abstract class ObstacleGameObject : GameObject
     {
-        private SpriteComponent _spriteComponent;
-        private ActorComponent _actorComponent;
+        protected SpriteComponent _spriteComponent;
+        protected ActorComponent _actorComponent;
 
         public abstract ObstaclesTypes ObstacleType { get; }
         public abstract ToolsTypes ToolType { get; }
