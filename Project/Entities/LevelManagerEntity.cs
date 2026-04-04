@@ -6,6 +6,13 @@ namespace Project.Entities
 {
     public class LevelManagerEntity : GameObject
     {
+        public enum GameState
+        {
+            SELECT_TOOLS,
+            PLAYING,
+            ENDING_LEVEL,
+        }
+
         public static LevelManagerEntity Instance;
         public static float RemainingMovements
         {
@@ -20,6 +27,7 @@ namespace Project.Entities
 
         [ShowEditor] private int _currentMovement = 0;
         private int _maxMovements = 90;
+        [ShowEditor] private GameState _currentState = GameState.SELECT_TOOLS;
 
         public override void Start()
         {
@@ -50,9 +58,18 @@ namespace Project.Entities
 
         }
 
+        public static void SetState(GameState state)
+        {
+            if (Instance == null) return;
+
+            Instance._currentState = state;
+        }
+
         public static bool CanRegisterAMove()
         {
             if (Instance == null) return false;
+
+            if (Instance._currentState != GameState.PLAYING) return false;
 
             if (Instance._currentMovement < Instance._maxMovements) return true;
 

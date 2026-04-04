@@ -4,7 +4,7 @@
     <SceneList>
       <Item>
         <UseTileMapSystem>true</UseTileMapSystem>
-        <LevelNumber>0</LevelNumber>
+        <LevelNumber>1</LevelNumber>
       </Item>
       <Item>
         <UseTileMapSystem>true</UseTileMapSystem>

@@ -22,8 +22,10 @@ namespace Project.Entities.Obstacles
 
         public IEnumerator EndAnimation()
         {
-            yield return CoroutineManagement.Wait(5.0f);
-            Scene.GameManagement.SceneManagement.SetScene(1);
+            LevelManagerEntity.SetState(LevelManagerEntity.GameState.ENDING_LEVEL);
+            yield return CoroutineManagement.Wait(2.0f);
+            int currentSceneIndex = Scene.SceneManagement.CurrentScene + 1;
+            Scene.GameManagement.SceneManagement.SetScene(currentSceneIndex);
             yield return null;
         }
     }

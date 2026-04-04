@@ -46,6 +46,7 @@ namespace Project.Entities
             {
                 Tools[tool] = ToolsLimitations.Find(x => x.Tool == tool).Max;
             }
+            LevelManagerEntity.SetState(LevelManagerEntity.GameState.PLAYING);
         }
 
         public void ResetInventory()
