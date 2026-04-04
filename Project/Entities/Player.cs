@@ -77,9 +77,11 @@ namespace Project.Entities
                             if (actor.GameObject is ObstacleGameObject)
                             {
                                 var obstacle = (ObstacleGameObject)actor.GameObject;
-                                obstacle.PassObstacle();
-                                OnNotAvoidMovement();
-                                return; 
+                                if (!obstacle.PassObstacle())
+                                {
+                                    OnNotAvoidMovement();
+                                    return;
+                                }
                             }
                         }
                     }

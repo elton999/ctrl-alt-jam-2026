@@ -27,7 +27,7 @@ namespace Project.Entities.Obstacles
             if (InventoryGameObject.UseItem(ToolType))
             {
                 Destroy();
-                return true;
+                return false;
             }
 
             return false;
