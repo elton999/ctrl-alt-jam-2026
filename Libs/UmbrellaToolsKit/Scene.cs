@@ -6,15 +6,17 @@ using Microsoft.Xna.Framework.Content;
 using UmbrellaToolsKit.Utils;
 using UmbrellaToolsKit.Components.Physics;
 using UmbrellaToolsKit.Collision;
+using UmbrellaToolsKit.EditorEngine;
 
 namespace UmbrellaToolsKit
 {
     public class Scene : IDisposable
     {
-        public Scene(GraphicsDevice screenGraphicsDevice, ContentManager content)
+        public Scene(GraphicsDevice screenGraphicsDevice, ContentManager content, GameManagement gameManagement)
         {
             ScreenGraphicsDevice = screenGraphicsDevice;
             Content = content;
+            _gameManagement = gameManagement;
             addLayers();
 #if DEBUG
             AddGameObject(new CheatListener() { tag = nameof(CheatListener) }, Layers.BACKGROUND);
@@ -91,6 +93,7 @@ namespace UmbrellaToolsKit
         //Sizes
         private int Width = 256;
         private int Height = 144;
+        private GameManagement _gameManagement;
         public GraphicsDevice ScreenGraphicsDevice;
         public ContentManager Content;
 
@@ -189,21 +192,25 @@ namespace UmbrellaToolsKit
             {
                 for (int componentIndex = layers[layerIndex].Count - 1; componentIndex >= 0; componentIndex--)
                 {
-                    if (layers[layerIndex][componentIndex].Components != null)
-                    {
-                        var component = layers[layerIndex][componentIndex].Components;
-                        while (component != null)
-                        {
-                            component.Update(deltaTime);
-                            component = component.Next;
-                        }
-                    }
                     try
                     {
-                        layers[layerIndex][componentIndex].Update(deltaTime);
-                        layers[layerIndex][componentIndex].CoroutineManagement.Update(gameTime);
+                        if (layers[layerIndex].Count > componentIndex &&  layers[layerIndex][componentIndex].Components != null)
+                        {
+                            var component = layers[layerIndex][componentIndex].Components;
+                            layers[layerIndex][componentIndex].Update(deltaTime);
+                            layers[layerIndex][componentIndex].CoroutineManagement.Update(gameTime);
+                            while (component != null)
+                            {
+                                component.Update(deltaTime);
+                                component = component.Next;
+                            }
+                        }
+                  
                     }
-                    catch { }
+                    catch(Exception e)
+                    {
+                        Log.Write("[Update Error]: " + e.Message + "\n" + e.Source + "\n" + e.StackTrace);
+                    }
                 }
             }
 
@@ -211,14 +218,21 @@ namespace UmbrellaToolsKit
             {
                 for (int componentIndex = layers[layerIndex].Count - 1; componentIndex >= 0; componentIndex--)
                 {
-                    if (layers[layerIndex][componentIndex].Components != null)
+                    try
                     {
-                        var component = layers[layerIndex][componentIndex].Components;
-                        while (component != null)
+                        if (layers[layerIndex].Count > componentIndex && layers[layerIndex][componentIndex].Components != null)
                         {
-                            component.AfterUpdate(deltaTime);
-                            component = component.Next;
+                            var component = layers[layerIndex][componentIndex].Components;
+                            while (component != null)
+                            {
+                                component.AfterUpdate(deltaTime);
+                                component = component.Next;
+                            }
                         }
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Write("[AfterUpdate Error]: " + e.Message + "\n" + e.Source + "\n" + e.StackTrace);
                     }
                 }
             }
@@ -230,24 +244,26 @@ namespace UmbrellaToolsKit
                 {
                     for (int componentIndex = layers[layerIndex].Count - 1; componentIndex >= 0; componentIndex--)
                     {
-
-                        if (Camera != null)
-                            Camera.update(deltaTimerData);
-
-                        if (layers[layerIndex][componentIndex].Components != null)
-                        {
-                            var component = layers[layerIndex][componentIndex].Components;
-                            while (component != null)
-                            {
-                                component.UpdateData(deltaTimerData);
-                                component = component.Next;
-                            }
-                        }
                         try
                         {
-                            layers[layerIndex][componentIndex].UpdateData(deltaTimerData);
+                            if (Camera != null)
+                                Camera.update(deltaTimerData);
+
+                            if (layers[layerIndex][componentIndex].Components != null)
+                            {
+                                layers[layerIndex][componentIndex].UpdateData(deltaTimerData);
+                                var component = layers[layerIndex][componentIndex].Components;
+                                while (component != null)
+                                {
+                                    component.UpdateData(deltaTimerData);
+                                    component = component.Next;
+                                }
+                            }
                         }
-                        catch { }
+                        catch (Exception e)
+                        {
+                            Log.Write("[UpdateData Error]: " + e.Message + "\n" + e.Source + "\n" + e.StackTrace);
+                        }
                     }
                 }
                 if (Camera != null)

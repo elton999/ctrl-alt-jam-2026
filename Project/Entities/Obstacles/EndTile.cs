@@ -1,4 +1,7 @@
-﻿namespace Project.Entities.Obstacles
+﻿using System.Collections;
+using UmbrellaToolsKit;
+
+namespace Project.Entities.Obstacles
 {
     public class EndTile : ObstacleGameObject
     {
@@ -13,7 +16,15 @@
 
         public override bool PassObstacle()
         {
+            CoroutineManagement.StarCoroutine(EndAnimation());
             return true;
+        }
+
+        public IEnumerator EndAnimation()
+        {
+            yield return CoroutineManagement.Wait(5.0f);
+            Scene.GameManagement.SceneManagement.SetScene(1);
+            yield return null;
         }
     }
 }

@@ -34,7 +34,8 @@ namespace UmbrellaToolsKit
 
             MainScene = new Scene(
                 GameManagement.Game.GraphicsDevice,
-                GameManagement.Game.Content
+                GameManagement.Game.Content,
+                GameManagement
             );
 
             if (_buildGameSettings is not null)
