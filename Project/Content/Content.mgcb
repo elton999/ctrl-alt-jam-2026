@@ -18,19 +18,22 @@
 #begin AtlasGameSettings.xml
 /copy:AtlasGameSettings.xml
 
-#begin FontMovementCount.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=NoChange
-/build:FontMovementCount.spritefont
+#begin Fonts/BigBlueTerm437NerdFont-Regular.ttf
+/copy:Fonts/BigBlueTerm437NerdFont-Regular.ttf
 
-#begin FontUIText.spritefont
+#begin Fonts/FontMovementCount.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Color
-/build:FontUIText.spritefont
+/processorParam:TextureFormat=DxtCompressed
+/build:Fonts/FontMovementCount.spritefont
+
+#begin Fonts/FontUIText.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/FontUIText.spritefont
 
 #begin InputGameSettings.xml
 /copy:InputGameSettings.xml

@@ -29,7 +29,7 @@ namespace Project.Entities.UI
             hudAnimation.SetAnimationDuration(1.5f);
             UIAnimationByPlayerMovement = _countMovement.AddComponent<UIAnimationComponent>();
             var textCountMovement = _countMovement.AddComponent<UITextComponent>();
-            textCountMovement.SetFont(Content.Load<SpriteFont>("FontMovementCount"));
+            textCountMovement.SetFont(Content.Load<SpriteFont>("Fonts/FontMovementCount"));
             textCountMovement.SetTextFormt(UITextComponent.TextFormat.CENTER, UITextComponent.TextAlignment.MIDDLE);
             _countMovement.AddComponent<ShowMovementsRemainingComponent>();
 

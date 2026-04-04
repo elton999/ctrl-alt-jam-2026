@@ -72,7 +72,7 @@ namespace Project.Components
         {
             if (_font == null) return;
             if (_text == null) return;
-            spriteBatch.DrawString(_font, _text, GameObject.Position + _offset, _color);
+            spriteBatch.DrawString(_font, _text, Vector2.Round(GameObject.Position + _offset), _color);
         }
     }
 }
