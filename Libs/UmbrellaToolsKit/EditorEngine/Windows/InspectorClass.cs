@@ -160,6 +160,14 @@ namespace UmbrellaToolsKit.EditorEngine.Windows
                 return;
             }
 
+            if (obj.Value is Color)
+            {
+                var colorValue = (Color)obj.Value;
+                Fields.Field.DrawColor(obj.Name, ref colorValue);
+                obj.Value = colorValue;
+                return;
+            }
+
             if (obj.Value is Components.Sprite.Sprite)
             {
                 var spriteRef = (Components.Sprite.Sprite)obj.Value;

@@ -57,7 +57,23 @@ namespace UmbrellaToolsKit.EditorEngine.Fields
 #endif
 		}
 
-		public static void DrawLongText(string name, ref string value)
+        public static void DrawColor(string name, ref Microsoft.Xna.Framework.Color value)
+        {
+#if !RELEASE
+			if (value == null)
+			{
+				value = Microsoft.Xna.Framework.Color.CornflowerBlue;
+            }
+			var colorVector = (new Vector4(value.R, value.G, value.B, value.A)) / 255.0f;
+            BeginField(name);
+            ImGui.SetNextItemWidth(-1);
+            ImGui.ColorEdit4($"##{name}", ref colorVector);
+            EndField();
+			value = new Microsoft.Xna.Framework.Color(colorVector.X, colorVector.Y, colorVector.Z, colorVector.W);
+#endif
+        }
+
+        public static void DrawLongText(string name, ref string value)
 		{
 #if !RELEASE
 			if (string.IsNullOrEmpty(value)) value = string.Empty;

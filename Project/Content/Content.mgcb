@@ -18,6 +18,9 @@
 #begin AtlasGameSettings.xml
 /copy:AtlasGameSettings.xml
 
+#begin BuildGameSettings.xml
+/copy:BuildGameSettings.xml
+
 #begin Fonts/BigBlueTerm437NerdFont-Regular.ttf
 /copy:Fonts/BigBlueTerm437NerdFont-Regular.ttf
 
@@ -37,6 +40,9 @@
 
 #begin InputGameSettings.xml
 /copy:InputGameSettings.xml
+
+#begin LevelGameSettings.xml
+/copy:LevelGameSettings.xml
 
 #begin licenses/0xProtoNerdFontPropo.txt
 /copy:licenses/0xProtoNerdFontPropo.txt

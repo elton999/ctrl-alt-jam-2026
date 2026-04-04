@@ -54,7 +54,6 @@ namespace Project
 
             _gameManagement.SceneManagement.SetScene(0);
             _gameManagement.SceneManagement.MainScene.LevelReady = true;
-            _gameManagement.SceneManagement.MainScene.BackgroundColor = new Color(125, 56, 51);
 
             var inputSettings = GameSettingsProperty.GetProperty<InputGameSettings>(@"Content/" + nameof(InputGameSettings));
             inputSettings.BindAllInputs();

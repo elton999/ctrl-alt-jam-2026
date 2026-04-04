@@ -47,6 +47,7 @@ namespace UmbrellaToolsKit
                     if (scene.UseTileMapSystem)
                     {
                         int tileMapIndex = scene.LevelNumber;
+                        MainScene.BackgroundColor = scene.BackgroundColor;
                         if (_buildGameSettings.TileMapIntegration is TileMapIntegration.LDTK)
                             MainScene.SetLevelLdtk(tileMapIndex);
                     }

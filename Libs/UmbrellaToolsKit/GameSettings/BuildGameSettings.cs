@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.EditorEngine.Attributes;
@@ -22,6 +23,7 @@ namespace UmbrellaToolsKit.GameSettings
     {
         [ShowEditor] public bool UseTileMapSystem;
         [ShowEditor] public int LevelNumber;
+        [ShowEditor] public Color BackgroundColor;
     }
 
     public enum TileMapIntegration
@@ -32,7 +34,15 @@ namespace UmbrellaToolsKit.GameSettings
     [GameSettingsProperty(nameof(BuildGameSettings), "/Content/")]
     public class BuildGameSettings : GameSettingsProperty
     {
-        [ShowEditor] public List<SceneList> SceneList = new List<SceneList>();
+        [ShowEditor] public List<SceneList> SceneList = new List<SceneList>() 
+        { 
+            new SceneList()
+            {
+                UseTileMapSystem = false,
+                LevelNumber = 0,
+                BackgroundColor = Color.CornflowerBlue
+            }
+        };
         [ShowEditor] public List<ScreenSize> Resolutions = new List<ScreenSize>() 
         { 
             new ScreenSize(640, 480),
