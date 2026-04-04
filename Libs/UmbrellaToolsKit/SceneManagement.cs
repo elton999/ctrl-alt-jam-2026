@@ -32,11 +32,9 @@ namespace UmbrellaToolsKit
                 MainScene.Dispose();
             }
 
-            MainScene = new Scene(
-                GameManagement.Game.GraphicsDevice,
-                GameManagement.Game.Content,
-                GameManagement
-            );
+            CurrentScene = sceneIndex;
+
+            MainScene = new Scene(GameManagement);
 
             if (_buildGameSettings is not null)
             {
@@ -54,8 +52,6 @@ namespace UmbrellaToolsKit
                     }
                 }
             }
-            
-            MainScene.GameManagement = GameManagement;
         }
 
         public void Update(GameTime gameTime)

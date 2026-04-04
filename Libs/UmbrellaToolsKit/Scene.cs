@@ -12,11 +12,11 @@ namespace UmbrellaToolsKit
 {
     public class Scene : IDisposable
     {
-        public Scene(GraphicsDevice screenGraphicsDevice, ContentManager content, GameManagement gameManagement)
+        public Scene(GameManagement gameManagement)
         {
-            ScreenGraphicsDevice = screenGraphicsDevice;
-            Content = content;
-            _gameManagement = gameManagement;
+            ScreenGraphicsDevice = gameManagement.Game.GraphicsDevice;
+            Content = gameManagement.Game.Content;
+            GameManagement = gameManagement;
             addLayers();
 #if DEBUG
             AddGameObject(new CheatListener() { tag = nameof(CheatListener) }, Layers.BACKGROUND);
@@ -93,7 +93,6 @@ namespace UmbrellaToolsKit
         //Sizes
         private int Width = 256;
         private int Height = 144;
-        private GameManagement _gameManagement;
         public GraphicsDevice ScreenGraphicsDevice;
         public ContentManager Content;
 
@@ -124,6 +123,7 @@ namespace UmbrellaToolsKit
         #region Load Level Tilemap
         public Ogmo.TileSet tileSet;
         public GameManagement GameManagement;
+        public SceneManagement SceneManagement => GameManagement.SceneManagement;
 
         public string MapLevelPath = "Maps/Level_";
         public string MapLevelLdtkPath = "Maps/TileMap";
