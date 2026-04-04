@@ -22,11 +22,33 @@
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
+/processorParam:TextureFormat=NoChange
 /build:FontMovementCount.spritefont
+
+#begin FontUIText.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:FontUIText.spritefont
 
 #begin InputGameSettings.xml
 /copy:InputGameSettings.xml
+
+#begin licenses/0xProtoNerdFontPropo.txt
+/copy:licenses/0xProtoNerdFontPropo.txt
+
+#begin licenses/BigBlueTerm437NerdFont.txt
+/copy:licenses/BigBlueTerm437NerdFont.txt
+
+#begin licenses/Eto.txt
+/copy:licenses/Eto.txt
+
+#begin licenses/Monogame.ImGui.txt
+/copy:licenses/Monogame.ImGui.txt
+
+#begin licenses/Monogame.txt
+/copy:licenses/Monogame.txt
 
 #begin Maps/TileMap.ldtk
 /importer:LdtkImporter
@@ -42,9 +64,9 @@
 /processorParam:ColorKeyColor=255,0,255,255
 /processorParam:ColorKeyEnabled=True
 /processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
+/processorParam:PremultiplyAlpha=False
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
+/processorParam:TextureFormat=NoChange
 /build:Sprites/tilemap.png
 
