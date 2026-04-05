@@ -12,5 +12,11 @@ namespace Project.Entities.Obstacles
             SpriteColor = Color.Red;
             base.Start();
         }
+
+        public override bool PassObstacle()
+        {
+            Destroy();
+            return false;
+        }
     }
 }

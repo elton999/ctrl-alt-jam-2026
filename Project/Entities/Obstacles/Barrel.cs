@@ -22,10 +22,11 @@ namespace Project.Entities.Obstacles
                 direction.Normalize();
 
                 var tempPosition = direction * Scene.CellSize + Position;
-                var nextTile = (tempPosition / Scene.CellSize).ToPoint();
+                var nextTile = (tempPosition / Scene.CellSize + Vector2.One).ToPoint();
 
                 if (nextTile.Y < Scene.Grid.GridCollides.Count && nextTile.X < Scene.Grid.GridCollides[nextTile.Y].Count)
                 {
+
                     if (Scene.Grid.GridCollides[nextTile.Y][nextTile.X] == "2")
                     {
                         Position = tempPosition;
