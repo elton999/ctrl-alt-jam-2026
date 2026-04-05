@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:GameSettings="UmbrellaToolsKit.EditorEngine.GameSettings">
+  <Asset Type="GameSettings:SpriteAnimationGameSettings">
+    <TimeLineFeature>
+      <DurationInSeconds>2</DurationInSeconds>
+      <TotalFramesInWindow>250</TotalFramesInWindow>
+      <FramePerSecond>60</FramePerSecond>
+      <FrameStep>15</FrameStep>
+      <TimelineRuleHight>15</TimelineRuleHight>
+      <TimeLinePosition>
+        <X>0</X>
+        <Y>0</Y>
+      </TimeLinePosition>
+      <StepSize>0</StepSize>
+      <TimeLineHight>30</TimeLineHight>
+      <CurrentItem Null="true" />
+      <_currentTime>0</_currentTime>
+      <_durationInSeconds>2</_durationInSeconds>
+      <_framePerSecond>60</_framePerSecond>
+      <Tracks />
+    </TimeLineFeature>
+  </Asset>
+</XnaContent>

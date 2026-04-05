@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:GameSettings="UmbrellaToolsKit.EditorEngine.GameSettings">
+  <Asset Type="GameSettings:RhythmEditor">
+    <TimeLineFeatureList Null="true" />
+  </Asset>
+</XnaContent>

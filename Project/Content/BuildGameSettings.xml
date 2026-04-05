@@ -4,12 +4,12 @@
     <SceneList>
       <Item>
         <UseTileMapSystem>true</UseTileMapSystem>
-        <LevelNumber>1</LevelNumber>
+        <LevelNumber>0</LevelNumber>
         <BackgroundColor>FF7D3833</BackgroundColor>
       </Item>
       <Item>
         <UseTileMapSystem>true</UseTileMapSystem>
-        <LevelNumber>0</LevelNumber>
+        <LevelNumber>1</LevelNumber>
         <BackgroundColor>FF7D3833</BackgroundColor>
       </Item>
     </SceneList>
