@@ -24,8 +24,7 @@ namespace Project.Entities.Obstacles
         {
             LevelManagerEntity.SetState(LevelManagerEntity.GameState.ENDING_LEVEL);
             yield return CoroutineManagement.Wait(2.0f);
-            int currentSceneIndex = Scene.SceneManagement.CurrentScene + 1;
-            Scene.GameManagement.SceneManagement.SetScene(currentSceneIndex);
+            LevelManagerEntity.GoToNextLevel();
             yield return null;
         }
     }
