@@ -24,10 +24,21 @@ namespace Project.Entities
                 return Instance._maxMovements - Instance._currentMovement;
             }
         }
+        public static int CurrentLevel
+        {
+            get
+            {
+                if (Instance == null)
+                    return 0;
+                return _currentLevel;
+            }
+        }
 
         [ShowEditor] private int _currentMovement = 0;
         private int _maxMovements = 90;
         [ShowEditor] private GameState _currentState = GameState.SELECT_TOOLS;
+        [ShowEditor]  private static int _currentLevel = 0;
+
 
         public override void Start()
         {
@@ -50,12 +61,6 @@ namespace Project.Entities
         {
             Player.OnPlayerMove -= RegisterAMove;
             Instance = null;
-        }
-
-
-        public override void Update(float deltaTime)
-        {
-
         }
 
         public static void SetState(GameState state)
@@ -82,6 +87,14 @@ namespace Project.Entities
             if (!CanRegisterAMove()) return;
 
             Instance._currentMovement++;
+        }
+
+        public static void GoToNextLevel()
+        {
+            if (Instance == null) return;
+            _currentLevel++;
+            int currentSceneIndex = Instance.Scene.SceneManagement.CurrentScene + 1;
+            Instance.Scene.SceneManagement.SetScene(currentSceneIndex);
         }
     }
 }
