@@ -18,7 +18,7 @@ namespace Project.Entities
         };
 
         public LevelGameSettings LevelSettings => GameSettingsProperty.GetProperty<LevelGameSettings>(@"Content/" + nameof(LevelGameSettings));
-        public List<LevelGameSettings.ToolsLimitations> ToolsLimitations => LevelSettings.Levels[0].ToolsLimitations;
+        public List<LevelGameSettings.ToolsLimitations> ToolsLimitations => LevelSettings.Levels[LevelManagerEntity.CurrentLevel].ToolsLimitations;
 
         public override void Start()
         {

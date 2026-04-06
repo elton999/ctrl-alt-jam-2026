@@ -50,7 +50,7 @@ namespace Project.Entities
             var levelSettings = GameSettingsProperty.GetProperty<LevelGameSettings>(@"Content/" + nameof(LevelGameSettings));
             if (levelSettings != null)
             {
-                _maxMovements = levelSettings.Levels[0].MaxMovements;
+                _maxMovements = levelSettings.Levels[_currentLevel].MaxMovements;
             }
 
             tag = "LevelManager";
