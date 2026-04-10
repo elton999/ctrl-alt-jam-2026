@@ -12,6 +12,21 @@
         <LevelNumber>1</LevelNumber>
         <BackgroundColor>FF7D3833</BackgroundColor>
       </Item>
+      <Item>
+        <UseTileMapSystem>true</UseTileMapSystem>
+        <LevelNumber>2</LevelNumber>
+        <BackgroundColor>FF7D3833</BackgroundColor>
+      </Item>
+      <Item>
+        <UseTileMapSystem>true</UseTileMapSystem>
+        <LevelNumber>3</LevelNumber>
+        <BackgroundColor>FF7D3833</BackgroundColor>
+      </Item>
+      <Item>
+        <UseTileMapSystem>true</UseTileMapSystem>
+        <LevelNumber>4</LevelNumber>
+        <BackgroundColor>FF7D3833</BackgroundColor>
+      </Item>
     </SceneList>
     <Resolutions>
       <Item>
