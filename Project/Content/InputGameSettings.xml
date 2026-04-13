@@ -72,6 +72,12 @@
           <Item>NumPad4</Item>
         </Keys>
       </Item>
+      <Item>
+        <InputName>reset</InputName>
+        <Keys>
+          <Item>R</Item>
+        </Keys>
+      </Item>
     </InputDataList>
   </Asset>
 </XnaContent>

@@ -1,6 +1,7 @@
 ﻿using UmbrellaToolsKit;
 using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.EditorEngine.Attributes;
+using UmbrellaToolsKit.Input;
 
 namespace Project.Entities
 {
@@ -18,7 +19,7 @@ namespace Project.Entities
         {
             get
             {
-                if (Instance == null)
+                if (Instance is null)
                     return 0;
 
                 return Instance._maxMovements - Instance._currentMovement;
@@ -28,7 +29,7 @@ namespace Project.Entities
         {
             get
             {
-                if (Instance == null)
+                if (Instance is null)
                     return 0;
                 return _currentLevel;
             }
@@ -42,7 +43,7 @@ namespace Project.Entities
 
         public override void Start()
         {
-            if(Instance == null)
+            if(Instance is null)
             {
                 Instance = this;
             }
@@ -63,16 +64,26 @@ namespace Project.Entities
             Instance = null;
         }
 
+        public override void Update(float deltaTime)
+        {
+            if (_currentState != GameState.PLAYING) return;
+            if (KeyBoardHandler.KeyPressed("reset"))
+            {
+                Log.Write($"[{nameof(LevelManagerEntity)}] Reset level");
+                ResetLevel();
+            }
+        }
+
         public static void SetState(GameState state)
         {
-            if (Instance == null) return;
+            if (Instance is null) return;
 
             Instance._currentState = state;
         }
 
         public static bool CanRegisterAMove()
         {
-            if (Instance == null) return false;
+            if (Instance is null) return false;
 
             if (Instance._currentState != GameState.PLAYING) return false;
 
@@ -83,18 +94,32 @@ namespace Project.Entities
 
         public static void RegisterAMove()
         {
-            if (Instance == null) return;
+            if (Instance is null) return;
             if (!CanRegisterAMove()) return;
 
             Instance._currentMovement++;
         }
 
+        public static void GoToLevel(int levelIndex)
+        {
+            if (Instance is null) return;
+            _currentLevel = levelIndex;
+            Instance.Scene.SceneManagement.SetScene(levelIndex);
+        }
+
         public static void GoToNextLevel()
         {
-            if (Instance == null) return;
+            if (Instance is null) return;
             _currentLevel++;
             int currentSceneIndex = Instance.Scene.SceneManagement.CurrentScene + 1;
-            Instance.Scene.SceneManagement.SetScene(currentSceneIndex);
+            GoToLevel(currentSceneIndex);
+        }
+
+        public static void ResetLevel()
+        {
+            if (Instance is null) return;
+            int currentSceneIndex = Instance.Scene.SceneManagement.CurrentScene;
+            GoToLevel(currentSceneIndex);
         }
     }
 }
