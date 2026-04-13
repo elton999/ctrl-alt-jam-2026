@@ -181,24 +181,18 @@ namespace UmbrellaToolsKit
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            //UI update
-            for (int index = UI.Count - 1; index >= 0; index--)
-            {
-                UI[index].Update(deltaTime);
-                UI[index].CoroutineManagement.Update(gameTime);
-            }
-
             for (int layerIndex = layers.Count - 1; layerIndex >= 0; layerIndex--)
             {
                 for (int componentIndex = layers[layerIndex].Count - 1; componentIndex >= 0; componentIndex--)
                 {
                     try
                     {
-                        if (layers[layerIndex].Count > componentIndex &&  layers[layerIndex][componentIndex].Components != null)
+                        layers[layerIndex][componentIndex].Update(deltaTime);
+                        if (layers[layerIndex].Count > componentIndex && layers[layerIndex][componentIndex].Components != null)
                         {
-                            var component = layers[layerIndex][componentIndex].Components;
-                            layers[layerIndex][componentIndex].Update(deltaTime);
                             layers[layerIndex][componentIndex].CoroutineManagement.Update(gameTime);
+                            var component = layers[layerIndex][componentIndex].Components;      
+                            
                             while (component != null)
                             {
                                 component.Update(deltaTime);
@@ -249,9 +243,9 @@ namespace UmbrellaToolsKit
                             if (Camera != null)
                                 Camera.update(deltaTimerData);
 
+                            layers[layerIndex][componentIndex].UpdateData(deltaTimerData);
                             if (layers[layerIndex][componentIndex].Components != null)
                             {
-                                layers[layerIndex][componentIndex].UpdateData(deltaTimerData);
                                 var component = layers[layerIndex][componentIndex].Components;
                                 while (component != null)
                                 {
