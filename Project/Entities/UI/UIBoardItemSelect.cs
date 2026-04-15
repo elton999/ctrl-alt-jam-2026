@@ -71,15 +71,21 @@ namespace Project.Entities.UI
             _buttonConfirm.AddComponent<ChosenToolsSubmitComponent>();
 
             _uiText = new GameObject();
-            float areaHeight = 60f;
-            _uiText.Position = Scene.Sizes.ToVector2().Half() - Vector2.UnitY * areaHeight.Half();
-            _uiText.Body = new Rectangle(0, 0, 0, (int)areaHeight);
+            
+            _uiText.Body = new Rectangle(0, 0, 200, 80);
+            _uiText.Position = Scene.Sizes.ToVector2().Half() - Vector2.UnitY * (((float)_uiText.Body.Height).Half() + 20f);
+            _uiText.Position = new Vector2(_uiText.Position.X - ((float)_uiText.Body.Width).Half(), _uiText.Position.Y);
             _uiText.tag = "text choose your tools";
             Scene.AddGameObject(_uiText, Layers.UI);
             var text = _uiText.AddComponent<UITextComponent>();
             text.SetFont(Content.Load<SpriteFont>("Fonts/FontUIText"));
             text.SetText("Choose your tools");
-            text.SetTextFormt(UITextComponent.TextFormat.CENTER, UITextComponent.TextAlignment.TOP);
+            text.SetTextFormt(UITextComponent.TextFormat.CENTER, UITextComponent.TextAlignment.MIDDLE);
+
+            text = _uiText.AddComponent<UITextComponent>();
+            text.SetFont(Content.Load<SpriteFont>("Fonts/FontUIText"));
+            text.SetText("(0/2)");
+            text.SetTextFormt(UITextComponent.TextFormat.RIGHT, UITextComponent.TextAlignment.TOP);
 
             var spriteGrid = _screen.AddComponent<UISpriteGridComponent>();
             spriteGrid.SetSize(sprite.Sprite.Size);
