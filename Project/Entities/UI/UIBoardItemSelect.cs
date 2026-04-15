@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Project.Components;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.Components.Sprite;
@@ -12,6 +13,8 @@ namespace Project.Entities.UI
         private GameObject _buttonSelect2;
         private GameObject _buttonSelect3;
         private GameObject _buttonConfirm;
+
+        private GameObject _uiText;
 
         private GameObject _screen;
         private GameObject _background;
@@ -67,6 +70,17 @@ namespace Project.Entities.UI
             Scene.AddGameObject(_buttonConfirm, Layers.UI);
             _buttonConfirm.AddComponent<ChosenToolsSubmitComponent>();
 
+            _uiText = new GameObject();
+            float areaHeight = 60f;
+            _uiText.Position = Scene.Sizes.ToVector2().Half() - Vector2.UnitY * areaHeight.Half();
+            _uiText.Body = new Rectangle(0, 0, 0, (int)areaHeight);
+            _uiText.tag = "text choose your tools";
+            Scene.AddGameObject(_uiText, Layers.UI);
+            var text = _uiText.AddComponent<UITextComponent>();
+            text.SetFont(Content.Load<SpriteFont>("Fonts/FontUIText"));
+            text.SetText("Choose your tools");
+            text.SetTextFormt(UITextComponent.TextFormat.CENTER, UITextComponent.TextAlignment.TOP);
+
             var spriteGrid = _screen.AddComponent<UISpriteGridComponent>();
             spriteGrid.SetSize(sprite.Sprite.Size);
             spriteGrid.SetSpacing(new Vector2(5f, _screen.Origin.Y));
@@ -96,6 +110,7 @@ namespace Project.Entities.UI
             _buttonConfirm.Destroy();
             _screen.Destroy();
             _background.Destroy();
+            _uiText.Destroy();
         }
 
         public void OnSubmit(ToolsTypes[] chosenTools)
