@@ -67,7 +67,7 @@
             <Max>9</Max>
           </Item>
         </ToolsLimitations>
-        <MaxMovements>15</MaxMovements>
+        <MaxMovements>17</MaxMovements>
         <LevelNumberIntegration>2</LevelNumberIntegration>
         <Index>0</Index>
       </Item>
@@ -90,7 +90,7 @@
             <Max>2</Max>
           </Item>
         </ToolsLimitations>
-        <MaxMovements>23</MaxMovements>
+        <MaxMovements>24</MaxMovements>
         <LevelNumberIntegration>3</LevelNumberIntegration>
         <Index>0</Index>
       </Item>
@@ -113,7 +113,7 @@
             <Max>5</Max>
           </Item>
         </ToolsLimitations>
-        <MaxMovements>43</MaxMovements>
+        <MaxMovements>42</MaxMovements>
         <LevelNumberIntegration>4</LevelNumberIntegration>
         <Index>0</Index>
       </Item>
@@ -136,7 +136,7 @@
             <Max>9</Max>
           </Item>
         </ToolsLimitations>
-        <MaxMovements>23</MaxMovements>
+        <MaxMovements>34</MaxMovements>
         <LevelNumberIntegration>5</LevelNumberIntegration>
         <Index>0</Index>
       </Item>
