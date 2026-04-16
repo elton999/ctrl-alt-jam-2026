@@ -80,11 +80,13 @@ namespace Project.Entities.UI
             var text = _uiText.AddComponent<UITextComponent>();
             text.SetFont(Content.Load<SpriteFont>("Fonts/FontUIText"));
             text.SetText("Choose your tools");
+            text.SetFontSize(0.3f);
             text.SetTextFormt(UITextComponent.TextFormat.CENTER, UITextComponent.TextAlignment.MIDDLE);
 
             text = _uiText.AddComponent<UITextComponent>();
             text.SetFont(Content.Load<SpriteFont>("Fonts/FontUIText"));
             text.SetText("(0/2)");
+            text.SetFontSize(0.2f);
             text.SetTextFormt(UITextComponent.TextFormat.RIGHT, UITextComponent.TextAlignment.TOP);
 
             var spriteGrid = _screen.AddComponent<UISpriteGridComponent>();
