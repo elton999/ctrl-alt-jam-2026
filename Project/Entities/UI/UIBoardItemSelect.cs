@@ -20,6 +20,10 @@ namespace Project.Entities.UI
         private GameObject _background;
         private Color _backgroundColor = (new Vector3(64f, 73f, 115f)).ToColor();
 
+        private UITextComponent _countText;
+        private ChosenToolsSubmitComponent _chosenToolsSubmit;
+        private int _chosenToolsCount;
+
         public override void Start()
         {
             tag = "board item select";
@@ -68,7 +72,7 @@ namespace Project.Entities.UI
 
             _buttonConfirm = new GameObject();
             Scene.AddGameObject(_buttonConfirm, Layers.UI);
-            _buttonConfirm.AddComponent<ChosenToolsSubmitComponent>();
+            _chosenToolsSubmit = _buttonConfirm.AddComponent<ChosenToolsSubmitComponent>();
 
             _uiText = new GameObject();
             
@@ -83,11 +87,11 @@ namespace Project.Entities.UI
             text.SetFontSize(0.3f);
             text.SetTextFormt(UITextComponent.TextFormat.CENTER, UITextComponent.TextAlignment.MIDDLE);
 
-            text = _uiText.AddComponent<UITextComponent>();
-            text.SetFont(Content.Load<SpriteFont>("Fonts/FontUIText"));
-            text.SetText("(0/2)");
-            text.SetFontSize(0.2f);
-            text.SetTextFormt(UITextComponent.TextFormat.RIGHT, UITextComponent.TextAlignment.TOP);
+            _countText = _uiText.AddComponent<UITextComponent>();
+            _countText.SetFont(Content.Load<SpriteFont>("Fonts/FontUIText"));
+            _countText.SetText("(0/2)");
+            _countText.SetFontSize(0.2f);
+            _countText.SetTextFormt(UITextComponent.TextFormat.RIGHT, UITextComponent.TextAlignment.TOP);
 
             var spriteGrid = _screen.AddComponent<UISpriteGridComponent>();
             spriteGrid.SetSize(sprite.Sprite.Size);
@@ -119,6 +123,16 @@ namespace Project.Entities.UI
             _screen.Destroy();
             _background.Destroy();
             _uiText.Destroy();
+        }
+
+        public override void Update(float deltaTime)
+        {
+            int count = _chosenToolsSubmit.GetChosenTools().Length;
+            if (_chosenToolsCount != count)
+            {
+                _chosenToolsCount = count;
+                _countText.SetText($"({count}/2)");
+            }
         }
 
         public void OnSubmit(ToolsTypes[] chosenTools)
