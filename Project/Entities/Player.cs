@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.Input;
-using UmbrellaToolsKit.Components.Sprite;
 using UmbrellaToolsKit.EditorEngine.Attributes;
 using UmbrellaToolsKit.Components.Physics;
 using System.Collections.Generic;
