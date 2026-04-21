@@ -183,15 +183,15 @@ namespace UmbrellaToolsKit
 
             for (int layerIndex = layers.Count - 1; layerIndex >= 0; layerIndex--)
             {
-                for (int componentIndex = layers[layerIndex].Count - 1; componentIndex >= 0; componentIndex--)
+                for (int gameObjectIndex = layers[layerIndex].Count - 1; gameObjectIndex >= 0; gameObjectIndex--)
                 {
                     try
                     {
-                        layers[layerIndex][componentIndex].Update(deltaTime);
-                        if (layers[layerIndex].Count > componentIndex && layers[layerIndex][componentIndex].Components != null)
+                        layers[layerIndex][gameObjectIndex].Update(deltaTime);
+                        layers[layerIndex][gameObjectIndex].CoroutineManagement.Update(gameTime);
+                        if (layers[layerIndex].Count > gameObjectIndex && layers[layerIndex][gameObjectIndex].Components != null)
                         {
-                            layers[layerIndex][componentIndex].CoroutineManagement.Update(gameTime);
-                            var component = layers[layerIndex][componentIndex].Components;      
+                            var component = layers[layerIndex][gameObjectIndex].Components;      
                             
                             while (component != null)
                             {
@@ -210,13 +210,13 @@ namespace UmbrellaToolsKit
 
             for (int layerIndex = layers.Count - 1; layerIndex >= 0; layerIndex--)
             {
-                for (int componentIndex = layers[layerIndex].Count - 1; componentIndex >= 0; componentIndex--)
+                for (int gameObjectIndex = layers[layerIndex].Count - 1; gameObjectIndex >= 0; gameObjectIndex--)
                 {
                     try
                     {
-                        if (layers[layerIndex].Count > componentIndex && layers[layerIndex][componentIndex].Components != null)
+                        if (layers[layerIndex].Count > gameObjectIndex && layers[layerIndex][gameObjectIndex].Components != null)
                         {
-                            var component = layers[layerIndex][componentIndex].Components;
+                            var component = layers[layerIndex][gameObjectIndex].Components;
                             while (component != null)
                             {
                                 component.AfterUpdate(deltaTime);
