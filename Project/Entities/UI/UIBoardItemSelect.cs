@@ -108,7 +108,6 @@ namespace Project.Entities.UI
             _buttonSelect2.AddComponent<UIButtonToolSelectAnimationComponent>().DelayToStartAnimation = 0.6f;
             _buttonSelect3.AddComponent<UIButtonToolSelectAnimationComponent>().DelayToStartAnimation = 0.9f;
 
-
             ChosenToolsSubmitComponent.OnSubmitChosenTools += OnSubmit;
         }
 

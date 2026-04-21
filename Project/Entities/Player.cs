@@ -9,6 +9,7 @@ using UmbrellaToolsKit.EditorEngine.Attributes;
 using UmbrellaToolsKit.Components.Physics;
 using System.Collections.Generic;
 using Project.Entities.Obstacles;
+using UmbrellaToolsKit.Sprite;
 
 namespace Project.Entities
 {
@@ -16,8 +17,8 @@ namespace Project.Entities
     {
         public static Action OnPlayerMove;
 
-        private SpriteComponent _spriteComponent;
         private ActorComponent _actorComponent;
+        private AsepriteAnimation _animation;
         
         private float _totalTime = 0f;
         private bool _isMoving = false;
@@ -28,18 +29,19 @@ namespace Project.Entities
         private Point _initialTile => (_initialPosition / Scene.CellSize + Vector2.One).ToPoint();
         private Point _nextTileOnLevel => (_initialTile.ToVector2() + _oldTile + (_currentTile - _oldTile)).ToPoint();
 
-        private const float MOVE_SPEED = 0.13f;
+        private const float MOVE_SPEED = 0.1f;
         
         public override void Start()
         {
-            _spriteComponent = AddComponent<SpriteComponent>();
-            _spriteComponent.SetAtlas("player sprite");
-            _spriteComponent.Origin = new Vector2(6, Scene.CellSize);
-            _spriteComponent.SpriteEffect = SpriteEffects.FlipHorizontally;
-
             _actorComponent = AddComponent<ActorComponent>();
             _actorComponent.HasGravity = false;
             _actorComponent.Size = new Point(23);
+
+            Origin = new Vector2(6, Scene.CellSize);
+            SpriteEffect = SpriteEffects.FlipHorizontally;
+
+            Sprite = Content.Load<Texture2D>("Sprites/player");
+            _animation = new AsepriteAnimation(Content.Load<AsepriteDefinitions>("Sprites/player_animation"));
 
             _initialPosition = Position;
             tag = "player";
@@ -49,9 +51,13 @@ namespace Project.Entities
         {
             UpdateKeyboard();
 
+            if (!_isMoving)
+                _animation.Play(deltaTime, "idle", AnimationDirection.LOOP);
+            if (_isMoving)
+                _animation.Play(deltaTime, "running", AnimationDirection.LOOP);
+
             if (_isMoving)
             {
-
                 var currentPosition = _initialPosition + _oldTile * Scene.CellSize;
                 var currentTilePosition = (_currentTile - _oldTile) * Scene.CellSize;
                 var nextTilePosition = _currentTile * Scene.CellSize;
@@ -85,12 +91,14 @@ namespace Project.Entities
                             }
                         }
                     }
+
                 }
                 else
                 {
                     OnNotAvoidMovement();
                     return;
                 }
+                
 
                 _totalTime += deltaTime;
 
@@ -107,6 +115,13 @@ namespace Project.Entities
                     Tweening.EaseInQuad(currentPosition.Y, currentTilePosition.Y, _totalTime, MOVE_SPEED)
                 );
             }
+
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            Body = _animation.Body;
+            base.Draw(spriteBatch);
         }
 
         private void OnNotAvoidMovement()
@@ -146,8 +161,8 @@ namespace Project.Entities
             {
                 SetMovement();
                 _currentTile -= Vector2.UnitX;
-                _spriteComponent.SpriteEffect = SpriteEffects.None;
-                _spriteComponent.Origin = new Vector2(15, Scene.CellSize);
+                SpriteEffect = SpriteEffects.None;
+                Origin = new Vector2(15, Scene.CellSize);
                 return;
             }
 
@@ -155,8 +170,8 @@ namespace Project.Entities
             {
                 SetMovement();
                 _currentTile += Vector2.UnitX;
-                _spriteComponent.SpriteEffect = SpriteEffects.FlipHorizontally;
-                _spriteComponent.Origin = new Vector2(6, Scene.CellSize);
+                SpriteEffect = SpriteEffects.FlipHorizontally;
+                Origin = new Vector2(6, Scene.CellSize);
                 return;
             }
         }
