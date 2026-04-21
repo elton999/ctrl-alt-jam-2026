@@ -1,4 +1,5 @@
-﻿using UmbrellaToolsKit;
+﻿using System;
+using UmbrellaToolsKit;
 using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.EditorEngine.Attributes;
 using UmbrellaToolsKit.Input;
@@ -12,9 +13,11 @@ namespace Project.Entities
             SELECT_TOOLS,
             PLAYING,
             ENDING_LEVEL,
+            GAME_OVER
         }
 
         public static LevelManagerEntity Instance;
+        public static event Action<GameState> OnLevelStateChanged;
         public static float RemainingMovements
         {
             get
@@ -66,11 +69,16 @@ namespace Project.Entities
 
         public override void Update(float deltaTime)
         {
-            if (_currentState != GameState.PLAYING) return;
+            if (!(_currentState is GameState.PLAYING || _currentState is GameState.GAME_OVER)) return;
             if (KeyBoardHandler.KeyPressed("reset"))
             {
                 Log.Write($"[{nameof(LevelManagerEntity)}] Reset level");
                 ResetLevel();
+            }
+
+            if (RemainingMovements == 0 && _currentState != GameState.GAME_OVER)
+            {
+                SetState(GameState.GAME_OVER);
             }
         }
 
@@ -79,6 +87,7 @@ namespace Project.Entities
             if (Instance is null) return;
 
             Instance._currentState = state;
+            OnLevelStateChanged?.Invoke(state);
         }
 
         public static bool CanRegisterAMove()
