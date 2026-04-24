@@ -1,29 +1,47 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using UmbrellaToolsKit.Interfaces;
-using UmbrellaToolsKit.Utils;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using UmbrellaToolsKit.EditorEngine.Attributes;
+using UmbrellaToolsKit.Interfaces;
+using UmbrellaToolsKit.Utils;
 
 namespace UmbrellaToolsKit.Components.ParticlesSystem
 {
     public class ParticlesComponent : Component
     {
-        [ShowEditor] private ParticlesConfig _particlesConfigDebug = new ParticlesConfig();
-        [ShowEditor] private IParticle _particleConfig;
+        [ShowEditor]
+        private ParticlesConfig _particlesConfigDebug = new ParticlesConfig();
+
+        [ShowEditor]
+        private IParticle _particleConfig;
         private IObjectPooling _pool;
 
-        [ShowEditor] private float _timer = 0.0f;
-        [ShowEditor] private bool _isPlaying = false;
+        [ShowEditor]
+        private float _timer = 0.0f;
 
-        public bool IsPlaying { get => _isPlaying; }
-        public bool IsOnTime { get => _particleConfig != null && _particleConfig.EmitsFor == EmiterType.FOR_TIME && _timer > 0.0f; }
+        [ShowEditor]
+        private bool _isPlaying = false;
+
+        public bool IsPlaying
+        {
+            get => _isPlaying;
+        }
+        public bool IsOnTime
+        {
+            get =>
+                _particleConfig != null
+                && _particleConfig.EmitsFor == EmiterType.FOR_TIME
+                && _timer > 0.0f;
+        }
 
         public IParticle ParticleConfig => _particleConfig;
-        [ShowEditor] public List<ParticleRender> Particles = new List<ParticleRender>();
 
-        public void SetPartileConfig(IParticle particleConfig) => _particleConfig = _particlesConfigDebug.UpdateConfig(particleConfig);
+        [ShowEditor]
+        public List<ParticleRender> Particles = new List<ParticleRender>();
+
+        public void SetPartileConfig(IParticle particleConfig) =>
+            _particleConfig = _particlesConfigDebug.UpdateConfig(particleConfig);
 
         [Button]
         public void UpdateParticleSettings() => _particleConfig = _particlesConfigDebug;
@@ -34,6 +52,8 @@ namespace UmbrellaToolsKit.Components.ParticlesSystem
         [Button]
         public void Play()
         {
+            if (_particleConfig is null)
+                return;
             _isPlaying = true;
             Restart();
         }
@@ -47,13 +67,16 @@ namespace UmbrellaToolsKit.Components.ParticlesSystem
 
         public override void Update(float deltaTime)
         {
-            if (!_isPlaying) return;
+            if (!_isPlaying)
+                return;
 
             deltaTime = MathUtils.SecondsToMilliseconds(deltaTime);
-            _timer -= deltaTime;
 
             if (IsOnTime || _particleConfig.EmitsFor == EmiterType.INFINITE)
+            {
+                _timer -= deltaTime;
                 ImitParticles();
+            }
 
             CheckLifeTimeParticles(deltaTime);
         }
@@ -79,7 +102,11 @@ namespace UmbrellaToolsKit.Components.ParticlesSystem
 
         private void ImitParticles()
         {
-            for (int particleCount = 0; particleCount < _particleConfig.MaxParticles; particleCount++)
+            for (
+                int particleCount = 0;
+                particleCount < _particleConfig.MaxParticles;
+                particleCount++
+            )
                 Particles.AddIfNew(GetParticle());
         }
 
@@ -90,24 +117,50 @@ namespace UmbrellaToolsKit.Components.ParticlesSystem
 
             var random = new Random();
             var velocityDirection = new Vector2(
-                (float)Math.Sin(MathHelper.ToRadians((float)random.NextDouble() * _particleConfig.ParticleVelocityAngle + _particleConfig.ParticleAngleEmitter)),
-                (float)Math.Cos(MathHelper.ToRadians((float)random.NextDouble() * _particleConfig.ParticleVelocityAngle + _particleConfig.ParticleAngleEmitter)));
+                (float)
+                    Math.Sin(
+                        MathHelper.ToRadians(
+                            (float)random.NextDouble() * _particleConfig.ParticleVelocityAngle
+                                + _particleConfig.ParticleAngleEmitter
+                        )
+                    ),
+                (float)
+                    Math.Cos(
+                        MathHelper.ToRadians(
+                            (float)random.NextDouble() * _particleConfig.ParticleVelocityAngle
+                                + _particleConfig.ParticleAngleEmitter
+                        )
+                    )
+            );
 
             var particle = (ParticleRender)_pool.GetObject();
 
-            particle.Position = GameObject.Position + _particleConfig.ParticleRadiusSpawn * velocityDirection * (float)random.NextDouble();
-            particle.Position += MathUtils.RandomInArea(_particleConfig.MinSpawnAre, _particleConfig.MaxSpawnAre, random);
+            particle.Position =
+                GameObject.Position
+                + _particleConfig.ParticleRadiusSpawn
+                    * velocityDirection
+                    * (float)random.NextDouble();
+            particle.Position += MathUtils.RandomInArea(
+                _particleConfig.MinSpawnAre,
+                _particleConfig.MaxSpawnAre,
+                random
+            );
             particle.Scale = (float)random.NextDouble() * _particleConfig.ParticleMaxScale;
-            particle.Angle = MathHelper.ToRadians((float)random.NextDouble() * _particleConfig.ParticleAngle / 100f);
+            particle.Angle = MathHelper.ToRadians(
+                (float)random.NextDouble() * _particleConfig.ParticleAngle / 100f
+            );
             particle.Transparent = _particleConfig.ParticleTransparent;
-            particle.Velocity = velocityDirection * MathUtils.MillisecondsToSeconds(_particleConfig.ParticleVelocity);
-            particle.Sprite = _particleConfig.Sprites[random.Next(0, _particleConfig.Sprites.Count - 1)];
+            particle.Velocity =
+                velocityDirection
+                * MathUtils.MillisecondsToSeconds(_particleConfig.ParticleVelocity);
+            particle.Sprite = _particleConfig.Sprites[
+                random.Next(0, _particleConfig.Sprites.Count - 1)
+            ];
             particle.LifeTime = (float)random.NextDouble() * _particleConfig.ParticleLifeTime;
             particle.DecreaseScale = _particleConfig.ParticleDecreaseScale;
             particle.DecreaseScaleSpeed = _particleConfig.ParticleScaleSpeed;
 
             return particle;
         }
-
     }
 }
