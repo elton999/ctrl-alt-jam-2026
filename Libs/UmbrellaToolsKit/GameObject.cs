@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using UmbrellaToolsKit.Interfaces;
 using UmbrellaToolsKit.EditorEngine.Attributes;
+using UmbrellaToolsKit.Interfaces;
 
 namespace UmbrellaToolsKit
 {
@@ -16,9 +16,19 @@ namespace UmbrellaToolsKit
         private Scene _scene;
         private Layers _layer;
 
-        public IComponent Components { get => _components; set => _components = value; }
-        public bool RemoveFromScene { get => _removeFromScene; set => _removeFromScene = value; }
-        [ShowEditor, Category("Transform")] public Vector2 Position = Vector2.Zero;
+        public IComponent Components
+        {
+            get => _components;
+            set => _components = value;
+        }
+        public bool RemoveFromScene
+        {
+            get => _removeFromScene;
+            set => _removeFromScene = value;
+        }
+
+        [ShowEditor, Category("Transform")]
+        public Vector2 Position = Vector2.Zero;
 
         public Vector2 Origin = Vector2.Zero;
         public float Scale = 1;
@@ -30,14 +40,26 @@ namespace UmbrellaToolsKit
         public float Transparent = 1f;
 
         public string tag = "gameObject";
-        public string Tag { get => tag; set => tag = value; }
+        public string Tag
+        {
+            get => tag;
+            set => tag = value;
+        }
 
         public ContentManager Content;
-        public Scene Scene { get => _scene; set => _scene = value; }
+        public Scene Scene
+        {
+            get => _scene;
+            set => _scene = value;
+        }
 
         public CoroutineManagement CoroutineManagement => _coroutineManagement;
 
-        public Layers Layer { get => _layer; set => _layer = value; }
+        public Layers Layer
+        {
+            get => _layer;
+            set => _layer = value;
+        }
         public Action<SpriteBatch> ExtraDraw { get; set; }
 
         public dynamic Values;
@@ -61,7 +83,9 @@ namespace UmbrellaToolsKit
         public GameObject() => _coroutineManagement = new CoroutineManagement();
 
         public virtual void Start() { }
+
         public virtual void OnVisible() { }
+
         public virtual void OnInvisible() { }
 
         public virtual void Update(float deltaTime) { }
@@ -77,34 +101,52 @@ namespace UmbrellaToolsKit
         {
             BeginDraw(spriteBatch, Layer != Layers.UI);
             DrawSprite(spriteBatch);
+            ExtraDraw?.Invoke(spriteBatch);
             EndDraw(spriteBatch);
         }
 
         public virtual void DrawBeforeScene(SpriteBatch spriteBatch) { }
 
         public virtual void IsVisible() { }
+
         public virtual void IsNotvisible() { }
+
         public virtual void OnCollision(string tag = null) { }
+
         public virtual void OnCollisionOut(string tag) { }
+
         public virtual void OnTriggerIn(string tag) { }
+
         public virtual void OnTriggerOut(string tag) { }
+
         public virtual void OnMouseOver() { }
+
         public virtual void Destroy()
         {
             _removeFromScene = true;
-            if(Components != null)
+            if (Components != null)
             {
                 Components.Destroy();
             }
             OnDestroy();
         }
+
         public virtual void OnDestroy() { }
 
         public virtual void DrawSprite(SpriteBatch spriteBatch)
         {
             if (Sprite != null)
-                spriteBatch.Draw(Sprite, Vector2.Round(Position), Body.IsEmpty ? null : Body, SpriteColor * Transparent, Rotation, Origin, Scale, SpriteEffect, 0);
-            ExtraDraw?.Invoke(spriteBatch);
+                spriteBatch.Draw(
+                    Sprite,
+                    Vector2.Round(Position),
+                    Body.IsEmpty ? null : Body,
+                    SpriteColor * Transparent,
+                    Rotation,
+                    Origin,
+                    Scale,
+                    SpriteEffect,
+                    0
+                );
         }
 
         public void BeginDraw(SpriteBatch spriteBatch, bool hasCamera = true)
@@ -126,27 +168,34 @@ namespace UmbrellaToolsKit
         {
             OnDestroy();
             Sprite = null;
-            if (Components != null) Components.Destroy();
+            if (Components != null)
+                Components.Destroy();
             GC.SuppressFinalize(this);
         }
 
-        public T AddComponent<T>() where T : IComponent
+        public T AddComponent<T>()
+            where T : IComponent
         {
             var componentInstance = System.Activator.CreateInstance(typeof(T));
             IComponent component = (IComponent)componentInstance;
 
-            if (_components != null) _components.Add((IComponent)component);
-            else _components = (IComponent)component;
+            if (_components != null)
+                _components.Add((IComponent)component);
+            else
+                _components = (IComponent)component;
 
             component.Init(this);
 
             return (T)componentInstance;
         }
 
-        public T GetComponent<T>() where T : IComponent
+        public T GetComponent<T>()
+            where T : IComponent
         {
-            if (Components != null) return Components.GetComponent<T>();
+            if (Components != null)
+                return Components.GetComponent<T>();
             return default(T);
         }
     }
 }
+
