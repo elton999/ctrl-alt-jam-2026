@@ -9,8 +9,8 @@ namespace Project.Entities.Obstacles
 
         public override void Start()
         {
-            SpriteColor = Color.Gray;
             base.Start();
+            _spriteComponent.SetAtlas("stone");
         }
     }
 }

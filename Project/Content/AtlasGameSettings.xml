@@ -124,6 +124,34 @@
             <Path>Sprites\tilemap</Path>
             <Id>3bef4bd9-f813-49e2-8faf-53fc89caea66</Id>
           </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>tree</Name>
+            <Position>132 22</Position>
+            <Size>22 22</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>1d7986f0-c9b2-4db8-bb90-621fdef213bc</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>stone</Name>
+            <Position>154 22</Position>
+            <Size>22 22</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>dba0bd06-c89f-44cd-b31d-e3a08a1341eb</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>barrel</Name>
+            <Position>176 22</Position>
+            <Size>22 22</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>a2ae8b5f-6437-4fd5-984d-06e22f7e133a</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>Sprites\tilemap : 20</Name>
+            <Position>240 28</Position>
+            <Size>0 0</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>bac8b5a3-9c8f-416c-b157-41e3b4e04640</Id>
+          </Item>
         </Sprites>
       </Item>
     </Atlas>

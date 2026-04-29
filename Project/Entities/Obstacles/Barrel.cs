@@ -9,8 +9,9 @@ namespace Project.Entities.Obstacles
 
         public override void Start()
         {
-            SpriteColor = Color.Brown;
             base.Start();
+
+            _spriteComponent.SetAtlas("barrel");
         }
 
         public override bool PassObstacle()
