@@ -1,12 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace UmbrellaToolsKit.Components.ParticlesSystem
 {
     public interface IParticle
     {
-        public List<Texture2D> Sprites { get; set; }
+        public List<Sprite.Sprite> Sprites { get; set; }
         public float EmitterTime { get; set; }
         public EmiterType EmitsFor { get; set; }
 

@@ -1,10 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace UmbrellaToolsKit.Sprite
+namespace UmbrellaToolsKit.Components.Sprite
 {
     public class SquareSprite
     {
+        private static Sprite _sprite;
+
         public static Texture2D SquareTexture;
 
         public static void Initialize(GraphicsDevice graphicsDevice)
@@ -19,6 +21,15 @@ namespace UmbrellaToolsKit.Sprite
             for (int i = 0; i < data.Length; ++i)
                 data[i] = color;
             SquareTexture.SetData(data);
+        }
+
+        public static Sprite GetSprite()
+        {
+            if (_sprite == null)
+            {
+                _sprite = new Sprite(SquareTexture);
+            }
+            return _sprite;
         }
     }
 }

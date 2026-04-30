@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Data.SqlTypes;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System.Data.SqlTypes;
 using UmbrellaToolsKit.Interfaces;
 
 namespace UmbrellaToolsKit.Components.Sprite
@@ -29,12 +29,32 @@ namespace UmbrellaToolsKit.Components.Sprite
             set { _body = value; }
         }
 
-        public Texture2D Texture { get { return _texture; } set { _texture = value; } }
+        public Texture2D Texture
+        {
+            get { return _texture; }
+            set { _texture = value; }
+        }
 
-        public string Name { get => _name; set => _name = value; }
-        public Vector2 Position { get => _body.Location.ToVector2(); set => _body.Location = value.ToPoint(); }
-        public Vector2 Size { get => _body.Size.ToVector2(); set => _body.Size = value.ToPoint(); }
-        public string Path { get => _path; set => _path = value; }
+        public string Name
+        {
+            get => _name;
+            set => _name = value;
+        }
+        public Vector2 Position
+        {
+            get => _body.Location.ToVector2();
+            set => _body.Location = value.ToPoint();
+        }
+        public Vector2 Size
+        {
+            get => _body.Size.ToVector2();
+            set => _body.Size = value.ToPoint();
+        }
+        public string Path
+        {
+            get => _path;
+            set => _path = value;
+        }
 
         public Sprite(ContentManager content, string path, Rectangle body)
         {
@@ -42,6 +62,13 @@ namespace UmbrellaToolsKit.Components.Sprite
             _path = path;
             _body = body;
             LoadSprite();
+        }
+
+        public Sprite(Texture2D texture)
+        {
+            _texture = texture;
+            _path = _texture.Name;
+            _name = _texture.Name;
         }
 
         public Sprite(ISprite sprite)

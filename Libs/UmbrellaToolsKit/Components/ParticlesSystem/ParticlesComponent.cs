@@ -140,22 +140,30 @@ namespace UmbrellaToolsKit.Components.ParticlesSystem
                 + _particleConfig.ParticleRadiusSpawn
                     * velocityDirection
                     * (float)random.NextDouble();
+
             particle.Position += MathUtils.RandomInArea(
                 _particleConfig.MinSpawnAre,
                 _particleConfig.MaxSpawnAre,
                 random
             );
+
             particle.Scale = (float)random.NextDouble() * _particleConfig.ParticleMaxScale;
             particle.Angle = MathHelper.ToRadians(
                 (float)random.NextDouble() * _particleConfig.ParticleAngle / 100f
             );
+
             particle.Transparent = _particleConfig.ParticleTransparent;
             particle.Velocity =
                 velocityDirection
                 * MathUtils.MillisecondsToSeconds(_particleConfig.ParticleVelocity);
-            particle.Sprite = _particleConfig.Sprites[
+
+            var spriteSelected = _particleConfig.Sprites[
                 random.Next(0, _particleConfig.Sprites.Count - 1)
             ];
+
+            particle.Sprite = spriteSelected.Texture;
+            particle.Body = spriteSelected.Body;
+
             particle.LifeTime = (float)random.NextDouble() * _particleConfig.ParticleLifeTime;
             particle.DecreaseScale = _particleConfig.ParticleDecreaseScale;
             particle.DecreaseScaleSpeed = _particleConfig.ParticleScaleSpeed;

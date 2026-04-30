@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections;
+using Microsoft.Xna.Framework;
 using Project.Components;
-using System.Collections;
 using UmbrellaToolsKit;
+using UmbrellaToolsKit.Components.Sprite;
 using UmbrellaToolsKit.EditorEngine;
-using UmbrellaToolsKit.Sprite;
 
 namespace Project.Entities.UI
 {
@@ -24,7 +24,8 @@ namespace Project.Entities.UI
 
         private void OnChangeLevelState(LevelManagerEntity.GameState state)
         {
-            if (state != LevelManagerEntity.GameState.GAME_OVER) return;
+            if (state != LevelManagerEntity.GameState.GAME_OVER)
+                return;
 
             CoroutineManagement.StarCoroutine(ShowScreen());
         }
@@ -36,7 +37,9 @@ namespace Project.Entities.UI
 
             var background = new GameObject();
             Scene.AddGameObject(background, Layers.UI);
-            background.AddComponent<UIBackgroundSpriteComponent>().SetSprite(SquareSprite.SquareTexture, _backgroundColor);
+            background
+                .AddComponent<UIBackgroundSpriteComponent>()
+                .SetSprite(SquareSprite.SquareTexture, _backgroundColor);
             yield return null;
         }
     }

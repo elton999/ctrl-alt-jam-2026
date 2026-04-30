@@ -6,6 +6,7 @@ using Project.Entities.Obstacles;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.Components.ParticlesSystem;
 using UmbrellaToolsKit.Components.Physics;
+using UmbrellaToolsKit.Components.Sprite;
 using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.EditorEngine.Attributes;
 using UmbrellaToolsKit.Input;
@@ -57,7 +58,7 @@ namespace Project.Entities
             _particleComponent.SetPartileConfig(
                 new ParticlesConfig()
                 {
-                    Sprites = new List<Texture2D>() { SquareSprite.SquareTexture },
+                    Sprites = new List<Sprite>() { SquareSprite.GetSprite() },
                     ParticleVelocityAngle = -227.0f,
                     ParticleAngleRotation = 180.0f,
                     EmitterTime = 90.0f,
