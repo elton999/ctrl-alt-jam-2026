@@ -1,9 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Project.Components;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.Components.Sprite;
-using UmbrellaToolsKit.Sprite;
 
 namespace Project.Entities.UI
 {
@@ -75,7 +74,7 @@ namespace Project.Entities.UI
             _chosenToolsSubmit = _buttonConfirm.AddComponent<ChosenToolsSubmitComponent>();
 
             _uiText = new GameObject();
-            
+
             _uiText.Body = new Rectangle(0, 0, 200, 80);
             _uiText.Position = Scene.Sizes.ToVector2().Half() - Vector2.UnitY * (((float)_uiText.Body.Height).Half() + 20f);
             _uiText.Position = new Vector2(_uiText.Position.X - ((float)_uiText.Body.Width).Half(), _uiText.Position.Y);
@@ -127,11 +126,9 @@ namespace Project.Entities.UI
         public override void Update(float deltaTime)
         {
             int count = _chosenToolsSubmit.GetChosenTools().Length;
-            if (_chosenToolsCount != count)
-            {
-                _chosenToolsCount = count;
-                _countText.SetText($"({count}/2)");
-            }
+            if (_chosenToolsCount == count) return;
+            _chosenToolsCount = count;
+            _countText.SetText($"({count}/2)");
         }
 
         public void OnSubmit(ToolsTypes[] chosenTools)
