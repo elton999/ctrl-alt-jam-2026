@@ -1,4 +1,4 @@
-﻿using UmbrellaToolsKit;
+using UmbrellaToolsKit;
 using UmbrellaToolsKit.Components.Sprite;
 using Microsoft.Xna.Framework;
 using UmbrellaToolsKit.EditorEngine.Attributes;
@@ -31,7 +31,7 @@ namespace Project.Components
 
             _animationTimer += deltaTime;
 
-            GameObject.Position = new Vector2(GameObject.Position.X, Tweening.ElasticEaseOut(GetHidePosition().Y, -_spriteComponent.Sprite.Size.Y, _animationTimer, _animationDuration));
+            GameObject.Position = new Vector2(GameObject.Position.X, Tweening.BounceEaseOutSoft(GetHidePosition().Y, -_spriteComponent.Sprite.Size.Y, _animationTimer, _animationDuration));
 
             if (_animationTimer >= _animationDuration)
             {
@@ -72,6 +72,6 @@ namespace Project.Components
 
             return new Vector2(positionX, positionY);
         }
-        
+
     }
 }
