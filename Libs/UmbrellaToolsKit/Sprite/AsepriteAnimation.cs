@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using UmbrellaToolsKit.Components.Sprite;
 
 namespace UmbrellaToolsKit.Sprite
 {

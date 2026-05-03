@@ -1,9 +1,8 @@
 using Microsoft.Xna.Framework;
+using UmbrellaToolsKit.Components.Sprite;
 
 namespace UmbrellaToolsKit.Sprite
 {
-    public enum AnimationDirection { FORWARD, LOOP, PING_PONG }
-
     public interface ISpriteAnimation
     {
         public Rectangle Body { get; set; }
