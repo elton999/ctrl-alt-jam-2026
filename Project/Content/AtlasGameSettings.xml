@@ -153,14 +153,14 @@
             <Id>bac8b5a3-9c8f-416c-b157-41e3b4e04640</Id>
           </Item>
           <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
-            <Name>Sprites\tilemap : 21</Name>
+            <Name>enemy idle 2</Name>
             <Position>286 0</Position>
             <Size>44 44</Size>
             <Path>Sprites\tilemap</Path>
             <Id>57d8edd3-09d1-4c83-aaa9-c242a22b842f</Id>
           </Item>
           <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
-            <Name>Sprites\tilemap : 22</Name>
+            <Name>enemy idle 1</Name>
             <Position>242 0</Position>
             <Size>44 44</Size>
             <Path>Sprites\tilemap</Path>
