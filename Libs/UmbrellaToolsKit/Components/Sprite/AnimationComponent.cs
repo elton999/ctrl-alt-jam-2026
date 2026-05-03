@@ -28,6 +28,7 @@ namespace UmbrellaToolsKit.Components.Sprite
             if (frame.Duration <= _currentTime)
             {
                 _currentFrame++;
+                _currentTime = 0.0f;
                 if (_currentFrame == _currentAnimation.Frames.Count)
                 {
                     _currentFrame = 0;
