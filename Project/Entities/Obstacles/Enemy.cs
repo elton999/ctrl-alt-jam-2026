@@ -5,9 +5,9 @@ namespace Project.Entities.Obstacles
 {
     public class Enemy : ObstacleGameObject
     {
+        private AnimationComponent _animation;
         public override ObstaclesTypes ObstacleType => ObstaclesTypes.ENEMY;
         public override ToolsTypes ToolType => ToolsTypes.SWORD;
-        private AnimationComponent _animation;
 
         public override void Start()
         {
