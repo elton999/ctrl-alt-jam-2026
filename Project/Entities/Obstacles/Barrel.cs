@@ -1,9 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
+using Project.Components;
+using UmbrellaToolsKit;
 
 namespace Project.Entities.Obstacles
 {
     public class Barrel : ObstacleGameObject
     {
+        private UIAnimationComponent _animationComponent;
+
         public override ObstaclesTypes ObstacleType => ObstaclesTypes.BARREL;
         public override ToolsTypes ToolType => ToolsTypes.BOOT;
 
@@ -12,6 +16,10 @@ namespace Project.Entities.Obstacles
             base.Start();
 
             _spriteComponent.SetAtlas("barrel");
+            _animationComponent = AddComponent<UIAnimationComponent>();
+            _animationComponent.MaxScale = 1.5f;
+            _animationComponent.AnimationDuration = 0.7f;
+            _animationComponent.TweenType = Tweening.TweenType.ElasticEaseIn;
         }
 
         public override bool PassObstacle()
@@ -31,6 +39,7 @@ namespace Project.Entities.Obstacles
                     if (Scene.Grid.GridCollides[nextTile.Y][nextTile.X] == "2")
                     {
                         Position = tempPosition;
+                        _animationComponent.StartAnimation();
                         return true;
                     }
                 }
