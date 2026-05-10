@@ -1,3 +1,5 @@
+using Project.Entities.UI;
+
 namespace Project.Entities.Obstacles
 {
     public class Stone : ObstacleGameObject
@@ -9,6 +11,18 @@ namespace Project.Entities.Obstacles
         {
             base.Start();
             _spriteComponent.SetAtlas("stone");
+        }
+
+        public override bool PassObstacle()
+        {
+            var pos = Position;
+            var tool = ToolType;
+
+            if (InventoryGameObject.HasItem(tool))
+            {
+                UIUseToolEfx.Instance.Play(tool, pos);
+            }
+            return base.PassObstacle();
         }
     }
 }

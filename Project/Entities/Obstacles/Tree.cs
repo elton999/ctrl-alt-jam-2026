@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Project.Entities.UI;
 
 namespace Project.Entities.Obstacles
 {
@@ -11,6 +11,18 @@ namespace Project.Entities.Obstacles
         {
             base.Start();
             _spriteComponent.SetAtlas("tree");
+        }
+
+        public override bool PassObstacle()
+        {
+            var pos = Position;
+            var tool = ToolType;
+
+            if (InventoryGameObject.HasItem(tool))
+            {
+                UIUseToolEfx.Instance.Play(tool, pos);
+            }
+            return base.PassObstacle();
         }
     }
 }

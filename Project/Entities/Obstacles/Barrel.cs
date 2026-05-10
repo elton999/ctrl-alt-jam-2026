@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Project.Components;
 using UmbrellaToolsKit;
+using Project.Entities.UI;
 
 namespace Project.Entities.Obstacles
 {
@@ -40,6 +41,7 @@ namespace Project.Entities.Obstacles
                     {
                         Position = tempPosition;
                         _animationComponent.StartAnimation();
+                        UIUseToolEfx.Instance.Play(ToolType, Position);
                         return true;
                     }
                 }
