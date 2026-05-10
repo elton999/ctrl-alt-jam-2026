@@ -17,9 +17,9 @@ namespace Project.Entities.Obstacles
 
             _spriteComponent.SetAtlas("barrel");
             _animationComponent = AddComponent<UIAnimationComponent>();
-            _animationComponent.MaxScale = 1.5f;
+            _animationComponent.MaxScale = 1.3f;
             _animationComponent.AnimationDuration = 0.7f;
-            _animationComponent.TweenType = Tweening.TweenType.ElasticEaseIn;
+            _animationComponent.TweenType = Tweening.TweenType.ElasticEaseOut;
         }
 
         public override bool PassObstacle()
@@ -35,8 +35,8 @@ namespace Project.Entities.Obstacles
 
                 if (nextTile.Y < Scene.Grid.GridCollides.Count && nextTile.X < Scene.Grid.GridCollides[nextTile.Y].Count)
                 {
-
-                    if (Scene.Grid.GridCollides[nextTile.Y][nextTile.X] == "2")
+                    string freePath = "2";
+                    if (Scene.Grid.GridCollides[nextTile.Y][nextTile.X] == freePath)
                     {
                         Position = tempPosition;
                         _animationComponent.StartAnimation();
