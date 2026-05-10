@@ -27,6 +27,7 @@ namespace UmbrellaToolsKit.EditorEngine.GameSettings.Atlas
         private ISprite _currentSpriteHover = null;
 
         private System.Numerics.Vector2 _gridSettings = new System.Numerics.Vector2(4, 4);
+        private System.Numerics.Vector2 _subdivideSetting = new System.Numerics.Vector2(1, 1);
 
         public void DrawSpriteList(uint dockId, EditorMain editorMain, List<AtlasGameSettings.SpriteAtlas> atlas)
         {
@@ -124,26 +125,30 @@ namespace UmbrellaToolsKit.EditorEngine.GameSettings.Atlas
                     if (sprite.GetRectangle().Intersects(new Rectangle(mouseLocal.ToXnaVector2().ToPoint(), new Point(1, 1))))
                         _currentSpriteHover = sprite;
 
-                bool hasClicked = ImGui.IsWindowHovered() && ImGui.IsMouseClicked(ImGuiMouseButton.Left);
-                bool hasReleased = ImGui.IsWindowHovered() && ImGui.IsMouseReleased(ImGuiMouseButton.Left);
+                bool hasClickedLeft = ImGui.IsWindowHovered() && ImGui.IsMouseClicked(ImGuiMouseButton.Left);
+                bool hasReleasedLeft = ImGui.IsWindowHovered() && ImGui.IsMouseReleased(ImGuiMouseButton.Left);
 
-                if (hasClicked && _currentSpriteHover != null)
+
+                bool hasClickedRight = ImGui.IsWindowHovered() && ImGui.IsMouseClicked(ImGuiMouseButton.Right);
+                bool hasReleasedRight = ImGui.IsWindowHovered() && ImGui.IsMouseReleased(ImGuiMouseButton.Right);
+
+                if (hasReleasedLeft && _currentSpriteHover != null)
                     _currentSpriteSelect = _currentSpriteHover;
 
-                if (hasReleased && _currentSpriteSelect != null && _currentSpriteHover == null)
+                if (hasReleasedLeft && _currentSpriteSelect != null && _currentSpriteHover == null)
                     _currentSpriteSelect = null;
 
-                if (hasClicked && _currentSpriteSelect == null)
+                if (hasClickedRight && _currentSpriteSelect == null)
                 {
                     isSelecting = true;
                     selectionStart = mouseLocal;
                     selectionEnd = mouseLocal;
                 }
 
-                if (isSelecting && ImGui.IsMouseDown(ImGuiMouseButton.Left) && _currentSpriteSelect == null)
+                if (isSelecting && ImGui.IsMouseDown(ImGuiMouseButton.Right) && _currentSpriteSelect == null)
                     selectionEnd = mouseLocal;
 
-                if (isSelecting && ImGui.IsMouseReleased(ImGuiMouseButton.Left) && _currentSpriteSelect == null)
+                if (isSelecting && hasReleasedRight && _currentSpriteSelect == null)
                 {
                     isSelecting = false;
 
@@ -159,6 +164,9 @@ namespace UmbrellaToolsKit.EditorEngine.GameSettings.Atlas
                     bottomRight = bottomRight.ToXnaVector2().Truncate().ToNumericVector2();
 
                     var size = bottomRight - topLeft;
+
+                    size = size.X == 0 ? new System.Numerics.Vector2(1f, size.Y) : size;
+                    size = size.Y == 0 ? new System.Numerics.Vector2(size.X, 1f) : size;
 
                     string spriteName = $"{_currentSprite.Path} : {_currentSprite.Sprites.Count}";
                     _currentSprite.Sprites.Add(
@@ -233,6 +241,45 @@ namespace UmbrellaToolsKit.EditorEngine.GameSettings.Atlas
                     if (Fields.Buttons.RedButton("Delete"))
                         if (_currentSprite.Sprites.Remove(_currentSpriteSelect))
                             _currentSpriteSelect = null;
+
+                    ImGui.Spacing();
+                    ImGui.Text("Subdivide");
+                    Fields.Field.DrawVector("Grid Subdivide", ref _subdivideSetting);
+
+                    if (Fields.Buttons.RedButton("Subdivide Sprite") && (_subdivideSetting.X >= 1f && _subdivideSetting.Y >= 1f))
+                    {
+                        int weight = (int)(_currentSpriteSelect.Size.X / _subdivideSetting.X);
+                        int height = (int)(_currentSpriteSelect.Size.Y / _subdivideSetting.Y);
+                        string spriteName = _currentSpriteSelect.Name;
+
+
+                        int spriteCount = 1;
+                        _currentSpriteSelect.Name += " " + spriteCount;
+                        _currentSpriteSelect.Size = new Vector2(weight, height);
+
+                        for (int vertical = 0; vertical < _subdivideSetting.Y; vertical++)
+                        {
+                            for (int horizontal = 0; horizontal < _subdivideSetting.X; horizontal++)
+                            {
+                                if (!(vertical == 0 && horizontal == 0))
+                                {
+                                    _currentSprite.Sprites.Add(
+                                        new AtlasGameSettings.SpriteBody()
+                                        {
+                                            Name = spriteName + " " + spriteCount,
+                                            Position = new Vector2(horizontal * weight + _currentSpriteSelect.Position.X, vertical * height + _currentSpriteSelect.Position.Y),
+                                            Size = _currentSpriteSelect.Size,
+                                            Path = _currentSprite.Path
+                                        }
+                                    );
+                                }
+                                spriteCount++;
+                            }
+                        }
+
+                        _subdivideSetting = System.Numerics.Vector2.One;
+                    }
+
                 }
 
                 if (_currentSpriteSelect == null && _currentSprite != null)
