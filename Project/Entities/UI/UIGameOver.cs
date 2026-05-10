@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using Microsoft.Xna.Framework;
 using Project.Components;
 using UmbrellaToolsKit;
@@ -9,7 +9,7 @@ namespace Project.Entities.UI
 {
     public class UIGameOver : GameObject
     {
-        private Color _backgroundColor = (new Vector3(64f, 73f, 115f)).ToColor();
+        private Color _backgroundColor = (new Vector3(20f, 24f, 46f)).ToColor();
 
         public override void Start()
         {
@@ -37,9 +37,16 @@ namespace Project.Entities.UI
 
             var background = new GameObject();
             Scene.AddGameObject(background, Layers.UI);
-            background
-                .AddComponent<UIBackgroundSpriteComponent>()
-                .SetSprite(SquareSprite.SquareTexture, _backgroundColor);
+            background.AddComponent<UIBackgroundSpriteComponent>().SetSprite(SquareSprite.SquareTexture, _backgroundColor);
+
+            var skull = new GameObject();
+            Scene.AddGameObject(skull, Layers.UI);
+            var spriteComponent = skull.AddComponent<SpriteComponent>();
+            spriteComponent.SetAtlas("skull");
+            spriteComponent.OrigenToCenter();
+            skull.Position = Scene.Sizes.ToVector2().Half().Truncate();
+            skull.Position += Vector2.UnitY * -30f;
+
             yield return null;
         }
     }
