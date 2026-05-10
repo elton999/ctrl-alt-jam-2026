@@ -52,6 +52,7 @@ namespace Project
             _assetManagement.Set<Barrel>("Barrel", Layers.MIDDLEGROUND);
             _assetManagement.Set<Enemy>("Enemy", Layers.MIDDLEGROUND);
             _assetManagement.Set<EndTile>("End", Layers.MIDDLEGROUND);
+            _assetManagement.Set<UIUseToolEfx>("Player", Layers.UI);
 
             _gameManagement.SceneManagement.SetScene(0);
             _gameManagement.SceneManagement.MainScene.LevelReady = true;
