@@ -94,7 +94,7 @@
             <Position>286 154</Position>
             <Size>44 44</Size>
             <Path>Sprites\tilemap</Path>
-            <Id>85531e44-b766-4869-899f-f2134b8b39c8</Id>
+            <Id>77d1b6aa-bfe4-4c97-9121-58a5d76d7b25</Id>
           </Item>
           <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
             <Name>ui boots</Name>
@@ -165,6 +165,111 @@
             <Size>44 44</Size>
             <Path>Sprites\tilemap</Path>
             <Id>4ac3e4d5-dc55-44b7-9a44-2c748ad690a1</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>axe balloon</Name>
+            <Position>132 0</Position>
+            <Size>22 22</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>3c2f7f21-8f8b-4a58-8982-496914330f0e</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>bomb balloon</Name>
+            <Position>154 0</Position>
+            <Size>22 22</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>bec3e145-e6ac-4d25-a2fe-6b81dfddd274</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>boot balloon</Name>
+            <Position>176 0</Position>
+            <Size>22 22</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>7de252e5-0b10-4e96-a42a-fdd7480735e3</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>Sprites\tilemap : 26</Name>
+            <Position>187 -16</Position>
+            <Size>0 0</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>fe5323d9-7376-4e5c-b177-d80ca4a353bf</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>axe use vfx</Name>
+            <Position>132 44</Position>
+            <Size>22 8</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>99d32811-6abb-4e71-81cf-412ef50a6bea</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>bomb use vfx</Name>
+            <Position>154 44</Position>
+            <Size>22 8</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>fa68a4de-5324-4c81-8a28-56be90b96882</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>boot use vfx</Name>
+            <Position>176 44</Position>
+            <Size>22 8</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>38d8dcfe-d899-4fdd-964b-7ed5d70a8b59</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>axe count</Name>
+            <Position>286 264</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>0d72c556-5c02-4270-b906-ef621247f1d7</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>bomb count</Name>
+            <Position>330 264</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>375c0e2e-f29d-4cb4-88cc-bb7d3661395b</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>boot count</Name>
+            <Position>374 264</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>77909026-bfad-4adb-923b-02262d633c45</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>axe count disable</Name>
+            <Position>286 308</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>56cd4bed-f751-4914-9bcc-c0ceeb732fe8</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>bomb count disable</Name>
+            <Position>330 308</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>8d6e40b3-80ca-4a06-b31b-d9fd381e4529</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>boot count disable</Name>
+            <Position>374 308</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>ad3ed74c-fbb5-4be8-9643-653ed611f9d4</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>skull</Name>
+            <Position>1 286</Position>
+            <Size>216 187</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>a89c45fc-1899-492d-b29b-4753bb8dfd7e</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>block balloon</Name>
+            <Position>198 0</Position>
+            <Size>22 22</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>a7d9bb55-91b5-4c95-9626-78cd29fd13ce</Id>
           </Item>
         </Sprites>
       </Item>
