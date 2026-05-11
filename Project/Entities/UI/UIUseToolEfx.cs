@@ -40,8 +40,14 @@ namespace Project.Entities.UI
             CoroutineManagement.StarCoroutine(EfxAnimationCourotine());
         }
 
+        public void PlayAnimation()
+        {
+            CoroutineManagement.StarCoroutine(EfxAnimationCourotine());
+        }
+
         private IEnumerator EfxAnimationCourotine()
         {
+            _spriteComponent ??= GetComponent<SpriteComponent>();
             float timer = 0f;
             float yValue = Position.Y;
 
@@ -49,7 +55,7 @@ namespace Project.Entities.UI
             while (timer < _animationDuration)
             {
                 timer += (float)CoroutineManagement.GameTime.ElapsedGameTime.TotalSeconds;
-                float y = Tweening.GetTweeningValue(Tweening.TweenType.BackEaseOut, yValue, -_maxDistance, timer, _animationDuration);
+                float y = Tweening.GetTweeningValue(Tweening.TweenType.BackEaseInOut, yValue, -_maxDistance, timer, _animationDuration);
                 Position = new Vector2(Position.X, y);
                 Position.Truncate();
                 _spriteComponent.Transparent = 1f;
@@ -95,6 +101,20 @@ namespace Project.Entities.UI
 
             efx.Position = pos;
             efx.SetSprite(tool);
+            efx.Reset();
+        }
+
+        public void PlayMiss(Vector2 pos)
+        {
+            var efx = (UIToolEfx)EfxPooling.GetObject();
+            if (efx.Scene == null)
+            {
+                Scene.AddGameObject(efx, Layers.FOREGROUND);
+                efx.AddComponent<SpriteComponent>().SetAtlas("miss");
+            }
+
+            efx.Position = pos;
+            efx.PlayAnimation();
             efx.Reset();
         }
     }

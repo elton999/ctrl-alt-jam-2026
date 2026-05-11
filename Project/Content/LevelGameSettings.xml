@@ -52,7 +52,7 @@
         <ToolsLimitations>
           <Item>
             <Tool>AXE</Tool>
-            <Max>9</Max>
+            <Max>1</Max>
           </Item>
           <Item>
             <Tool>SWORD</Tool>
@@ -60,11 +60,11 @@
           </Item>
           <Item>
             <Tool>BOMB</Tool>
-            <Max>9</Max>
+            <Max>1</Max>
           </Item>
           <Item>
             <Tool>BOOT</Tool>
-            <Max>9</Max>
+            <Max>1</Max>
           </Item>
         </ToolsLimitations>
         <MaxMovements>17</MaxMovements>

@@ -22,6 +22,10 @@ namespace Project.Entities.Obstacles
             {
                 UIUseToolEfx.Instance.Play(tool, pos);
             }
+            else
+            {
+                UIUseToolEfx.Instance.PlayMiss(pos);
+            }
             return base.PassObstacle();
         }
     }

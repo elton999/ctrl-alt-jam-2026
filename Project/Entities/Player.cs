@@ -11,6 +11,7 @@ using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.EditorEngine.Attributes;
 using UmbrellaToolsKit.Input;
 using UmbrellaToolsKit.Sprite;
+using Project.Entities.UI;
 
 namespace Project.Entities
 {
@@ -108,6 +109,7 @@ namespace Project.Entities
                             $"[{nameof(Player)}] not avoid movement on current tile: {_nextTileOnLevel} with value: {Scene.Grid.GridCollides[_nextTileOnLevel.Y][_nextTileOnLevel.X]}"
                         );
                         OnNotAvoidMovement();
+                        UIUseToolEfx.Instance.PlayMiss(Position);
                         return;
                     }
 

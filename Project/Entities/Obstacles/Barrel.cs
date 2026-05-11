@@ -25,6 +25,11 @@ namespace Project.Entities.Obstacles
 
         public override bool PassObstacle()
         {
+            if (!InventoryGameObject.HasItem(ToolType))
+            {
+                UIUseToolEfx.Instance.PlayMiss(Position);
+            }
+
             if (InventoryGameObject.UseItem(ToolType))
             {
                 var playerPosition = Scene.Players[0].Position;
@@ -33,6 +38,8 @@ namespace Project.Entities.Obstacles
 
                 var tempPosition = direction * Scene.CellSize + Position;
                 var nextTile = (tempPosition / Scene.CellSize + Vector2.One).ToPoint();
+
+
 
                 if (nextTile.Y < Scene.Grid.GridCollides.Count && nextTile.X < Scene.Grid.GridCollides[nextTile.Y].Count)
                 {

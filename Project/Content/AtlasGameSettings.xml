@@ -271,6 +271,27 @@
             <Path>Sprites\tilemap</Path>
             <Id>a7d9bb55-91b5-4c95-9626-78cd29fd13ce</Id>
           </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>miss</Name>
+            <Position>198 44</Position>
+            <Size>18 8</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>856e4b0a-65f6-402f-bfec-ea8c30995a0d</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>try again btn</Name>
+            <Position>227 44</Position>
+            <Size>53 16</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>ada2cc66-e3e0-4af2-98e0-87e46b78c883</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>confirm btn</Name>
+            <Position>293 44</Position>
+            <Size>53 16</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>36587afe-9642-40c4-bff6-cdcbc5b28f50</Id>
+          </Item>
         </Sprites>
       </Item>
     </Atlas>
