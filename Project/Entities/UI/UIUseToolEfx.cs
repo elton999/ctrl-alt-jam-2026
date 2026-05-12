@@ -110,8 +110,8 @@ namespace Project.Entities.UI
             if (efx.Scene == null)
             {
                 Scene.AddGameObject(efx, Layers.FOREGROUND);
-                efx.AddComponent<SpriteComponent>().SetAtlas("miss");
             }
+            efx.AddComponent<SpriteComponent>().SetAtlas("miss");
 
             efx.Position = pos;
             efx.PlayAnimation();
