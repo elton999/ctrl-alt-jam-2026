@@ -13,6 +13,8 @@ namespace Project.Entities.UI
         private float _maxDistance = 22f;
         private SpriteComponent _spriteComponent;
 
+        public SpriteComponent SpriteComponent => _spriteComponent ??= GetComponent<SpriteComponent>();
+
         public void Reset()
         {
             Transparent = 1f;
@@ -47,7 +49,6 @@ namespace Project.Entities.UI
 
         private IEnumerator EfxAnimationCourotine()
         {
-            _spriteComponent ??= GetComponent<SpriteComponent>();
             float timer = 0f;
             float yValue = Position.Y;
 
@@ -58,11 +59,11 @@ namespace Project.Entities.UI
                 float y = Tweening.GetTweeningValue(Tweening.TweenType.BackEaseInOut, yValue, -_maxDistance, timer, _animationDuration);
                 Position = new Vector2(Position.X, y);
                 Position.Truncate();
-                _spriteComponent.Transparent = 1f;
+                SpriteComponent.Transparent = 1f;
                 yield return null;
             }
 
-            _spriteComponent.Transparent = 0f;
+            SpriteComponent.Transparent = 0f;
 
             yield break;
         }
@@ -110,8 +111,10 @@ namespace Project.Entities.UI
             if (efx.Scene == null)
             {
                 Scene.AddGameObject(efx, Layers.FOREGROUND);
+                efx.AddComponent<SpriteComponent>();
             }
-            efx.AddComponent<SpriteComponent>().SetAtlas("miss");
+
+            efx.SpriteComponent.SetAtlas("miss");
 
             efx.Position = pos;
             efx.PlayAnimation();
