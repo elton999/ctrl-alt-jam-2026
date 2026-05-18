@@ -36,8 +36,7 @@ namespace Project.Entities
         [ShowEditor]
         private Vector2 _oldTile;
         private Point _initialTile => (_initialPosition / Scene.CellSize + Vector2.One).ToPoint();
-        private Point _nextTileOnLevel =>
-            (_initialTile.ToVector2() + _oldTile + (_currentTile - _oldTile)).ToPoint();
+        private Point _nextTileOnLevel => (_initialTile.ToVector2() + _oldTile + (_currentTile - _oldTile)).ToPoint();
 
         private const float MOVE_SPEED = 0.1f;
 

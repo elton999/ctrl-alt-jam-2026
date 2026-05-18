@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.EditorEngine.Attributes;
@@ -34,14 +34,10 @@ namespace Project
                 {
                     ToolsLimitations = new List<ToolsLimitations>()
                     {
-                        new ToolsLimitations() { Tool = ToolsTypes.AXE, 
-                        Max = 9},
-                        new ToolsLimitations() { Tool = ToolsTypes.BOMB,
-                        Max = 9},
-                        new ToolsLimitations() { Tool = ToolsTypes.SWORD,
-                        Max = 9},
-                        new ToolsLimitations() { Tool = ToolsTypes.BOOT,
-                        Max = 9},
+                        new ToolsLimitations() { Tool = ToolsTypes.AXE, Max = 9},
+                        new ToolsLimitations() { Tool = ToolsTypes.BOMB, Max = 9},
+                        new ToolsLimitations() { Tool = ToolsTypes.SWORD, Max = 9},
+                        new ToolsLimitations() { Tool = ToolsTypes.BOOT, Max = 9},
                     }
                 };
             }
