@@ -4,6 +4,7 @@ using UmbrellaToolsKit.Utils;
 using UmbrellaToolsKit.Interfaces;
 using Microsoft.Xna.Framework;
 using System.Collections;
+using System;
 
 namespace Project.Entities.UI
 {
@@ -72,13 +73,16 @@ namespace Project.Entities.UI
     public class UIUseToolEfx : GameObject
     {
         private const int POOLING_COUNT = 4;
+        private Random _random = new Random();
         public ObjectPooling<UIToolEfx> EfxPooling;
+        public ObjectPooling<UIToolEfx> EfxPoolingUI;
 
         public static UIUseToolEfx Instance;
 
         public override void Start()
         {
             EfxPooling = new ObjectPooling<UIToolEfx>(POOLING_COUNT);
+            EfxPoolingUI = new ObjectPooling<UIToolEfx>(POOLING_COUNT);
 
             if (Instance == null)
             {
@@ -119,6 +123,24 @@ namespace Project.Entities.UI
             efx.Position = pos;
             efx.PlayAnimation();
             efx.Reset();
+        }
+
+        public void PlayMovement(Vector2 pos)
+        {
+            var efx = (UIToolEfx)EfxPoolingUI.GetObject();
+            if (efx.Scene == null)
+            {
+                Scene.AddGameObject(efx, Layers.UI);
+                efx.AddComponent<SpriteComponent>();
+            }
+
+            efx.SpriteComponent.SetAtlas("movement use efx");
+
+            efx.Position = pos + Vector2.UnitX * 50f;
+            efx.Position += new Vector2(_random.Next(-20, 20), _random.Next(-10, 5));
+            efx.PlayAnimation();
+            efx.Reset();
+
         }
     }
 }

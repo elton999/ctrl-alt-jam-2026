@@ -49,17 +49,24 @@ namespace Project.Entities.UI
             tag = nameof(UILevelManagerEntity);
 
             ChosenToolsSubmitComponent.OnSubmitChosenTools += OnStartLevelFirstTime;
+            Player.OnPlayerMove += OnPlayerMovement;
         }
 
         public override void OnDestroy()
         {
             Player.OnPlayerMove -= UIAnimationByPlayerMovement.StartAnimation;
             ChosenToolsSubmitComponent.OnSubmitChosenTools -= OnStartLevelFirstTime;
+            Player.OnPlayerMove -= OnPlayerMovement;
         }
 
         private void OnStartLevelFirstTime(ToolsTypes[] tools)
         {
             OnStartLevel();
+        }
+
+        private void OnPlayerMovement()
+        {
+            UIUseToolEfx.Instance.PlayMovement(_countMovement.Position);
         }
     }
 }

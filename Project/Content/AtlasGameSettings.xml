@@ -292,6 +292,20 @@
             <Path>Sprites\tilemap</Path>
             <Id>36587afe-9642-40c4-bff6-cdcbc5b28f50</Id>
           </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>confirm btn disable</Name>
+            <Position>359 44</Position>
+            <Size>53 16</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>1276d885-5f34-47fd-94cc-2d668c79266d</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>movement use efx</Name>
+            <Position>110 44</Position>
+            <Size>18 12</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>adea18dd-0165-405c-9bd1-756d8d8bc9e6</Id>
+          </Item>
         </Sprites>
       </Item>
     </Atlas>
