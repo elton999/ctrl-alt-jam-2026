@@ -301,10 +301,10 @@
           </Item>
           <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
             <Name>movement use efx</Name>
-            <Position>110 44</Position>
-            <Size>18 12</Size>
+            <Position>97 44</Position>
+            <Size>33 21</Size>
             <Path>Sprites\tilemap</Path>
-            <Id>adea18dd-0165-405c-9bd1-756d8d8bc9e6</Id>
+            <Id>2f8666ae-ed4a-4de7-83f9-b2b1b03e5ca8</Id>
           </Item>
         </Sprites>
       </Item>
