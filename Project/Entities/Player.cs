@@ -95,14 +95,9 @@ namespace Project.Entities
                 var nextTilePosition = _currentTile * Scene.CellSize;
                 string validPath = "2";
 
-                if (
-                    _nextTileOnLevel.Y < Scene.Grid.GridCollides.Count
-                    && _nextTileOnLevel.X < Scene.Grid.GridCollides[_nextTileOnLevel.Y].Count
-                )
+                if (_nextTileOnLevel.Y < Scene.Grid.GridCollides.Count && _nextTileOnLevel.X < Scene.Grid.GridCollides[_nextTileOnLevel.Y].Count)
                 {
-                    if (
-                        Scene.Grid.GridCollides[_nextTileOnLevel.Y][_nextTileOnLevel.X] != validPath
-                    )
+                    if (Scene.Grid.GridCollides[_nextTileOnLevel.Y][_nextTileOnLevel.X] != validPath)
                     {
                         Log.Write(
                             $"[{nameof(Player)}] not avoid movement on current tile: {_nextTileOnLevel} with value: {Scene.Grid.GridCollides[_nextTileOnLevel.Y][_nextTileOnLevel.X]}"
