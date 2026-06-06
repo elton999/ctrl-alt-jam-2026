@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.EditorEngine.Attributes;
@@ -41,12 +41,12 @@ namespace Project.Entities
         [ShowEditor] private int _currentMovement = 0;
         private int _maxMovements = 90;
         [ShowEditor] private GameState _currentState = GameState.SELECT_TOOLS;
-        [ShowEditor]  private static int _currentLevel = 0;
+        [ShowEditor] private static int _currentLevel = 0;
 
 
         public override void Start()
         {
-            if(Instance is null)
+            if (Instance is null)
             {
                 Instance = this;
             }
@@ -70,9 +70,14 @@ namespace Project.Entities
         public override void Update(float deltaTime)
         {
             if (!(_currentState is GameState.PLAYING || _currentState is GameState.GAME_OVER)) return;
-            if (KeyBoardHandler.KeyPressed("reset"))
+            if (KeyBoardHandler.KeyPressed("reset") && _currentState is GameState.PLAYING)
             {
                 Log.Write($"[{nameof(LevelManagerEntity)}] Reset level");
+                ResetLevel();
+            }
+
+            if (KeyBoardHandler.KeyPressed("confirm") && _currentState is GameState.GAME_OVER)
+            {
                 ResetLevel();
             }
 
