@@ -12,6 +12,7 @@ namespace Project.Entities.UI
         private GameObject _buttonSelect2;
         private GameObject _buttonSelect3;
         private GameObject _buttonConfirm;
+        private SpriteComponent _buttonConfirmSpriteComponent;
 
         private GameObject _uiText;
 
@@ -107,6 +108,15 @@ namespace Project.Entities.UI
             _buttonSelect2.AddComponent<UIButtonToolSelectAnimationComponent>().DelayToStartAnimation = 0.6f;
             _buttonSelect3.AddComponent<UIButtonToolSelectAnimationComponent>().DelayToStartAnimation = 0.9f;
 
+            _buttonConfirm = new GameObject();
+            _buttonConfirm.tag = "button confirm";
+            Scene.AddGameObject(_buttonConfirm, Layers.UI);
+            _buttonConfirmSpriteComponent = _buttonConfirm.AddComponent<SpriteComponent>();
+            _buttonConfirmSpriteComponent.SetAtlas("confirm btn disable");
+            _buttonConfirmSpriteComponent.OrigenToCenter();
+            _buttonConfirm.Position = Scene.Sizes.ToVector2().Half();
+            _buttonConfirm.Position += Vector2.UnitY * 100.0f;
+
             ChosenToolsSubmitComponent.OnSubmitChosenTools += OnSubmit;
         }
 
@@ -121,6 +131,7 @@ namespace Project.Entities.UI
             _screen.Destroy();
             _background.Destroy();
             _uiText.Destroy();
+            _buttonConfirm.Destroy();
         }
 
         public override void Update(float deltaTime)
@@ -129,6 +140,11 @@ namespace Project.Entities.UI
             if (_chosenToolsCount == count) return;
             _chosenToolsCount = count;
             _countText.SetText($"({count}/2)");
+
+            if (_chosenToolsCount == 2)
+                _buttonConfirmSpriteComponent.SetAtlas("confirm btn");
+            else
+                _buttonConfirmSpriteComponent.SetAtlas("confirm btn disable");
         }
 
         public void OnSubmit(ToolsTypes[] chosenTools)
