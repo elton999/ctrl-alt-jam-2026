@@ -1,4 +1,4 @@
-﻿using UmbrellaToolsKit;
+using UmbrellaToolsKit;
 
 namespace Project.Components
 {
@@ -11,10 +11,7 @@ namespace Project.Components
             _camera = GameObject.Scene.Camera;
             GameObject.Position = GameObject.Scene.Sizes.ToVector2() / 2f;
             GameObject.Position = GameObject.Position.Truncate();
-        }
 
-        public override void Update(float deltaTime)
-        {
             if (_camera is null) return;
 
             _camera.Position = GameObject.Position;
