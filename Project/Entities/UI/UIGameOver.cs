@@ -15,7 +15,6 @@ namespace Project.Entities.UI
         {
             tag = "game over screen";
             LevelManagerEntity.OnLevelStateChanged += OnChangeLevelState;
-
         }
 
         public override void Destroy()
