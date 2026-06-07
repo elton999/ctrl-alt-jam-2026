@@ -123,6 +123,7 @@ namespace Project.Entities.UI
             efx.Position = pos;
             efx.PlayAnimation();
             efx.Reset();
+            Scene.Camera.StartShake(3f);
         }
 
         public void PlayMovement(Vector2 pos)
