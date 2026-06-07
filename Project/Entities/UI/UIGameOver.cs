@@ -34,6 +34,11 @@ namespace Project.Entities.UI
         private IEnumerator ShowScreen()
         {
             Log.Write("Show game over screen");
+
+            yield return CoroutineManagement.Wait(0.1f);
+
+            Scene.Camera.StartShake(10f, 10f);
+
             yield return CoroutineManagement.Wait(2.0f);
 
             var background = new GameObject();
