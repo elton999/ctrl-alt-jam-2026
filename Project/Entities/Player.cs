@@ -99,9 +99,7 @@ namespace Project.Entities
                 {
                     if (Scene.Grid.GridCollides[_nextTileOnLevel.Y][_nextTileOnLevel.X] != validPath)
                     {
-                        Log.Write(
-                            $"[{nameof(Player)}] not avoid movement on current tile: {_nextTileOnLevel} with value: {Scene.Grid.GridCollides[_nextTileOnLevel.Y][_nextTileOnLevel.X]}"
-                        );
+                        Log.Write($"[{nameof(Player)}] not avoid movement on current tile: {_nextTileOnLevel} with value: {Scene.Grid.GridCollides[_nextTileOnLevel.Y][_nextTileOnLevel.X]}");
                         OnNotAvoidMovement();
                         UIUseToolEfx.Instance.PlayMiss(Position);
                         return;
@@ -112,18 +110,8 @@ namespace Project.Entities
 
                     foreach (var actor in sceneActors)
                     {
-                        var collisionCheckPosition =
-                            _initialPosition
-                            + nextTilePosition
-                            + _actorComponent.Size.ToVector2().Half();
-                        if (
-                            UmbrellaToolsKit.Utils.Collision.OverlapCheck(
-                                Vector2.One.ToPoint(),
-                                collisionCheckPosition,
-                                actor.Size,
-                                actor.Position
-                            )
-                        )
+                        var collisionCheckPosition = _initialPosition + nextTilePosition + _actorComponent.Size.ToVector2().Half();
+                        if (UmbrellaToolsKit.Utils.Collision.OverlapCheck(Vector2.One.ToPoint(), collisionCheckPosition, actor.Size, actor.Position))
                         {
                             if (actor.GameObject is ObstacleGameObject)
                             {
@@ -153,18 +141,8 @@ namespace Project.Entities
                 }
 
                 Position = new Vector2(
-                    Tweening.EaseInQuad(
-                        currentPosition.X,
-                        currentTilePosition.X,
-                        _totalTime,
-                        MOVE_SPEED
-                    ),
-                    Tweening.EaseInQuad(
-                        currentPosition.Y,
-                        currentTilePosition.Y,
-                        _totalTime,
-                        MOVE_SPEED
-                    )
+                    Tweening.EaseInQuad(currentPosition.X, currentTilePosition.X, _totalTime, MOVE_SPEED),
+                    Tweening.EaseInQuad(currentPosition.Y, currentTilePosition.Y, _totalTime, MOVE_SPEED)
                 );
             }
         }
