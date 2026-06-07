@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using Microsoft.Xna.Framework;
 
 namespace UmbrellaToolsKit
@@ -35,8 +34,6 @@ namespace UmbrellaToolsKit
 
         public void update(float deltaTime)
         {
-
-            InitialPosition = _position;
             Shake(deltaTime);
 
             if (Target != Vector2.Zero)
@@ -86,7 +83,6 @@ namespace UmbrellaToolsKit
                 float minValue = Scene.ScreenOffset.Y + Origin.Y;
                 _position.Y = Math.Min(_position.Y, maxValue);
                 _position.Y = Math.Max(_position.Y, minValue);
-
             }
         }
 
@@ -95,20 +91,32 @@ namespace UmbrellaToolsKit
         public float TimeShake;
         public static readonly Random getRandom = new Random();
         public Vector2 InitialPosition;
-        public float ShakeMagnitude = 0.05f;
+        public float ShakeMagnitude = 2f;
+
+        public void StartShake(float duration = 1.0f, float magnitude = 2f)
+        {
+            InitialPosition = Position;
+            TimeShake = duration;
+            ShakeMagnitude = magnitude;
+        }
 
         private void Shake(float deltaTime)
         {
-            if (TimeShake > 0)
+            if (TimeShake > 0.0f)
             {
-                int randomX = getRandom.Next(-5, 5);
-                int randomY = getRandom.Next(-5, 5);
+                int randomX = getRandom.Next(-1, 1);
+                int randomY = getRandom.Next(-1, 1);
 
-                Target = new Vector2(
+                Position = new Vector2(
                     InitialPosition.X + randomX * ShakeMagnitude,
                     InitialPosition.Y + randomY * ShakeMagnitude
                 );
-                TimeShake -= 1;
+                TimeShake -= deltaTime;
+
+                if (TimeShake <= 0.0f)
+                {
+                    Position = InitialPosition;
+                }
             }
         }
         #endregion
