@@ -9,6 +9,7 @@ namespace Project.Components
     {
         public enum RenderPosition
         {
+            None,
             LEFT,
             RIGHT
         }
@@ -18,6 +19,7 @@ namespace Project.Components
         [ShowEditor] private bool _isAnimating = true;
         [ShowEditor] private float _animationTimer;
         [ShowEditor] private float _animationDuration = 0.7f;
+        [ShowEditor] private Vector2 _offset = Vector2.Zero;
 
         public override void Start()
         {
@@ -63,14 +65,19 @@ namespace Project.Components
         public Vector2 GetInitialPosition()
         {
             float positionY = GameObject.Scene.Sizes.Y - _spriteComponent.Sprite.Size.Y;
-            float positionX = 0;
+            float positionX = GameObject.Position.X;
+
+            if (_renderPosition == RenderPosition.LEFT)
+            {
+                positionX = 0f;
+            }
 
             if (_renderPosition == RenderPosition.RIGHT)
             {
                 positionX = GameObject.Scene.Sizes.X - _spriteComponent.Sprite.Size.X;
             }
 
-            return new Vector2(positionX, positionY);
+            return new Vector2(positionX + _offset.X, positionY + _offset.Y);
         }
 
     }
