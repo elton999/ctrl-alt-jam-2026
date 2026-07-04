@@ -17,6 +17,9 @@ namespace Project.Entities.UI
         private GameObject _bombCount;
         private GameObject _bootCount;
         private UISpriteGridComponent _gridItemsComponent;
+        private UITextComponent _axeCountText;
+        private UITextComponent _bombCountText;
+        private UITextComponent _bootCountText;
 
         public void OnStartLevel()
         {
@@ -65,26 +68,26 @@ namespace Project.Entities.UI
             var font = Content.Load<SpriteFont>("Fonts/FontUIText");
             var countOffset = new Vector2(-2f, 3f);
 
-            var axeCountText = _axeCount.AddComponent<UITextComponent>();
-            axeCountText.SetFont(font);
-            axeCountText.SetFontSize(0.14f);
-            axeCountText.SetTextFormt(UITextComponent.TextFormat.RIGHT, UITextComponent.TextAlignment.TOP);
-            axeCountText.SetText("0");
-            axeCountText.SetOffset(countOffset);
+            _axeCountText = _axeCount.AddComponent<UITextComponent>();
+            _axeCountText.SetFont(font);
+            _axeCountText.SetFontSize(0.14f);
+            _axeCountText.SetTextFormt(UITextComponent.TextFormat.RIGHT, UITextComponent.TextAlignment.TOP);
+            _axeCountText.SetText("0");
+            _axeCountText.SetOffset(countOffset);
 
-            var bombCountText = _bombCount.AddComponent<UITextComponent>();
-            bombCountText.SetFont(font);
-            bombCountText.SetFontSize(0.16f);
-            bombCountText.SetTextFormt(UITextComponent.TextFormat.RIGHT, UITextComponent.TextAlignment.TOP);
-            bombCountText.SetText("0");
-            bombCountText.SetOffset(countOffset);
+            _bombCountText = _bombCount.AddComponent<UITextComponent>();
+            _bombCountText.SetFont(font);
+            _bombCountText.SetFontSize(0.16f);
+            _bombCountText.SetTextFormt(UITextComponent.TextFormat.RIGHT, UITextComponent.TextAlignment.TOP);
+            _bombCountText.SetText("0");
+            _bombCountText.SetOffset(countOffset);
 
-            var bootCountText = _bootCount.AddComponent<UITextComponent>();
-            bootCountText.SetFont(font);
-            bootCountText.SetFontSize(0.16f);
-            bootCountText.SetTextFormt(UITextComponent.TextFormat.RIGHT, UITextComponent.TextAlignment.TOP);
-            bootCountText.SetText("0");
-            bootCountText.SetOffset(countOffset);
+            _bootCountText = _bootCount.AddComponent<UITextComponent>();
+            _bootCountText.SetFont(font);
+            _bootCountText.SetFontSize(0.16f);
+            _bootCountText.SetTextFormt(UITextComponent.TextFormat.RIGHT, UITextComponent.TextAlignment.TOP);
+            _bootCountText.SetText("0");
+            _bootCountText.SetOffset(countOffset);
 
 
             axeCountSprite.SetAtlas("axe count" + (InventoryGameObject.HasItem(ToolsTypes.AXE) ? string.Empty : " disable"));
