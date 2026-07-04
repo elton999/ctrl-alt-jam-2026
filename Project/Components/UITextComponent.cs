@@ -1,4 +1,4 @@
-﻿using UmbrellaToolsKit;
+using UmbrellaToolsKit;
 using UmbrellaToolsKit.EditorEngine.Attributes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,7 +11,8 @@ namespace Project.Components
         public enum TextAlignment { TOP, MIDDLE, BOTTOM };
 
         [ShowEditor] private string _text;
-        [ShowEditor] private Vector2 _offset;
+        private Vector2 _autoOffset;
+        [ShowEditor] private Vector2 _offset = Vector2.Zero;
         [ShowEditor] private Color _color = Color.White;
         [ShowEditor] private TextFormat _textFormat;
         [ShowEditor] private TextAlignment _textAligment;
@@ -31,32 +32,34 @@ namespace Project.Components
 
         public override void Update(float deltaTime)
         {
-            _offset = Vector2.Zero;
+            _autoOffset = Vector2.Zero;
 
             if (_textFormat is TextFormat.CENTER)
             {
-                _offset = new Vector2(GameObject.Body.Width / 2.0f - _textSize.X.Half() * _fontSize, _offset.Y);
+                _autoOffset = new Vector2(GameObject.Body.Width / 2.0f - _textSize.X.Half() * _fontSize, _autoOffset.Y);
             }
 
             if (_textFormat is TextFormat.RIGHT)
             {
-                _offset = new Vector2(GameObject.Body.Width - _textSize.X * _fontSize, _offset.Y);
+                _autoOffset = new Vector2(GameObject.Body.Width - _textSize.X * _fontSize, _autoOffset.Y);
             }
 
             if (_textAligment is TextAlignment.MIDDLE)
             {
-                _offset = new Vector2(_offset.X, GameObject.Body.Height / 2.0f - _textSize.Y.Half() * _fontSize);
+                _autoOffset = new Vector2(_autoOffset.X, GameObject.Body.Height / 2.0f - _textSize.Y.Half() * _fontSize);
             }
 
             if (_textAligment is TextAlignment.BOTTOM)
             {
-                _offset = new Vector2(_offset.X, GameObject.Body.Height - _textSize.Y * _fontSize);
+                _autoOffset = new Vector2(_autoOffset.X, GameObject.Body.Height - _textSize.Y * _fontSize);
             }
         }
 
         public void SetFont(SpriteFont font) => _font = font;
 
         public void SetFontSize(float fontSize) => _fontSize = fontSize;
+
+        public void SetOffset(Vector2 offset) => _offset = offset;
 
         public void SetText(string text)
         {
@@ -75,7 +78,7 @@ namespace Project.Components
         {
             if (_font is null) return;
             if (_text is null) return;
-            spriteBatch.DrawString(_font, _text, Vector2.Round(GameObject.Position) + _offset, _color, GameObject.Rotation, Vector2.Zero, _fontSize * GameObject.Scale, SpriteEffects.None, 0f);
+            spriteBatch.DrawString(_font, _text, Vector2.Round(GameObject.Position) + _autoOffset + _offset, _color, GameObject.Rotation, Vector2.Zero, _fontSize * GameObject.Scale, SpriteEffects.None, 0f);
         }
     }
 }

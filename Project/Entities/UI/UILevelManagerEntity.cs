@@ -50,6 +50,7 @@ namespace Project.Entities.UI
             hudPortraitAnimation.SetAnimationDuration(1.2f);
 
             _axeCount = new GameObject();
+            _axeCount.tag = "axe count";
             _bombCount = new GameObject();
             _bootCount = new GameObject();
 
@@ -60,6 +61,31 @@ namespace Project.Entities.UI
             var axeCountSprite = _axeCount.AddComponent<SpriteComponent>();
             var bombCountSprite = _bombCount.AddComponent<SpriteComponent>();
             var bootCountSprite = _bootCount.AddComponent<SpriteComponent>();
+
+            var font = Content.Load<SpriteFont>("Fonts/FontUIText");
+            var countOffset = new Vector2(-2f, 3f);
+
+            var axeCountText = _axeCount.AddComponent<UITextComponent>();
+            axeCountText.SetFont(font);
+            axeCountText.SetFontSize(0.14f);
+            axeCountText.SetTextFormt(UITextComponent.TextFormat.RIGHT, UITextComponent.TextAlignment.TOP);
+            axeCountText.SetText("0");
+            axeCountText.SetOffset(countOffset);
+
+            var bombCountText = _bombCount.AddComponent<UITextComponent>();
+            bombCountText.SetFont(font);
+            bombCountText.SetFontSize(0.16f);
+            bombCountText.SetTextFormt(UITextComponent.TextFormat.RIGHT, UITextComponent.TextAlignment.TOP);
+            bombCountText.SetText("0");
+            bombCountText.SetOffset(countOffset);
+
+            var bootCountText = _bootCount.AddComponent<UITextComponent>();
+            bootCountText.SetFont(font);
+            bootCountText.SetFontSize(0.16f);
+            bootCountText.SetTextFormt(UITextComponent.TextFormat.RIGHT, UITextComponent.TextAlignment.TOP);
+            bootCountText.SetText("0");
+            bootCountText.SetOffset(countOffset);
+
 
             axeCountSprite.SetAtlas("axe count" + (InventoryGameObject.HasItem(ToolsTypes.AXE) ? string.Empty : " disable"));
             bombCountSprite.SetAtlas("bomb count" + (InventoryGameObject.HasItem(ToolsTypes.BOMB) ? string.Empty : " disable"));
@@ -77,17 +103,18 @@ namespace Project.Entities.UI
             spriteGrid.GameObject.Position -= Vector2.UnitX * (140f / 2f);
             spriteGrid.UpdatePosition();
 
+            var gridAnimationOffset = new Vector2(0, -5);
             var gridItemsAnimation = _axeCount.AddComponent<HudLevelAnimation>();
             gridItemsAnimation.SetAnimationDuration(1.25f);
-            gridItemsAnimation.SetOffset(new Vector2(0, -5));
+            gridItemsAnimation.SetOffset(gridAnimationOffset);
 
             gridItemsAnimation = _bombCount.AddComponent<HudLevelAnimation>();
             gridItemsAnimation.SetAnimationDuration(1.3f);
-            gridItemsAnimation.SetOffset(new Vector2(0, -5));
+            gridItemsAnimation.SetOffset(gridAnimationOffset);
 
             gridItemsAnimation = _bootCount.AddComponent<HudLevelAnimation>();
             gridItemsAnimation.SetAnimationDuration(1.35f);
-            gridItemsAnimation.SetOffset(new Vector2(0, -5));
+            gridItemsAnimation.SetOffset(gridAnimationOffset);
             Player.OnPlayerMove += UIAnimationByPlayerMovement.StartAnimation;
         }
 
