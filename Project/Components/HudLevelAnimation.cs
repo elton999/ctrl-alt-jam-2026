@@ -53,6 +53,11 @@ namespace Project.Components
             GameObject.Position = GetHidePosition();
         }
 
+        public void SetOffset(Vector2 offset)
+        {
+            _offset = offset;
+        }
+
         public Vector2 GetHidePosition()
         {
             _isAnimating = true;

@@ -79,12 +79,15 @@ namespace Project.Entities.UI
 
             var gridItemsAnimation = _axeCount.AddComponent<HudLevelAnimation>();
             gridItemsAnimation.SetAnimationDuration(1.25f);
+            gridItemsAnimation.SetOffset(new Vector2(0, -5));
 
             gridItemsAnimation = _bombCount.AddComponent<HudLevelAnimation>();
             gridItemsAnimation.SetAnimationDuration(1.3f);
+            gridItemsAnimation.SetOffset(new Vector2(0, -5));
 
             gridItemsAnimation = _bootCount.AddComponent<HudLevelAnimation>();
             gridItemsAnimation.SetAnimationDuration(1.35f);
+            gridItemsAnimation.SetOffset(new Vector2(0, -5));
             Player.OnPlayerMove += UIAnimationByPlayerMovement.StartAnimation;
         }
 
