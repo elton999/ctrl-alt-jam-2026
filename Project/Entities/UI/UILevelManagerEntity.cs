@@ -119,6 +119,8 @@ namespace Project.Entities.UI
             gridItemsAnimation.SetAnimationDuration(1.35f);
             gridItemsAnimation.SetOffset(gridAnimationOffset);
             Player.OnPlayerMove += UIAnimationByPlayerMovement.StartAnimation;
+
+            UpdateHudData();
         }
 
         public override void Start()
@@ -127,6 +129,7 @@ namespace Project.Entities.UI
 
             ChosenToolsSubmitComponent.OnSubmitChosenTools += OnStartLevelFirstTime;
             Player.OnPlayerMove += OnPlayerMovement;
+            Player.OnPlayerMove += UpdateHudData;
         }
 
         public override void OnDestroy()
@@ -134,11 +137,19 @@ namespace Project.Entities.UI
             Player.OnPlayerMove -= UIAnimationByPlayerMovement.StartAnimation;
             ChosenToolsSubmitComponent.OnSubmitChosenTools -= OnStartLevelFirstTime;
             Player.OnPlayerMove -= OnPlayerMovement;
+            Player.OnPlayerMove -= UpdateHudData;
         }
 
         private void OnStartLevelFirstTime(ToolsTypes[] tools)
         {
             OnStartLevel();
+        }
+
+        private void UpdateHudData()
+        {
+            _axeCountText.SetText(InventoryGameObject.Instance.Tools[ToolsTypes.AXE].ToString());
+            _bombCountText.SetText(InventoryGameObject.Instance.Tools[ToolsTypes.BOMB].ToString());
+            _bootCountText.SetText(InventoryGameObject.Instance.Tools[ToolsTypes.BOOT].ToString());
         }
 
         private void OnPlayerMovement()
