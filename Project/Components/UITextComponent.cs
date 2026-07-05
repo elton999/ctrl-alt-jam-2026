@@ -78,7 +78,8 @@ namespace Project.Components
         {
             if (_font is null) return;
             if (_text is null) return;
-            spriteBatch.DrawString(_font, _text, Vector2.Round(GameObject.Position) + _autoOffset + _offset, _color, GameObject.Rotation, Vector2.Zero, _fontSize * GameObject.Scale, SpriteEffects.None, 0f);
+
+            spriteBatch.DrawString(_font, _text, Vector2.Round(GameObject.Position + _autoOffset + _offset), _color, GameObject.Rotation, Vector2.Zero, _fontSize * GameObject.Scale, SpriteEffects.None, 0f);
         }
     }
 }
