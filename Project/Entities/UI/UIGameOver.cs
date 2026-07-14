@@ -38,19 +38,40 @@ namespace Project.Entities.UI
 
             Scene.Camera.StartShake(10f, 10f);
 
-            yield return CoroutineManagement.Wait(2.0f);
+            yield return CoroutineManagement.Wait(0.8f);
 
             var background = new GameObject();
             Scene.AddGameObject(background, Layers.UI);
-            background.AddComponent<UIBackgroundSpriteComponent>().SetSprite(SquareSprite.SquareTexture, _backgroundColor);
+            var backgroundSprite = background.AddComponent<UIBackgroundSpriteComponent>();
+            backgroundSprite.SetSprite(SquareSprite.SquareTexture, _backgroundColor);
+            background.Transparent = 0.0f;
 
             var skull = new GameObject();
             Scene.AddGameObject(skull, Layers.UI);
+            skull.tag = "skull sprite";
             var spriteComponent = skull.AddComponent<SpriteComponent>();
             spriteComponent.SetAtlas("skull");
-            spriteComponent.OrigenToCenter();
             skull.Position = Scene.Sizes.ToVector2().Half().Truncate();
+            skull.Position -= spriteComponent.Sprite.Body.Size.ToVector2().Half().Truncate();
             skull.Position += Vector2.UnitY * -30f;
+
+            var skullAnimation = skull.AddComponent<UIAnimationComponent>();
+            skullAnimation.AnimationDuration = 1f;
+            skullAnimation.StartScale = 0.05f;
+            skullAnimation.EndScale = 50.0f;
+            skullAnimation.TweenType = Tweening.TweenType.EaseInQuad;
+            skullAnimation.CalculateOrigin = true;
+            skullAnimation.StartAnimation();
+
+            yield return CoroutineManagement.Wait(1f);
+
+            skullAnimation.AnimationDuration = 0.8f;
+            skullAnimation.StartScale = 50.0f;
+            skullAnimation.EndScale = 1.0f;
+            skullAnimation.TweenType = Tweening.TweenType.EaseOutQuad;
+            skullAnimation.StartAnimation();
+
+            background.Transparent = 1f;
 
             var tryAgainButton = new GameObject();
             tryAgainButton.tag = "try again button";
