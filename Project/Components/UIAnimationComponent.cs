@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.Components.Sprite;
 using UmbrellaToolsKit.EditorEngine.Attributes;
@@ -13,20 +13,18 @@ namespace Project.Components
         {
             get
             {
-                return new Vector2
-                (
-                    (_spriteComponent.Sprite.Size.X * MaxScale - _spriteComponent.Sprite.Size.X) / 2.0f,
-                    (_spriteComponent.Sprite.Size.Y * MaxScale - _spriteComponent.Sprite.Size.Y) / 2.0f
-                );
+                return (_spriteComponent.Sprite.Size * GameObject.Scale - _spriteComponent.Sprite.Size).Half() * -1.0f;
             }
         }
         private SpriteComponent _spriteComponent;
+        private Vector2 _startPosition;
 
         [ShowEditor] public float AnimationDuration = 0.3f;
-        [ShowEditor] public float MaxScale = 1.1f;
-        [ShowEditor] public float DefaulfScale = 1.0f;
+        [ShowEditor] public float EndScale = 1.1f;
+        [ShowEditor] public float StartScale = 1.0f;
         [ShowEditor] public Tweening.TweenType TweenType = Tweening.TweenType.BounceEaseOut;
         [ShowEditor] public bool CalculateOrigin = true;
+        [ShowEditor] public bool ResetScaleOnStop = false;
         public SpriteComponent SpriteComponent => _spriteComponent;
 
         public override void Start()
@@ -34,8 +32,8 @@ namespace Project.Components
             _spriteComponent = GameObject.GetComponent<SpriteComponent>();
             if (_spriteComponent == null)
             {
-                    Log.Write($"[{nameof(UIAnimationComponent)}] SpriteComponent not found on GameObject: " + GameObject.tag);
-                    return;
+                Log.Write($"[{nameof(UIAnimationComponent)}] SpriteComponent not found on GameObject: " + GameObject.tag);
+                return;
             }
         }
 
@@ -45,30 +43,35 @@ namespace Project.Components
 
             animationTimer += deltaTime;
 
-            GameObject.Scale = Tweening.GetTweeningValue(TweenType, MaxScale, -(MaxScale - DefaulfScale), animationTimer, AnimationDuration);
+            if (StartScale > EndScale)
+            {
+                GameObject.Scale = Tweening.GetTweeningValue(TweenType, StartScale, -(StartScale - EndScale), animationTimer, AnimationDuration);
+            }
+            else
+            {
+                GameObject.Scale = Tweening.GetTweeningValue(TweenType, StartScale, EndScale - StartScale, animationTimer, AnimationDuration);
+            }
 
             if (CalculateOrigin)
             {
-                _spriteComponent.Origin = new Vector2
-               (
-                   Tweening.GetTweeningValue(TweenType, _spriteOrigin.X, -_spriteOrigin.X, animationTimer, AnimationDuration),
-                   Tweening.GetTweeningValue(TweenType, _spriteOrigin.Y, -_spriteOrigin.Y, animationTimer, AnimationDuration)
-               );
+                GameObject.Position = _startPosition + _spriteOrigin;
             }
-           
+
             if (animationTimer >= AnimationDuration)
             {
-                GameObject.Scale = DefaulfScale;
-                if (CalculateOrigin) _spriteComponent.Origin = Vector2.Zero;
+                GameObject.Scale = ResetScaleOnStop ? StartScale : EndScale;
+                if (CalculateOrigin) GameObject.Position = _startPosition;
             }
         }
 
         [Button]
         public void StartAnimation()
         {
-            GameObject.Scale =  MaxScale;
-            animationTimer = 0;
-            if (CalculateOrigin) _spriteComponent.Origin = _spriteOrigin;
+            if (animationTimer >= AnimationDuration)
+                _startPosition = GameObject.Position;
+            GameObject.Scale = StartScale;
+            animationTimer = 0.0f;
+            Update(0.0f);
         }
     }
 }

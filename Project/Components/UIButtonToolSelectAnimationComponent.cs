@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.EditorEngine.Attributes;
 
@@ -12,12 +12,12 @@ namespace Project.Components
         {
             base.Start();
             TweenType = Tweening.TweenType.BounceEaseOut;
-            MaxScale = 0.0001f;
-            DefaulfScale = 1.0f;
+            StartScale = 0.0001f;
+            EndScale = 1.0f;
             AnimationDuration = 0.3f;
             CalculateOrigin = false;
 
-            GameObject.Scale = MaxScale;
+            GameObject.Scale = StartScale;
 
             GameObject.CoroutineManagement.StarCoroutine(OpeningAnimation());
         }

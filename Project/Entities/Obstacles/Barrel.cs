@@ -18,7 +18,8 @@ namespace Project.Entities.Obstacles
 
             _spriteComponent.SetAtlas("barrel");
             _animationComponent = AddComponent<UIAnimationComponent>();
-            _animationComponent.MaxScale = 1.3f;
+            _animationComponent.StartScale = 0.0001f;
+            _animationComponent.EndScale = 1f;
             _animationComponent.AnimationDuration = 0.7f;
             _animationComponent.TweenType = Tweening.TweenType.ElasticEaseOut;
         }

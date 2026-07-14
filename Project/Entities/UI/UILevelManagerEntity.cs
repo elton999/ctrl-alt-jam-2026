@@ -38,6 +38,7 @@ namespace Project.Entities.UI
             hudAnimation.SetRenderPosition(HudLevelAnimation.RenderPosition.RIGHT);
             hudAnimation.SetAnimationDuration(1.5f);
             UIAnimationByPlayerMovement = _countMovement.AddComponent<UIAnimationComponent>();
+            UIAnimationByPlayerMovement.ResetScaleOnStop = true;
 
             var textCountMovement = _countMovement.AddComponent<UITextComponent>();
             textCountMovement.SetFont(Content.Load<SpriteFont>("Fonts/FontMovementCount"));

@@ -44,12 +44,12 @@ namespace Project.Entities.UI
 
             var initialAnimation = _screen.AddComponent<UIAnimationComponent>();
             initialAnimation.TweenType = Tweening.TweenType.BackEaseOut;
-            initialAnimation.MaxScale = 0.0001f;
-            initialAnimation.DefaulfScale = 1.0f;
+            initialAnimation.EndScale = 1.0f;
+            initialAnimation.StartScale = 0.0001f;
             initialAnimation.AnimationDuration = 0.3f;
             initialAnimation.CalculateOrigin = false;
 
-            _screen.Scale = initialAnimation.MaxScale;
+            _screen.Scale = initialAnimation.EndScale;
             initialAnimation.StartAnimation();
 
             _buttonSelect1 = new GameObject();
