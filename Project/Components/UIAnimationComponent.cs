@@ -13,7 +13,7 @@ namespace Project.Components
         {
             get
             {
-                return (_spriteComponent.Sprite.Size * GameObject.Scale - _spriteComponent.Sprite.Size).Half() * -1.0f;
+                return (_spriteComponent.Sprite.Size * GameObject.Scale - _spriteComponent.Sprite.Size).Half();
             }
         }
         private SpriteComponent _spriteComponent;
@@ -43,32 +43,26 @@ namespace Project.Components
 
             animationTimer += deltaTime;
 
-            if (StartScale > EndScale)
-            {
-                GameObject.Scale = Tweening.GetTweeningValue(TweenType, StartScale, -(StartScale - EndScale), animationTimer, AnimationDuration);
-            }
-            else
-            {
-                GameObject.Scale = Tweening.GetTweeningValue(TweenType, StartScale, EndScale - StartScale, animationTimer, AnimationDuration);
-            }
+            GameObject.Scale = Tweening.GetTweeningValue(TweenType, StartScale, -(StartScale - EndScale), animationTimer, AnimationDuration);
 
             if (CalculateOrigin)
             {
-                GameObject.Position = _startPosition + _spriteOrigin;
+                SpriteComponent.Origin = _spriteOrigin;
             }
 
             if (animationTimer >= AnimationDuration)
             {
                 GameObject.Scale = ResetScaleOnStop ? StartScale : EndScale;
-                if (CalculateOrigin) GameObject.Position = _startPosition;
+                if (CalculateOrigin) SpriteComponent.Origin = _spriteOrigin;
             }
         }
 
         [Button]
         public void StartAnimation()
         {
-            if (animationTimer >= AnimationDuration)
-                _startPosition = GameObject.Position;
+            if (CalculateOrigin)
+                SpriteComponent.Origin = Vector2.Zero;
+
             GameObject.Scale = StartScale;
             animationTimer = 0.0f;
             Update(0.0f);

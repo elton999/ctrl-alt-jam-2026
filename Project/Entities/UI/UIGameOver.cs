@@ -51,8 +51,7 @@ namespace Project.Entities.UI
             skull.tag = "skull sprite";
             var spriteComponent = skull.AddComponent<SpriteComponent>();
             spriteComponent.SetAtlas("skull");
-            skull.Position = Scene.Sizes.ToVector2().Half().Truncate();
-            skull.Position -= spriteComponent.Sprite.Body.Size.ToVector2().Half().Truncate();
+            skull.Position = Scene.Sizes.ToVector2().Half();
             skull.Position += Vector2.UnitY * -30f;
 
             var skullAnimation = skull.AddComponent<UIAnimationComponent>();
@@ -60,7 +59,9 @@ namespace Project.Entities.UI
             skullAnimation.StartScale = 0.05f;
             skullAnimation.EndScale = 50.0f;
             skullAnimation.TweenType = Tweening.TweenType.EaseInQuad;
-            skullAnimation.CalculateOrigin = true;
+            skullAnimation.CalculateOrigin = false;
+            spriteComponent.OrigenToCenter();
+
             skullAnimation.StartAnimation();
 
             yield return CoroutineManagement.Wait(1f);
