@@ -22,6 +22,8 @@ namespace Project.Entities.Obstacles
             _animationComponent.EndScale = 1f;
             _animationComponent.AnimationDuration = 0.7f;
             _animationComponent.TweenType = Tweening.TweenType.ElasticEaseOut;
+
+            _toolBalloonSprite.SetAtlas("boot balloon");
         }
 
         public override bool PassObstacle()

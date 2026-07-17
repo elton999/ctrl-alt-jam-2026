@@ -11,6 +11,7 @@ namespace Project.Entities.Obstacles
         {
             base.Start();
             _spriteComponent.SetAtlas("tree");
+            _toolBalloonSprite.SetAtlas("axe balloon");
         }
 
         public override bool PassObstacle()
