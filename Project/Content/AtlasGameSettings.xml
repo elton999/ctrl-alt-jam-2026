@@ -306,6 +306,118 @@
             <Path>Sprites\tilemap</Path>
             <Id>2f8666ae-ed4a-4de7-83f9-b2b1b03e5ca8</Id>
           </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>hit animation 1</Name>
+            <Position>286 352</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>f787de39-b47e-4ad5-a6af-9424cce5edeb</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>hit animation 2</Name>
+            <Position>330 352</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>d165aa92-6f75-4fe0-b58a-80f4f64b24a3</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>hit animation 3</Name>
+            <Position>374 352</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>f23e4bed-8c27-4606-9cb5-3e47f15cbd06</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>hit animation 4</Name>
+            <Position>418 352</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>783b1293-4c92-4046-a2be-10e80125cf32</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>hit animation 5</Name>
+            <Position>462 352</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>293b4e06-b516-495f-a7d2-caf7c3d8f09e</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>death skull 1</Name>
+            <Position>286 396</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>49232e71-6eba-41dd-9be1-d819ba096f9b</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>death skull 2</Name>
+            <Position>330 396</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>ba1e87aa-9ffb-40b6-9c26-fb13f355ec22</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>death skull 3</Name>
+            <Position>374 396</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>8b81f30e-8f38-457e-919b-13cfeee16feb</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>death skull 4</Name>
+            <Position>418 396</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>8cf2e76e-d881-4f7e-83cd-81ec94933c58</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>death skull 5</Name>
+            <Position>462 396</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>19e5d149-5105-42ce-80ec-50a9d82ab8e6</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>death skull 6</Name>
+            <Position>506 396</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>46bf132b-b200-474e-b4e2-06311234742e</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>death skull 7</Name>
+            <Position>550 396</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>2adfd273-2537-40c9-a6f9-654d05a82dc2</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>death skull 8</Name>
+            <Position>594 396</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>f8c765ab-b2a2-4095-b1f7-aee14f5937fb</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>death skull 9</Name>
+            <Position>638 396</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>4aac9bf9-fcf1-45c0-9ffb-d7816cbb9eb3</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>death skull 10</Name>
+            <Position>682 396</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>715a2c4d-0472-451b-be50-5d92d742a702</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>death skull 11</Name>
+            <Position>726 396</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>7a82fe8d-e47a-43ec-bddd-b7d2ed90e836</Id>
+          </Item>
         </Sprites>
       </Item>
     </Atlas>
