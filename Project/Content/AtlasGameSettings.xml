@@ -307,35 +307,35 @@
             <Id>2f8666ae-ed4a-4de7-83f9-b2b1b03e5ca8</Id>
           </Item>
           <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
-            <Name>hit animation 1</Name>
+            <Name>explosion animation 1</Name>
             <Position>286 352</Position>
             <Size>44 44</Size>
             <Path>Sprites\tilemap</Path>
             <Id>f787de39-b47e-4ad5-a6af-9424cce5edeb</Id>
           </Item>
           <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
-            <Name>hit animation 2</Name>
+            <Name>explosion animation 2</Name>
             <Position>330 352</Position>
             <Size>44 44</Size>
             <Path>Sprites\tilemap</Path>
             <Id>d165aa92-6f75-4fe0-b58a-80f4f64b24a3</Id>
           </Item>
           <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
-            <Name>hit animation 3</Name>
+            <Name>explosion animation 3</Name>
             <Position>374 352</Position>
             <Size>44 44</Size>
             <Path>Sprites\tilemap</Path>
             <Id>f23e4bed-8c27-4606-9cb5-3e47f15cbd06</Id>
           </Item>
           <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
-            <Name>hit animation 4</Name>
+            <Name>explosion animation 4</Name>
             <Position>418 352</Position>
             <Size>44 44</Size>
             <Path>Sprites\tilemap</Path>
             <Id>783b1293-4c92-4046-a2be-10e80125cf32</Id>
           </Item>
           <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
-            <Name>hit animation 5</Name>
+            <Name>explosion animation 5</Name>
             <Position>462 352</Position>
             <Size>44 44</Size>
             <Path>Sprites\tilemap</Path>
