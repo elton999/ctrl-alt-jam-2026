@@ -10,6 +10,9 @@ namespace UmbrellaToolsKit.Components.Sprite
         private SpriteAnimationClip _currentAnimation;
         private SpriteComponent _spriteComponent;
 
+        public bool IsLastFrame => _currentFrame == _currentAnimation.Frames.Count;
+        public bool IsALoopAnimation => _currentAnimation.AnimationDirection == AnimationDirection.LOOP;
+
         public override void Start()
         {
             _spriteComponent = GameObject.GetComponent<SpriteComponent>();
@@ -29,10 +32,16 @@ namespace UmbrellaToolsKit.Components.Sprite
             {
                 _currentFrame++;
                 _currentTime = 0.0f;
-                if (_currentFrame == _currentAnimation.Frames.Count)
+                if (IsLastFrame && IsALoopAnimation)
                 {
                     _currentFrame = 0;
                 }
+
+                if (_currentFrame >= _currentAnimation.Frames.Count)
+                {
+                    _currentFrame = _currentAnimation.Frames.Count - 1;
+                }
+
                 frame = _currentAnimation.Frames[_currentFrame];
             }
 
