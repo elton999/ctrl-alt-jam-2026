@@ -40,6 +40,7 @@ namespace Project
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _assetManagement.Set<Player>("Player", Layers.PLAYER);
+            _assetManagement.Set<HitfxAnimation>("Player", Layers.MIDDLEGROUND);
             _assetManagement.Set<CameraGameObject>("Player", Layers.MIDDLEGROUND);
             _assetManagement.Set<InventoryGameObject>("Player", Layers.MIDDLEGROUND);
             _assetManagement.Set<LevelManagerEntity>("Player", Layers.MIDDLEGROUND);
