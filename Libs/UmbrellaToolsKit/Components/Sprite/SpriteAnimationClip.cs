@@ -39,5 +39,18 @@ namespace UmbrellaToolsKit.Components.Sprite
                 }
             }
         }
+
+        public SpriteAnimationClip AddFrame(string spriteName, float duration)
+        {
+            var atlas = GameSettingsProperty.GetProperty<AtlasGameSettings>(@"Content/AtlasGameSettings");
+            if (atlas.TryGetSpriteByName(spriteName, out var sprite))
+            {
+                var spriteData = new Sprite(sprite.Name, sprite.Path, sprite.GetRectangle());
+                var frame = new SpriteFrame() { Sprite = spriteData, Duration = duration };
+
+                Frames.Add(frame);
+            }
+            return this;
+        }
     }
 }
