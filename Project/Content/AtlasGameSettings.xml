@@ -418,6 +418,27 @@
             <Path>Sprites\tilemap</Path>
             <Id>7a82fe8d-e47a-43ec-bddd-b7d2ed90e836</Id>
           </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>hit 1</Name>
+            <Position>506 352</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>c275c198-a1f9-4a85-bc7d-fdc7dd72d54f</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>hit 2</Name>
+            <Position>550 352</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>97ab2c57-253b-4bdf-a3bb-63360616d482</Id>
+          </Item>
+          <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
+            <Name>empty frame</Name>
+            <Position>594 352</Position>
+            <Size>44 44</Size>
+            <Path>Sprites\tilemap</Path>
+            <Id>5e6b6b82-8d2a-4bad-8fa1-539aaecc398d</Id>
+          </Item>
         </Sprites>
       </Item>
     </Atlas>
