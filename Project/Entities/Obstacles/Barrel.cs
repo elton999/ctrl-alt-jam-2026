@@ -52,6 +52,7 @@ namespace Project.Entities.Obstacles
                         Position = tempPosition;
                         _animationComponent.StartAnimation();
                         UIUseToolEfx.Instance.Play(ToolType, Position);
+                        HitfxAnimation.Play(EfxAnimationGameObject.AnimationType.HIT, Position);
                         return true;
                     }
                 }

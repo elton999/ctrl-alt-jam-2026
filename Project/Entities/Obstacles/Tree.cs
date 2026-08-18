@@ -22,6 +22,7 @@ namespace Project.Entities.Obstacles
             if (InventoryGameObject.HasItem(tool))
             {
                 UIUseToolEfx.Instance.Play(tool, pos);
+                HitfxAnimation.Play(EfxAnimationGameObject.AnimationType.HIT, Position);
             }
             else
             {

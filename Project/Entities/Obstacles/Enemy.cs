@@ -21,6 +21,7 @@ namespace Project.Entities.Obstacles
 
         public override bool PassObstacle()
         {
+            HitfxAnimation.Play(EfxAnimationGameObject.AnimationType.SKULL, Position);
             Destroy();
             return false;
         }

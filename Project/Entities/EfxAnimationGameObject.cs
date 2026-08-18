@@ -17,16 +17,15 @@ namespace Project.Entities
         }
 
         private List<SpriteAnimationClip> _animationClips;
-        private List<Vector2> _animationOffset = new() { new Vector2(11f, 11f), Vector2.Zero, Vector2.Zero };
         private AnimationComponent _animationComponent;
 
         public override void Start()
         {
             _animationClips = new List<SpriteAnimationClip>()
             {
-                new SpriteAnimationClip("explosion animation", 5, 0.3f),
-                new SpriteAnimationClip("explosion animation", 5, 0.3f),
-                new SpriteAnimationClip("death skull ", 11, 0.3f),
+                (new SpriteAnimationClip("hit", 2, 0.05f)).AddFrame("empty frame", 0.05f),
+                (new SpriteAnimationClip("explosion animation", 5, 0.05f)).AddFrame("empty frame", 0.05f),
+                new SpriteAnimationClip("death skull", 11, 0.05f),
             };
 
             _animationComponent = AddComponent<AnimationComponent>();
@@ -35,8 +34,10 @@ namespace Project.Entities
         public void SetAnimation(AnimationType animationType, Vector2 position)
         {
             int animationIndex = (int)animationType;
+            Position = position + (new Vector2(-11, -11));
             _animationComponent.Play(_animationClips[animationIndex]);
-            Position = position - _animationOffset[animationIndex];
+
+            tag = "efx - " + animationType;
         }
 
         public void Reset() { }
@@ -54,6 +55,11 @@ namespace Project.Entities
             EfxObjectPooling = new ObjectPooling<EfxAnimationGameObject>(3);
             if (_instance == null)
                 _instance = this;
+        }
+
+        public override void OnDestroy()
+        {
+            _instance = null;
         }
 
         public static void Play(EfxAnimationGameObject.AnimationType animationType, Vector2 position)
