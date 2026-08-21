@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Project.Components;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.Components.Sprite;
+using System;
 
 namespace Project.Entities.UI
 {
@@ -27,7 +28,9 @@ namespace Project.Entities.UI
             _hudBoard.tag = "hud board";
             Scene.AddGameObject(_hudBoard, Layers.UI);
             _hudBoard.AddComponent<SpriteComponent>().SetAtlas("hud board");
-            _hudBoard.AddComponent<HudLevelAnimation>().SetRenderPosition(HudLevelAnimation.RenderPosition.LEFT);
+            var hudBoardAnimation = _hudBoard.AddComponent<HudLevelAnimation>();
+            hudBoardAnimation.SetRenderPosition(HudLevelAnimation.RenderPosition.LEFT);
+            hudBoardAnimation.SetHidePosition();
 
             _countMovement = new GameObject();
             _countMovement.tag = "buoy ui";
@@ -36,6 +39,7 @@ namespace Project.Entities.UI
 
             var hudAnimation = _countMovement.AddComponent<HudLevelAnimation>();
             hudAnimation.SetRenderPosition(HudLevelAnimation.RenderPosition.RIGHT);
+            hudAnimation.SetHidePosition();
             hudAnimation.SetAnimationDuration(1.5f);
             UIAnimationByPlayerMovement = _countMovement.AddComponent<UIAnimationComponent>();
             UIAnimationByPlayerMovement.ResetScaleOnStop = true;
@@ -50,6 +54,7 @@ namespace Project.Entities.UI
             Scene.AddGameObject(_hudPortrait, Layers.UI);
             _hudPortrait.AddComponent<SpriteComponent>().SetAtlas("portrait hud");
             var hudPortraitAnimation = _hudPortrait.AddComponent<HudLevelAnimation>();
+            hudPortraitAnimation.SetHidePosition();
             hudPortraitAnimation.SetRenderPosition(HudLevelAnimation.RenderPosition.LEFT);
             hudPortraitAnimation.SetAnimationDuration(1.2f);
 
@@ -109,14 +114,17 @@ namespace Project.Entities.UI
 
             var gridAnimationOffset = new Vector2(0, -5);
             var gridItemsAnimation = _axeCount.AddComponent<HudLevelAnimation>();
+            gridItemsAnimation.SetHidePosition();
             gridItemsAnimation.SetAnimationDuration(1.25f);
             gridItemsAnimation.SetOffset(gridAnimationOffset);
 
             gridItemsAnimation = _bombCount.AddComponent<HudLevelAnimation>();
+            gridItemsAnimation.SetHidePosition();
             gridItemsAnimation.SetAnimationDuration(1.3f);
             gridItemsAnimation.SetOffset(gridAnimationOffset);
 
             gridItemsAnimation = _bootCount.AddComponent<HudLevelAnimation>();
+            gridItemsAnimation.SetHidePosition();
             gridItemsAnimation.SetAnimationDuration(1.35f);
             gridItemsAnimation.SetOffset(gridAnimationOffset);
             Player.OnPlayerMove += UIAnimationByPlayerMovement.StartAnimation;
@@ -131,6 +139,7 @@ namespace Project.Entities.UI
             ChosenToolsSubmitComponent.OnSubmitChosenTools += OnStartLevelFirstTime;
             Player.OnPlayerMove += OnPlayerMovement;
             Player.OnPlayerMove += UpdateHudData;
+            LevelManagerEntity.OnLevelStateChanged += HideHud;
         }
 
         public override void OnDestroy()
@@ -139,6 +148,19 @@ namespace Project.Entities.UI
             ChosenToolsSubmitComponent.OnSubmitChosenTools -= OnStartLevelFirstTime;
             Player.OnPlayerMove -= OnPlayerMovement;
             Player.OnPlayerMove -= UpdateHudData;
+            LevelManagerEntity.OnLevelStateChanged -= HideHud;
+        }
+
+        private void HideHud(LevelManagerEntity.GameState state)
+        {
+            if (!(state is LevelManagerEntity.GameState.ENDING_LEVEL or LevelManagerEntity.GameState.GAME_OVER)) return;
+
+            _hudBoard.GetComponent<HudLevelAnimation>().SetReverseAnimation();
+            _countMovement.GetComponent<HudLevelAnimation>().SetReverseAnimation();
+            _hudPortrait.GetComponent<HudLevelAnimation>().SetReverseAnimation();
+            _axeCount.GetComponent<HudLevelAnimation>().SetReverseAnimation();
+            _bombCount.GetComponent<HudLevelAnimation>().SetReverseAnimation();
+            _bootCount.GetComponent<HudLevelAnimation>().SetReverseAnimation();
         }
 
         private void OnStartLevelFirstTime(ToolsTypes[] tools)
