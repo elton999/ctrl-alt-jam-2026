@@ -23,7 +23,7 @@ namespace Project.Entities
         {
             _animationClips = new List<SpriteAnimationClip>()
             {
-                (new SpriteAnimationClip("hit", 2, 0.05f)).AddFrame("empty frame", 0.05f),
+                (new SpriteAnimationClip("hit", 2, 0.1f)).AddFrame("empty frame", 0.05f),
                 (new SpriteAnimationClip("explosion animation", 5, 0.05f)).AddFrame("empty frame", 0.05f),
                 new SpriteAnimationClip("death skull", 11, 0.05f),
             };
