@@ -42,6 +42,8 @@ namespace Project.Entities
         private int _maxMovements = 90;
         [ShowEditor] private GameState _currentState = GameState.SELECT_TOOLS;
         [ShowEditor] private static int _currentLevel = 0;
+        private float _delayToStart = 2f;
+        private float _timerDelay;
 
 
         public override void Start()
@@ -69,6 +71,11 @@ namespace Project.Entities
 
         public override void Update(float deltaTime)
         {
+            if (_currentState is GameState.PLAYING && _timerDelay > 0.0f)
+            {
+                _timerDelay -= deltaTime;
+            }
+
             if (!(_currentState is GameState.PLAYING || _currentState is GameState.GAME_OVER)) return;
             if (KeyBoardHandler.KeyPressed("reset") && _currentState is GameState.PLAYING)
             {
@@ -92,6 +99,10 @@ namespace Project.Entities
             if (Instance is null) return;
 
             Instance._currentState = state;
+            if (state is GameState.PLAYING)
+            {
+                Instance._timerDelay = Instance._delayToStart;
+            }
             OnLevelStateChanged?.Invoke(state);
         }
 
@@ -100,6 +111,8 @@ namespace Project.Entities
             if (Instance is null) return false;
 
             if (Instance._currentState != GameState.PLAYING) return false;
+
+            if (Instance._timerDelay > 0.0f) return false;
 
             if (Instance._currentMovement < Instance._maxMovements) return true;
 
