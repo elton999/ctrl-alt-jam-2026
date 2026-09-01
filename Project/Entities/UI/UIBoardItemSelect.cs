@@ -13,8 +13,10 @@ namespace Project.Entities.UI
         private GameObject _buttonSelect3;
         private GameObject _buttonConfirm;
         private SpriteComponent _buttonConfirmSpriteComponent;
+		private UICoconutTreeSpriteAnimation _coconutTree1;
+		private UICoconutTreeSpriteAnimation _coconutTree2;
 
-        private GameObject _uiText;
+		private GameObject _uiText;
 
         private GameObject _screen;
         private GameObject _background;
@@ -117,7 +119,15 @@ namespace Project.Entities.UI
             _buttonConfirm.Position = Scene.Sizes.ToVector2().Half();
             _buttonConfirm.Position += Vector2.UnitY * 100.0f;
 
-            ChosenToolsSubmitComponent.OnSubmitChosenTools += OnSubmit;
+			_coconutTree1 = new UICoconutTreeSpriteAnimation();
+			Scene.AddGameObject(_coconutTree1, Layers.UI);
+			_coconutTree1.Position = new Vector2(0, Scene.Sizes.Y);
+
+			_coconutTree2 = new UICoconutTreeSpriteAnimation();
+			Scene.AddGameObject(_coconutTree2, Layers.UI);
+			_coconutTree2.Position = new Vector2(Scene.Sizes.X, Scene.Sizes.Y);
+
+			ChosenToolsSubmitComponent.OnSubmitChosenTools += OnSubmit;
         }
 
         public override void OnDestroy()
@@ -132,7 +142,9 @@ namespace Project.Entities.UI
             _background.Destroy();
             _uiText.Destroy();
             _buttonConfirm.Destroy();
-        }
+			_coconutTree1.Destroy();
+			_coconutTree2.Destroy();
+		}
 
         public override void Update(float deltaTime)
         {

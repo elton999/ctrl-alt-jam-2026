@@ -440,7 +440,7 @@
             <Id>5e6b6b82-8d2a-4bad-8fa1-539aaecc398d</Id>
           </Item>
           <Item Type="GameSettings:AtlasGameSettings+SpriteBody">
-            <Name>cocoiro</Name>
+            <Name>coqueiro</Name>
             <Position>0 584</Position>
             <Size>339 189</Size>
             <Path>Sprites\tilemap</Path>
