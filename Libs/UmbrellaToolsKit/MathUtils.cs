@@ -5,6 +5,9 @@ namespace UmbrellaToolsKit
 {
     public static class MathUtils
     {
+        public static float RadiansToDegrees => (180f / (float)Math.PI);
+        public static float DegreesToRadians => ((float)Math.PI / 180f);
+
         public static Vector2 Rotate(Vector2 vector, float angle)
         {
             angle = MathHelper.ToRadians(angle);
