@@ -62,9 +62,8 @@ namespace Project.Entities.UI
             {
                 float deltaTime = (float)CoroutineManagement.GameTime.TotalGameTime.TotalSeconds;
 
-                Position = (new Vector2(initialPosition.X + MathF.Cos(deltaTime * 0.5f) * 5f, initialPosition.Y + MathF.Sin(deltaTime * 0.5f) * 3f)).ToPoint().ToVector2();
-                Rotation = (MathF.Cos(deltaTime) * 2f) * MathUtils.DegreesToRadians;
-
+                Position = (new Vector2(initialPosition.X + MathF.Cos(deltaTime * 0.2f) * 5f, initialPosition.Y + MathF.Sin(deltaTime * 0.2f) * 3f)).ToPoint().ToVector2();
+                Rotation = (MathF.Cos(deltaTime) * 0.2f) * 20f * MathUtils.DegreesToRadians;
                 yield return null;
             }
 
