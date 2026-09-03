@@ -82,15 +82,11 @@ namespace Project
         {
             int firstLevel = 0;
 
-            Console.WriteLine("9" + _args.Length + "9");
-
             if (_args != null && _args.Length > 1)
             {
                 int sceneArgIndex = Array.IndexOf(_args, "--scene");
                 if (sceneArgIndex >= 0 && sceneArgIndex < _args.Length - 1)
-                {
                     firstLevel = int.Parse(_args[sceneArgIndex + 1]);
-                }
             }
 
             _gameManagement.SceneManagement.SetScene(firstLevel);
