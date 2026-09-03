@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 
 namespace directx
 {
     public static class Program
     {
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            using (var game = new Project.Game1())
+            using (var game = new Project.Game1(args))
                 game.Run();
         }
     }

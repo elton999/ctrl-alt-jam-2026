@@ -43,6 +43,9 @@ namespace UmbrellaToolsKit
 
                 if (_buildGameSettings.SceneList.Count > 0)
                 {
+                    if (sceneIndex >= _buildGameSettings.SceneList.Count)
+                        sceneIndex = CurrentScene = 0;
+
                     var scene = _buildGameSettings.SceneList[sceneIndex];
                     if (scene.UseTileMapSystem)
                     {

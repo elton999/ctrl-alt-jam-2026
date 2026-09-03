@@ -6,6 +6,7 @@ using Project.Entities.UI;
 using UmbrellaToolsKit;
 using UmbrellaToolsKit.EditorEngine;
 using UmbrellaToolsKit.EditorEngine.GameSettings;
+using System;
 
 namespace Project
 {
@@ -15,14 +16,16 @@ namespace Project
         private SpriteBatch _spriteBatch;
         private AssetManagement _assetManagement;
         private GameManagement _gameManagement;
+        private string[] _args;
 
-        public Game1()
+        public Game1(string[] args)
         {
             _graphics = new GraphicsDeviceManager(this);
             Window.AllowUserResizing = true;
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            _args = args;
         }
 
         protected override void Initialize()
@@ -55,8 +58,7 @@ namespace Project
             _assetManagement.Set<EndTile>("End", Layers.MIDDLEGROUND);
             _assetManagement.Set<UIUseToolEfx>("Player", Layers.UI);
 
-            _gameManagement.SceneManagement.SetScene(0);
-            _gameManagement.SceneManagement.MainScene.LevelReady = true;
+            SetUpSceneManager();
 
             var inputSettings = GameSettingsProperty.GetProperty<InputGameSettings>(@"Content/" + nameof(InputGameSettings));
             inputSettings.BindAllInputs();
@@ -74,6 +76,25 @@ namespace Project
             _gameManagement.Draw(_spriteBatch, gameTime);
 
             base.Draw(gameTime);
+        }
+
+        private void SetUpSceneManager()
+        {
+            int firstLevel = 0;
+
+            Console.WriteLine("9" + _args.Length + "9");
+
+            if (_args != null && _args.Length > 1)
+            {
+                int sceneArgIndex = Array.IndexOf(_args, "--scene");
+                if (sceneArgIndex >= 0 && sceneArgIndex < _args.Length - 1)
+                {
+                    firstLevel = int.Parse(_args[sceneArgIndex + 1]);
+                }
+            }
+
+            _gameManagement.SceneManagement.SetScene(firstLevel);
+            _gameManagement.SceneManagement.MainScene.LevelReady = true;
         }
     }
 }
