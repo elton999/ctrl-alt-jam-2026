@@ -25,7 +25,9 @@ namespace Project
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+#if !RELEASE
             _args = args;
+#endif
         }
 
         protected override void Initialize()
