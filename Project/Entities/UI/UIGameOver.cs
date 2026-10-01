@@ -17,7 +17,7 @@ namespace Project.Entities.UI
             LevelManagerEntity.OnLevelStateChanged += OnChangeLevelState;
         }
 
-        public override void Destroy()
+        public override void OnDestroy()
         {
             LevelManagerEntity.OnLevelStateChanged -= OnChangeLevelState;
         }
@@ -35,6 +35,12 @@ namespace Project.Entities.UI
             Log.Write("Show game over screen");
 
             yield return CoroutineManagement.Wait(0.1f);
+
+			if (LevelManagerEntity.GameState.GAME_OVER != LevelManagerEntity.CurrentState)
+			{
+				Destroy();
+				yield return null;
+			}
 
             Scene.Camera.StartShake(10f, 10f);
 

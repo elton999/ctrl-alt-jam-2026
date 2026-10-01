@@ -38,6 +38,16 @@ namespace Project.Entities
             }
         }
 
+		public static GameState CurrentState
+		{
+			get
+			{
+				if (Instance is null)
+					return GameState.PLAYING;
+				return Instance._currentState;
+			}
+		}
+
         [ShowEditor] private int _currentMovement = 0;
         private int _maxMovements = 90;
         [ShowEditor] private GameState _currentState = GameState.SELECT_TOOLS;
@@ -87,6 +97,8 @@ namespace Project.Entities
             {
                 ResetLevel();
             }
+
+			if (_currentState == GameState.ENDING_LEVEL) return;
 
             if (RemainingMovements == 0 && _currentState != GameState.GAME_OVER)
             {
