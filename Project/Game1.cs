@@ -53,7 +53,9 @@ namespace Project
             _assetManagement.Set<UILevelManagerEntity>("Player", Layers.UI);
             _assetManagement.Set<UIBoardItemSelect>("Player", Layers.UI);
 
-            _assetManagement.Set<Tree>("Tree", Layers.MIDDLEGROUND);
+			_assetManagement.Set<FinalCredits>("FinalCredits", Layers.MIDDLEGROUND);
+
+			_assetManagement.Set<Tree>("Tree", Layers.MIDDLEGROUND);
             _assetManagement.Set<Stone>("Stone", Layers.MIDDLEGROUND);
             _assetManagement.Set<Barrel>("Barrel", Layers.MIDDLEGROUND);
             _assetManagement.Set<Enemy>("Enemy", Layers.MIDDLEGROUND);
