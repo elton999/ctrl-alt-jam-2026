@@ -141,8 +141,8 @@ namespace Project.Entities
                 }
 
                 Position = new Vector2(
-                    Tweening.EaseInQuad(currentPosition.X, currentTilePosition.X, _totalTime, MOVE_SPEED),
-                    Tweening.EaseInQuad(currentPosition.Y, currentTilePosition.Y, _totalTime, MOVE_SPEED)
+                    Tweening.BackEaseOut(currentPosition.X, currentTilePosition.X, _totalTime, MOVE_SPEED),
+                    Tweening.BackEaseOut(currentPosition.Y, currentTilePosition.Y, _totalTime, MOVE_SPEED)
                 );
             }
         }
